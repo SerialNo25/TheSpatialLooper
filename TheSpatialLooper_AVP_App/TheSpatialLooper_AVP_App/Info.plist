@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSWorldSensingUsageDescription</key>
+	<string>Spatial Looper scans your performance environment to determine device locations.</string>
+	<key>NSHandsTrackingUsageDescription</key>
+	<string>Spatial Looper relies on hand tracking to trigger loop events.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationPreferredDefaultSceneSessionRole</key>

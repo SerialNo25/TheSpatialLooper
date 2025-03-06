@@ -7,34 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A2BC52E2D79B5980046F003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC52A2D79B5980046F003 /* ContentView.swift */; };
+		9A2BC52F2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC52C2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift */; };
+		9A2BC5312D79B5980046F003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BC5292D79B5980046F003 /* Assets.xcassets */; };
 		9A7780222D777A0A008883D5 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 9A7780212D777A0A008883D5 /* RealityKitContent */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A2BC5292D79B5980046F003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9A2BC52A2D79B5980046F003 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9A2BC52B2D79B5980046F003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A2BC52C2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheSpatialLooper_AVP_AppApp.swift; sourceTree = "<group>"; };
 		9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheSpatialLooper_AVP_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7780202D777A0A008883D5 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9A77802D2D777A0B008883D5 /* Exceptions for "TheSpatialLooper_AVP_App" folder in "TheSpatialLooper_AVP_App" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 9A77801B2D777A0A008883D5 /* TheSpatialLooper_AVP_App */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		9A77801E2D777A0A008883D5 /* TheSpatialLooper_AVP_App */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				9A77802D2D777A0B008883D5 /* Exceptions for "TheSpatialLooper_AVP_App" folder in "TheSpatialLooper_AVP_App" target */,
-			);
-			path = TheSpatialLooper_AVP_App;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9A7780192D777A0A008883D5 /* Frameworks */ = {
@@ -48,10 +34,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A2BC52D2D79B5980046F003 /* TheSpatialLooper_AVP_App */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BC5292D79B5980046F003 /* Assets.xcassets */,
+				9A2BC52B2D79B5980046F003 /* Info.plist */,
+				9A2BC52A2D79B5980046F003 /* ContentView.swift */,
+				9A2BC52C2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift */,
+				9A2BC5332D79B59D0046F003 /* Views */,
+			);
+			path = TheSpatialLooper_AVP_App;
+			sourceTree = "<group>";
+		};
+		9A2BC5332D79B59D0046F003 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9A7780132D777A0A008883D5 = {
 			isa = PBXGroup;
 			children = (
-				9A77801E2D777A0A008883D5 /* TheSpatialLooper_AVP_App */,
+				9A2BC52D2D79B5980046F003 /* TheSpatialLooper_AVP_App */,
 				9A77801F2D777A0A008883D5 /* Packages */,
 				9A77801D2D777A0A008883D5 /* Products */,
 			);
@@ -87,9 +92,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				9A77801E2D777A0A008883D5 /* TheSpatialLooper_AVP_App */,
 			);
 			name = TheSpatialLooper_AVP_App;
 			packageProductDependencies = (
@@ -138,6 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2BC5312D79B5980046F003 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2BC52E2D79B5980046F003 /* ContentView.swift in Sources */,
+				9A2BC52F2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +166,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TheSpatialLooper_AVP_App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 842XTN5D7H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -187,7 +192,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TheSpatialLooper_AVP_App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 842XTN5D7H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
