@@ -10,7 +10,6 @@
 		9A2BC52E2D79B5980046F003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC52A2D79B5980046F003 /* ContentView.swift */; };
 		9A2BC52F2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC52C2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift */; };
 		9A2BC5312D79B5980046F003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BC5292D79B5980046F003 /* Assets.xcassets */; };
-		9A7780222D777A0A008883D5 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 9A7780212D777A0A008883D5 /* RealityKitContent */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +18,6 @@
 		9A2BC52B2D79B5980046F003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A2BC52C2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheSpatialLooper_AVP_AppApp.swift; sourceTree = "<group>"; };
 		9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheSpatialLooper_AVP_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A7780202D777A0A008883D5 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,7 +25,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A7780222D777A0A008883D5 /* RealityKitContent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +54,6 @@
 			isa = PBXGroup;
 			children = (
 				9A2BC52D2D79B5980046F003 /* TheSpatialLooper_AVP_App */,
-				9A77801F2D777A0A008883D5 /* Packages */,
 				9A77801D2D777A0A008883D5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,14 +64,6 @@
 				9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9A77801F2D777A0A008883D5 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				9A7780202D777A0A008883D5 /* RealityKitContent */,
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,7 +83,6 @@
 			);
 			name = TheSpatialLooper_AVP_App;
 			packageProductDependencies = (
-				9A7780212D777A0A008883D5 /* RealityKitContent */,
 			);
 			productName = TheSpatialLooper_AVP_App;
 			productReference = 9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */;
@@ -352,13 +339,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9A7780212D777A0A008883D5 /* RealityKitContent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RealityKitContent;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9A7780142D777A0A008883D5 /* Project object */;
 }
