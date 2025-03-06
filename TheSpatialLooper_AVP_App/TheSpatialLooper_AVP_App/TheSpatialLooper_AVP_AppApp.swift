@@ -9,9 +9,40 @@ import SwiftUI
 
 @main
 struct TheSpatialLooper_AVP_AppApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+    
+    private var appState = AppState()
+    
+    // MARK: - Entity Component System initialization
+    init() {
+        // MARK: COMPONENTS
+        
+        // MARK: SYSTEMS
     }
+    
+    // MARK: -  APP Body
+    var body: some Scene {
+        
+        
+        WindowGroup {
+            HomeView()
+                .environment(appState)
+                .glassBackgroundEffect()
+        }
+        .windowStyle(.plain)
+        .windowResizability(.contentSize)
+
+        
+        ImmersiveSpace(id: UIIdentifier.performanceSpace) {
+            PerformanceRealityView()
+                .environment(appState)
+        }
+        
+        
+        
+    }
+}
+
+// MARK: - UTIL
+enum UIIdentifier {
+    static let performanceSpace = "Performance Space"
 }
