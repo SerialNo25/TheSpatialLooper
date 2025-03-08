@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import QuartzCore
 import ARKit
 
 @MainActor
@@ -18,21 +19,28 @@ class ARKitSessionManager {
     
     
     // MARK: - AR SESSION
-    var arkitSession = ARKitSession()
+    private var arkitSession = ARKitSession()
+    private var worldTracking = WorldTrackingProvider()
+    
     func stopSession() {
         arkitSession.stop()
     }
     
     func runSession() async {
+        worldTracking = WorldTrackingProvider()
         do {
             try await arkitSession.run(
                 [
-                    WorldTrackingProvider(),
+                    worldTracking,
                     HandTrackingManager.shared.startProvider()
                 ]
             )
         } catch {
             fatalError("Something went wrong with the ARKit Session")
         }
+    }
+    
+    func queryDeviceAnchor() -> DeviceAnchor? {
+        return worldTracking.queryDeviceAnchor(atTimestamp: CACurrentMediaTime())
     }
 }

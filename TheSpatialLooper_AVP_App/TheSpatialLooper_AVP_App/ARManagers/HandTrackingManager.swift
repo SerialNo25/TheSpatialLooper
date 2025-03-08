@@ -21,8 +21,11 @@ class HandTrackingManager: ObservableObject {
     
     private(set) var joints: [JointHandTuple: ModelEntity]
     // convenience method for prettier syntax in other files :)
-    func getJoint(chirality: HandAnchor.Chirality, joint: HandSkeleton.JointName) -> ModelEntity? {
-        return joints[JointHandTuple(chirality: chirality, joint: joint)]
+    func getJoint(chirality: HandAnchor.Chirality, joint: HandSkeleton.JointName) -> Entity {
+        guard let joint = joints[JointHandTuple(chirality: chirality, joint: joint)] else {
+            fatalError("Joint not found. Ensure the Manager setup was run and is correct")
+        }
+        return joint
     }
     
     

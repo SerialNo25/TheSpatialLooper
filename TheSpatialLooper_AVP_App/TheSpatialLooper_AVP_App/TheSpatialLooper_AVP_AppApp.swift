@@ -15,8 +15,11 @@ struct TheSpatialLooper_AVP_AppApp: App {
     // MARK: - Entity Component System initialization
     init() {
         // MARK: COMPONENTS
+        LoopTriggerEntityComponent.registerComponent()
+        FaceHeadsetComponent.registerComponent()
         
         // MARK: SYSTEMS
+        FaceHeadsetSystem.registerSystem()
     }
     
     // MARK: -  APP Body
@@ -45,4 +48,9 @@ struct TheSpatialLooper_AVP_AppApp: App {
 // MARK: - UTIL
 enum UIIdentifier {
     static let performanceSpace = "Performance Space"
+}
+
+enum AttachmendIdentifier {
+    case leftLoopRecordingView
+    case rightLoopRecordingView
 }

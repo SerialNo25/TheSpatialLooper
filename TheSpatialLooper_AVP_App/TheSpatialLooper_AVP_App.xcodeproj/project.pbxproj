@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */; };
+		9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */; };
 		9A2BC52E2D79B5980046F003 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC52A2D79B5980046F003 /* HomeView.swift */; };
 		9A2BC52F2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC52C2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift */; };
 		9A2BC5312D79B5980046F003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BC5292D79B5980046F003 /* Assets.xcassets */; };
@@ -15,9 +17,15 @@
 		9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC5392D79BF110046F003 /* HandTrackingManager.swift */; };
 		9A2BC53C2D79BFC40046F003 /* ARKitSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC53B2D79BFC40046F003 /* ARKitSessionManager.swift */; };
 		9A5EF6122D79D081001D02C5 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5EF6112D79D081001D02C5 /* GlobalConfig.swift */; };
+		9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */; };
+		9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */; };
+		9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */; };
+		9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetComponent.swift; sourceTree = "<group>"; };
+		9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetSystem.swift; sourceTree = "<group>"; };
 		9A2BC5292D79B5980046F003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A2BC52A2D79B5980046F003 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9A2BC52B2D79B5980046F003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -28,6 +36,10 @@
 		9A2BC53B2D79BFC40046F003 /* ARKitSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitSessionManager.swift; sourceTree = "<group>"; };
 		9A5EF6112D79D081001D02C5 /* GlobalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
 		9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheSpatialLooper_AVP_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSourceEntity.swift; sourceTree = "<group>"; };
+		9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopRecordingView.swift; sourceTree = "<group>"; };
+		9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntity.swift; sourceTree = "<group>"; };
+		9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntityComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,8 @@
 				9A2BC5342D79B8D50046F003 /* AppState.swift */,
 				9A2BC5332D79B59D0046F003 /* Views */,
 				9A2BC5382D79BEAC0046F003 /* ARManagers */,
+				9AA940B82D7C760E00A4BFBA /* ECS */,
+				9AA940AF2D7C6DE200A4BFBA /* SystemEntities */,
 			);
 			path = TheSpatialLooper_AVP_App;
 			sourceTree = "<group>";
@@ -58,7 +72,8 @@
 		9A2BC5332D79B59D0046F003 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9A2BC52A2D79B5980046F003 /* HomeView.swift */,
+				9AA940B22D7C6F8100A4BFBA /* Windows */,
+				9AA940B32D7C6F8A00A4BFBA /* RVAttachments */,
 				9A2BC5362D79BAA20046F003 /* PerformanceRealityView.swift */,
 			);
 			path = Views;
@@ -87,6 +102,57 @@
 				9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9AA940AF2D7C6DE200A4BFBA /* SystemEntities */ = {
+			isa = PBXGroup;
+			children = (
+				9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */,
+				9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */,
+			);
+			path = SystemEntities;
+			sourceTree = "<group>";
+		};
+		9AA940B22D7C6F8100A4BFBA /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BC52A2D79B5980046F003 /* HomeView.swift */,
+			);
+			path = Windows;
+			sourceTree = "<group>";
+		};
+		9AA940B32D7C6F8A00A4BFBA /* RVAttachments */ = {
+			isa = PBXGroup;
+			children = (
+				9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */,
+			);
+			path = RVAttachments;
+			sourceTree = "<group>";
+		};
+		9AA940B82D7C760E00A4BFBA /* ECS */ = {
+			isa = PBXGroup;
+			children = (
+				9AA940B92D7C761300A4BFBA /* Components */,
+				9AA940BA2D7C761900A4BFBA /* Systems */,
+			);
+			path = ECS;
+			sourceTree = "<group>";
+		};
+		9AA940B92D7C761300A4BFBA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */,
+				9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		9AA940BA2D7C761900A4BFBA /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */,
+			);
+			path = Systems;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,9 +228,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2BC5352D79B8D50046F003 /* AppState.swift in Sources */,
+				9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */,
+				9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */,
 				9A2BC52E2D79B5980046F003 /* HomeView.swift in Sources */,
 				9A2BC5372D79BAA20046F003 /* PerformanceRealityView.swift in Sources */,
+				9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */,
+				9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */,
 				9A5EF6122D79D081001D02C5 /* GlobalConfig.swift in Sources */,
+				9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */,
+				9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */,
 				9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */,
 				9A2BC53C2D79BFC40046F003 /* ARKitSessionManager.swift in Sources */,
 				9A2BC52F2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import RealityKit
+import ARKit
 import SwiftUI
 
 @MainActor
@@ -38,9 +39,18 @@ struct PerformanceRealityView: View {
     var body: some View {
         RealityView { content, attachments in
             // MARK: - RV INIT
+            // root
             setupRootEntity()
             setupHands()
             content.add(rootEntity)
+        
+            
+            // setup hands as loopTriggers
+            guard let leftViewAttachment = attachments.entity(for: AttachmendIdentifier.leftLoopRecordingView) else {fatalError("leftLoopRecordingView attachment not found. Ensure the attachment is linked.")}
+            guard let rightViewAttachment = attachments.entity(for: AttachmendIdentifier.rightLoopRecordingView) else {fatalError("rightLoopRecordingView attachment not found. Ensure the attachment is linked.")}
+            setUpLoopTrigger(viewAttachmentEntity: leftViewAttachment, triggerName: "leftHand", chirality: .left)
+            setUpLoopTrigger(viewAttachmentEntity: rightViewAttachment, triggerName: "rightHand", chirality: .right)
+            
             
             
             // DEBUG
@@ -60,6 +70,12 @@ struct PerformanceRealityView: View {
             
         } attachments: {
             // MARK: - RV ATTACHMENTS
+            Attachment(id: AttachmendIdentifier.leftLoopRecordingView) {
+                LoopRecordingView(name: "left")
+            }
+            Attachment(id: AttachmendIdentifier.rightLoopRecordingView) {
+                LoopRecordingView(name: "right")
+            }
         }
         // MARK: - SHUTDOWN TASKS
         .onDisappear {
@@ -81,6 +97,16 @@ struct PerformanceRealityView: View {
         for joint in HandTrackingManager.shared.joints.values { handContainer.addChild(joint) }
         
         rootEntity.addChild(handContainer)
+    }
+    
+    func setUpLoopTrigger(viewAttachmentEntity: ViewAttachmentEntity, triggerName: String, chirality: HandAnchor.Chirality) {
+        let loopTrigger = LoopTriggerEntity()
+        let recordingViewReferenceJoint = HandSkeleton.JointName.wrist
+        loopTrigger.setLoopRecordingView(loopRecordingView: viewAttachmentEntity)
+        loopTrigger.setName(name: triggerName)
+        loopTrigger.attachToHand(handReferenceEntity: HandTrackingManager.shared.getJoint(chirality: chirality, joint: recordingViewReferenceJoint))
+        
+        guard loopTrigger.validateSetup() else { fatalError("Setup of: \(triggerName) failed. Ensure configration is complete")}
     }
     
     func setupRootEntity() {
