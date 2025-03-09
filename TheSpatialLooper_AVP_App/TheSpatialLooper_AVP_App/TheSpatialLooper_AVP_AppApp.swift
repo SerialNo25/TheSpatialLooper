@@ -33,6 +33,8 @@ struct TheSpatialLooper_AVP_AppApp: App {
             HomeView()
                 .environment(appState)
                 .glassBackgroundEffect()
+            MIDI_Settings()
+                .glassBackgroundEffect()
         }
         .windowStyle(.plain)
         .windowResizability(.contentSize)

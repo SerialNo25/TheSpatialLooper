@@ -52,4 +52,5 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .glassBackgroundEffect()
+        .environment(AppState.shared)
 }

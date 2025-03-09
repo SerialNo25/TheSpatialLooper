@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9A01246D2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A01246C2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift */; };
+		9A0124792D7E14C300A0BDC5 /* MIDI_SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0124782D7E14C300A0BDC5 /* MIDI_SessionManager.swift */; };
+		9A168ED42D7E217800BC5279 /* MIDI_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */; };
+		9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */; };
 		9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */; };
 		9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */; };
 		9A20AE1A2D7CE2F800675637 /* Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE192D7CE2F800675637 /* Loop.swift */; };
@@ -30,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		9A01246C2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift; sourceTree = "<group>"; };
+		9A0124782D7E14C300A0BDC5 /* MIDI_SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDI_SessionManager.swift; sourceTree = "<group>"; };
+		9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDI_Settings.swift; sourceTree = "<group>"; };
+		9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeTools.swift; sourceTree = "<group>"; };
 		9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetComponent.swift; sourceTree = "<group>"; };
 		9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetSystem.swift; sourceTree = "<group>"; };
 		9A20AE192D7CE2F800675637 /* Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loop.swift; sourceTree = "<group>"; };
@@ -63,6 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A0124772D7E148A00A0BDC5 /* MIDI_Interface */ = {
+			isa = PBXGroup;
+			children = (
+				9A0124782D7E14C300A0BDC5 /* MIDI_SessionManager.swift */,
+			);
+			path = MIDI_Interface;
+			sourceTree = "<group>";
+		};
+		9A168ED52D7E2D3E00BC5279 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		9A20AE1B2D7CE35300675637 /* SessionControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,10 +102,12 @@
 				9A5EF6112D79D081001D02C5 /* GlobalConfig.swift */,
 				9A2BC5342D79B8D50046F003 /* AppState.swift */,
 				9A2BC5332D79B59D0046F003 /* Views */,
-				9A2BC5382D79BEAC0046F003 /* ARManagers */,
+				9A2BC5382D79BEAC0046F003 /* ARManagement */,
 				9AA940B82D7C760E00A4BFBA /* ECS */,
 				9AA940AF2D7C6DE200A4BFBA /* LooperControl */,
 				9A20AE1B2D7CE35300675637 /* SessionControl */,
+				9A0124772D7E148A00A0BDC5 /* MIDI_Interface */,
+				9A168ED52D7E2D3E00BC5279 /* Utilities */,
 			);
 			path = TheSpatialLooper_AVP_App;
 			sourceTree = "<group>";
@@ -91,20 +115,20 @@
 		9A2BC5332D79B59D0046F003 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9AA940B22D7C6F8100A4BFBA /* Windows */,
+				9AA940B22D7C6F8100A4BFBA /* WindowContent */,
 				9AA940B32D7C6F8A00A4BFBA /* RVAttachments */,
 				9A2BC5362D79BAA20046F003 /* PerformanceRealityView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		9A2BC5382D79BEAC0046F003 /* ARManagers */ = {
+		9A2BC5382D79BEAC0046F003 /* ARManagement */ = {
 			isa = PBXGroup;
 			children = (
 				9A2BC5392D79BF110046F003 /* HandTrackingManager.swift */,
 				9A2BC53B2D79BFC40046F003 /* ARKitSessionManager.swift */,
 			);
-			path = ARManagers;
+			path = ARManagement;
 			sourceTree = "<group>";
 		};
 		9A7780132D777A0A008883D5 = {
@@ -133,12 +157,13 @@
 			path = LooperControl;
 			sourceTree = "<group>";
 		};
-		9AA940B22D7C6F8100A4BFBA /* Windows */ = {
+		9AA940B22D7C6F8100A4BFBA /* WindowContent */ = {
 			isa = PBXGroup;
 			children = (
 				9A2BC52A2D79B5980046F003 /* HomeView.swift */,
+				9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */,
 			);
-			path = Windows;
+			path = WindowContent;
 			sourceTree = "<group>";
 		};
 		9AA940B32D7C6F8A00A4BFBA /* RVAttachments */ = {
@@ -258,14 +283,17 @@
 				9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */,
 				9A2BC52E2D79B5980046F003 /* HomeView.swift in Sources */,
 				9A20AE212D7D1D1B00675637 /* LoopTriggerSystem.swift in Sources */,
+				9A0124792D7E14C300A0BDC5 /* MIDI_SessionManager.swift in Sources */,
 				9A2BC5372D79BAA20046F003 /* PerformanceRealityView.swift in Sources */,
 				9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */,
 				9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */,
 				9A5EF6122D79D081001D02C5 /* GlobalConfig.swift in Sources */,
 				9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */,
+				9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */,
 				9A20AE1A2D7CE2F800675637 /* Loop.swift in Sources */,
 				9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */,
 				9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */,
+				9A168ED42D7E217800BC5279 /* MIDI_Settings.swift in Sources */,
 				9A2BC53C2D79BFC40046F003 /* ARKitSessionManager.swift in Sources */,
 				9A2BC52F2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift in Sources */,
 			);
