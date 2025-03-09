@@ -23,8 +23,17 @@ class LoopTriggerSystem: System {
         
         
         for source in sources {
+            
+            guard let sourceComponent = source.components[LoopSourceEntityComponent.self] else { continue }
+            
+            // TODO: Upgrade to raycasting for collision detection. Ray should be used in the direction of movement.
+            // see: https://developer.apple.com/documentation/realitykit/scene/raycast(origin:direction:length:query:mask:relativeto:)
             for trigger in triggers {
-                print(simd_distance(source.position(relativeTo: nil), trigger.position(relativeTo: nil)))
+                if simd_distance(source.position(relativeTo: nil), trigger.position(relativeTo: nil)) < 0.4 {
+                    sourceComponent.loopSourceEntity.setLoopStarted()
+                } else {
+                    sourceComponent.loopSourceEntity.setLoopStopped()
+                }
             }
         }
         

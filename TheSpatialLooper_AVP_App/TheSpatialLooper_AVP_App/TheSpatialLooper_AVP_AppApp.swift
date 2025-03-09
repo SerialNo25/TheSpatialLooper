@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct TheSpatialLooper_AVP_AppApp: App {
     
-    private var appState = AppState()
+    private var appState = AppState.shared
     
     // MARK: - Entity Component System initialization
     init() {
@@ -22,6 +22,7 @@ struct TheSpatialLooper_AVP_AppApp: App {
         // MARK: SYSTEMS
         FaceHeadsetSystem.registerSystem()
         LoopTriggerSystem.registerSystem()
+        TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.registerSystem()
     }
     
     // MARK: -  APP Body

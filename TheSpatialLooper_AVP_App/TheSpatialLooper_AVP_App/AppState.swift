@@ -10,4 +10,11 @@ import Foundation
 @Observable
 class AppState {
     
+    // MARK: - SINGLETON
+    public static let shared = AppState()
+    private init(){}
+    
+    // MARK: - TEMPORARY STATES
+    var isPlacingBoundingBox: Bool = false
+    
 }

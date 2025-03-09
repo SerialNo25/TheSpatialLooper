@@ -58,7 +58,7 @@ struct PerformanceRealityView: View {
             
             
             // TrackTesting:
-            let source1 = LoopSourceEntity(sourceName: "TestSource", track: SessionTrack())
+            let source1 = LoopSourceEntity(sourceName: "TestSource", track: SessionTrack(),  boundingBoxX: 1, boundingBoxY: 0.1, boundingBoxZ: 0.5, boundingBoxOffsetZ: 0.1)
             rootEntity.addChild(source1)
             
             

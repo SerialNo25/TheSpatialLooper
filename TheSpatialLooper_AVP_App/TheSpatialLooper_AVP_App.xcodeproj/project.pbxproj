@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A01246D2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A01246C2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift */; };
 		9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */; };
 		9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */; };
 		9A20AE1A2D7CE2F800675637 /* Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE192D7CE2F800675637 /* Loop.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A01246C2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift; sourceTree = "<group>"; };
 		9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetComponent.swift; sourceTree = "<group>"; };
 		9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetSystem.swift; sourceTree = "<group>"; };
 		9A20AE192D7CE2F800675637 /* Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loop.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */,
 				9A20AE202D7D1D1B00675637 /* LoopTriggerSystem.swift */,
+				9A01246C2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			files = (
 				9A2BC5352D79B8D50046F003 /* AppState.swift in Sources */,
 				9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */,
+				9A01246D2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift in Sources */,
 				9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */,
 				9A20AE1D2D7CE36700675637 /* SessionTrack.swift in Sources */,
 				9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */,

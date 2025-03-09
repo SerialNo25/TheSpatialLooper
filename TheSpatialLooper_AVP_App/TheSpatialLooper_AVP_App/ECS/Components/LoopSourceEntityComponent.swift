@@ -9,5 +9,5 @@ import Foundation
 import RealityKit
 
 struct LoopSourceEntityComponent: Component {
-    let LoopSourceEntity: LoopSourceEntity
+    let loopSourceEntity: LoopSourceEntity
 }
