@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */; };
 		9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */; };
+		9A20AE1A2D7CE2F800675637 /* Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE192D7CE2F800675637 /* Loop.swift */; };
+		9A20AE1D2D7CE36700675637 /* SessionTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE1C2D7CE36700675637 /* SessionTrack.swift */; };
+		9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE1E2D7CE42E00675637 /* LoopSourceEntityComponent.swift */; };
+		9A20AE212D7D1D1B00675637 /* LoopTriggerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE202D7D1D1B00675637 /* LoopTriggerSystem.swift */; };
 		9A2BC52E2D79B5980046F003 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC52A2D79B5980046F003 /* HomeView.swift */; };
 		9A2BC52F2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC52C2D79B5980046F003 /* TheSpatialLooper_AVP_AppApp.swift */; };
 		9A2BC5312D79B5980046F003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BC5292D79B5980046F003 /* Assets.xcassets */; };
@@ -26,6 +30,10 @@
 /* Begin PBXFileReference section */
 		9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetComponent.swift; sourceTree = "<group>"; };
 		9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetSystem.swift; sourceTree = "<group>"; };
+		9A20AE192D7CE2F800675637 /* Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loop.swift; sourceTree = "<group>"; };
+		9A20AE1C2D7CE36700675637 /* SessionTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTrack.swift; sourceTree = "<group>"; };
+		9A20AE1E2D7CE42E00675637 /* LoopSourceEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSourceEntityComponent.swift; sourceTree = "<group>"; };
+		9A20AE202D7D1D1B00675637 /* LoopTriggerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerSystem.swift; sourceTree = "<group>"; };
 		9A2BC5292D79B5980046F003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A2BC52A2D79B5980046F003 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9A2BC52B2D79B5980046F003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A20AE1B2D7CE35300675637 /* SessionControl */ = {
+			isa = PBXGroup;
+			children = (
+				9A20AE1C2D7CE36700675637 /* SessionTrack.swift */,
+			);
+			path = SessionControl;
+			sourceTree = "<group>";
+		};
 		9A2BC52D2D79B5980046F003 /* TheSpatialLooper_AVP_App */ = {
 			isa = PBXGroup;
 			children = (
@@ -64,7 +80,8 @@
 				9A2BC5332D79B59D0046F003 /* Views */,
 				9A2BC5382D79BEAC0046F003 /* ARManagers */,
 				9AA940B82D7C760E00A4BFBA /* ECS */,
-				9AA940AF2D7C6DE200A4BFBA /* SystemEntities */,
+				9AA940AF2D7C6DE200A4BFBA /* LooperControl */,
+				9A20AE1B2D7CE35300675637 /* SessionControl */,
 			);
 			path = TheSpatialLooper_AVP_App;
 			sourceTree = "<group>";
@@ -104,13 +121,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AA940AF2D7C6DE200A4BFBA /* SystemEntities */ = {
+		9AA940AF2D7C6DE200A4BFBA /* LooperControl */ = {
 			isa = PBXGroup;
 			children = (
 				9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */,
 				9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */,
+				9A20AE192D7CE2F800675637 /* Loop.swift */,
 			);
-			path = SystemEntities;
+			path = LooperControl;
 			sourceTree = "<group>";
 		};
 		9AA940B22D7C6F8100A4BFBA /* Windows */ = {
@@ -142,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */,
+				9A20AE1E2D7CE42E00675637 /* LoopSourceEntityComponent.swift */,
 				9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */,
 			);
 			path = Components;
@@ -151,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */,
+				9A20AE202D7D1D1B00675637 /* LoopTriggerSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -228,14 +248,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2BC5352D79B8D50046F003 /* AppState.swift in Sources */,
+				9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */,
 				9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */,
+				9A20AE1D2D7CE36700675637 /* SessionTrack.swift in Sources */,
 				9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */,
 				9A2BC52E2D79B5980046F003 /* HomeView.swift in Sources */,
+				9A20AE212D7D1D1B00675637 /* LoopTriggerSystem.swift in Sources */,
 				9A2BC5372D79BAA20046F003 /* PerformanceRealityView.swift in Sources */,
 				9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */,
 				9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */,
 				9A5EF6122D79D081001D02C5 /* GlobalConfig.swift in Sources */,
 				9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */,
+				9A20AE1A2D7CE2F800675637 /* Loop.swift in Sources */,
 				9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */,
 				9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */,
 				9A2BC53C2D79BFC40046F003 /* ARKitSessionManager.swift in Sources */,

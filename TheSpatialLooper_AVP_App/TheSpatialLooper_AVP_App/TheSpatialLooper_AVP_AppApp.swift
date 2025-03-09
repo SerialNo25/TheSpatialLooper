@@ -16,10 +16,12 @@ struct TheSpatialLooper_AVP_AppApp: App {
     init() {
         // MARK: COMPONENTS
         LoopTriggerEntityComponent.registerComponent()
+        LoopSourceEntityComponent.registerComponent()
         FaceHeadsetComponent.registerComponent()
         
         // MARK: SYSTEMS
         FaceHeadsetSystem.registerSystem()
+        LoopTriggerSystem.registerSystem()
     }
     
     // MARK: -  APP Body

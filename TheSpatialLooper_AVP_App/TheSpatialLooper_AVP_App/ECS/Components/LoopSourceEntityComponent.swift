@@ -8,6 +8,6 @@
 import Foundation
 import RealityKit
 
-struct LoopTriggerEntityComponent: Component {
-    let LoopTriggerEntity: LoopTriggerEntity
+struct LoopSourceEntityComponent: Component {
+    let LoopSourceEntity: LoopSourceEntity
 }
