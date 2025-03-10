@@ -24,6 +24,7 @@
 		9A2BC5372D79BAA20046F003 /* PerformanceRealityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC5362D79BAA20046F003 /* PerformanceRealityView.swift */; };
 		9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC5392D79BF110046F003 /* HandTrackingManager.swift */; };
 		9A2BC53C2D79BFC40046F003 /* ARKitSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BC53B2D79BFC40046F003 /* ARKitSessionManager.swift */; };
+		9A3D65462D7E7640002B36E5 /* MIDI_UMP_Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D65452D7E7640002B36E5 /* MIDI_UMP_Packet.swift */; };
 		9A5EF6122D79D081001D02C5 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5EF6112D79D081001D02C5 /* GlobalConfig.swift */; };
 		9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */; };
 		9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */; };
@@ -50,6 +51,7 @@
 		9A2BC5362D79BAA20046F003 /* PerformanceRealityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceRealityView.swift; sourceTree = "<group>"; };
 		9A2BC5392D79BF110046F003 /* HandTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTrackingManager.swift; sourceTree = "<group>"; };
 		9A2BC53B2D79BFC40046F003 /* ARKitSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitSessionManager.swift; sourceTree = "<group>"; };
+		9A3D65452D7E7640002B36E5 /* MIDI_UMP_Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDI_UMP_Packet.swift; sourceTree = "<group>"; };
 		9A5EF6112D79D081001D02C5 /* GlobalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
 		9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheSpatialLooper_AVP_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSourceEntity.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				9A0124782D7E14C300A0BDC5 /* MIDI_SessionManager.swift */,
+				9A3D65452D7E7640002B36E5 /* MIDI_UMP_Packet.swift */,
 			);
 			path = MIDI_Interface;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2BC5352D79B8D50046F003 /* AppState.swift in Sources */,
+				9A3D65462D7E7640002B36E5 /* MIDI_UMP_Packet.swift in Sources */,
 				9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */,
 				9A01246D2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift in Sources */,
 				9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */,

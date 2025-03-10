@@ -69,30 +69,16 @@ class MIDI_SessionManager: ObservableObject {
         midiChannel = channel.clamp(minValue: 0, maxValue: 15)
     }
     
-    func sendMIDIMessage(messageType: MIDI_MessageType, message: [UInt8]) {
+    func sendMIDIMessage(_ message: MIDI_UMP_Packet) {
         guard let destination = connectedDestination else {return}
         
-        let fullMessage = [constructMessageHeader(midiMessageType: messageType)] + message
+        var eventList = MIDIEventList()
+        var packet = MIDIEventListInit(&eventList, ._1_0)
+        packet = MIDIEventListAdd(&eventList, 1024, packet, 0, message.content.count, message.content)
         
-        // TODO: Update this to non deprecated tools
-        var packetList = MIDIPacketList()
-        var packet = MIDIPacketListInit(&packetList)
-        packet = MIDIPacketListAdd(&packetList, 1024, packet, 0, fullMessage.count, fullMessage)
+        MIDISendEventList(midiOutputPort, destination, &eventList)
         
-        MIDISend(midiOutputPort, destination, &packetList)
-    }
-    
-    private func constructMessageHeader(midiMessageType: MIDI_MessageType) -> UInt8 {
-        return UInt8(midiMessageType.rawValue + midiChannel)
     }
     
     
-    
-    
-}
-
-// implemented after: https://ccrma.stanford.edu/~craig/articles/linuxmidi/misc/essenmidi.html
-enum MIDI_MessageType: Int {
-    case noteOff = 0x80
-    case noteOn = 0x90
 }
