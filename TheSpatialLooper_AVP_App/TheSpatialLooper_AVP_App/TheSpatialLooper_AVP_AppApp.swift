@@ -10,13 +10,19 @@ import SwiftUI
 @main
 struct TheSpatialLooper_AVP_AppApp: App {
     
-    private var appState = AppState()
+    private var appState = AppState.shared
     
     // MARK: - Entity Component System initialization
     init() {
         // MARK: COMPONENTS
+        LoopTriggerEntityComponent.registerComponent()
+        LoopSourceEntityComponent.registerComponent()
+        FaceHeadsetComponent.registerComponent()
         
         // MARK: SYSTEMS
+        FaceHeadsetSystem.registerSystem()
+        LoopTriggerSystem.registerSystem()
+        TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.registerSystem()
     }
     
     // MARK: -  APP Body
@@ -26,6 +32,8 @@ struct TheSpatialLooper_AVP_AppApp: App {
         WindowGroup {
             HomeView()
                 .environment(appState)
+                .glassBackgroundEffect()
+            MIDI_Settings()
                 .glassBackgroundEffect()
         }
         .windowStyle(.plain)
@@ -45,4 +53,9 @@ struct TheSpatialLooper_AVP_AppApp: App {
 // MARK: - UTIL
 enum UIIdentifier {
     static let performanceSpace = "Performance Space"
+}
+
+enum AttachmendIdentifier {
+    case leftLoopRecordingView
+    case rightLoopRecordingView
 }

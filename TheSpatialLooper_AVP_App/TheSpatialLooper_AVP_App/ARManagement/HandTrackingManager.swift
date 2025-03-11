@@ -19,10 +19,13 @@ class HandTrackingManager: ObservableObject {
     }
     
     
-    private(set) var joints: [JointHandTuple: ModelEntity]
+    private(set) var joints: [JointHandTuple : Entity]
     // convenience method for prettier syntax in other files :)
-    func getJoint(chirality: HandAnchor.Chirality, joint: HandSkeleton.JointName) -> ModelEntity? {
-        return joints[JointHandTuple(chirality: chirality, joint: joint)]
+    func getJoint(chirality: HandAnchor.Chirality, joint: HandSkeleton.JointName) -> Entity {
+        guard let joint = joints[JointHandTuple(chirality: chirality, joint: joint)] else {
+            fatalError("Joint not found. Ensure the Manager setup was run and is correct")
+        }
+        return joint
     }
     
     
@@ -44,16 +47,15 @@ class HandTrackingManager: ObservableObject {
         }
     }
     
-    func createFingertip(name: String) -> ModelEntity {
+    func createFingertip(name: String) -> Entity {
         
-        let entity = ModelEntity(
-            mesh: .generateSphere(radius: 0.01),
-            materials: [UnlitMaterial(color: .green.withAlphaComponent(GlobalConfig.SHOW_HAND_TRACKING_JOINTS ? 1 : 0))],
-            collisionShape: .generateSphere(radius: 0.003),
-            mass: 0.0
-        )
-        entity.components.set(PhysicsBodyComponent(mode: .kinematic))
+        let entity = Entity()
         entity.name = name
+        
+        if GlobalConfig.SHOW_HAND_TRACKING_JOINTS {
+            entity.components.set(ModelComponent(mesh: .generateSphere(radius: 0.01), materials: [UnlitMaterial(color: .green)]))
+        }
+        
         return entity
     }
     

@@ -6,6 +6,7 @@
 //
 
 import RealityKit
+import ARKit
 import SwiftUI
 
 @MainActor
@@ -38,9 +39,30 @@ struct PerformanceRealityView: View {
     var body: some View {
         RealityView { content, attachments in
             // MARK: - RV INIT
+            // root setup
             setupRootEntity()
             setupHands()
             content.add(rootEntity)
+        
+            
+            // setup hands as loopTriggers
+            guard let leftViewAttachment = attachments.entity(for: AttachmendIdentifier.leftLoopRecordingView) else {fatalError("leftLoopRecordingView attachment not found. Ensure the attachment is linked.")}
+            guard let rightViewAttachment = attachments.entity(for: AttachmendIdentifier.rightLoopRecordingView) else {fatalError("rightLoopRecordingView attachment not found. Ensure the attachment is linked.")}
+            // let leftTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: leftViewAttachment, triggerName: "leftHand", chirality: .left)
+            let rightTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: rightViewAttachment, triggerName: "rightHand", chirality: .right)
+            // hands are attached to the hand directly. This replaces direct link to root entity
+            //leftTriggerEntity.attachToHand()
+            rightTriggerEntity.attachToHand()
+            
+            
+            
+            
+            // TrackTesting:
+            let source1 = LoopSourceEntity(sourceName: "TestSource", track: SessionTrack(),  boundingBoxX: 1, boundingBoxY: 0.1, boundingBoxZ: 0.5, boundingBoxOffsetZ: 0.1)
+            rootEntity.addChild(source1)
+            
+            
+            
             
             
             // DEBUG
@@ -60,6 +82,12 @@ struct PerformanceRealityView: View {
             
         } attachments: {
             // MARK: - RV ATTACHMENTS
+            Attachment(id: AttachmendIdentifier.leftLoopRecordingView) {
+                LoopRecordingView(name: "left")
+            }
+            Attachment(id: AttachmendIdentifier.rightLoopRecordingView) {
+                LoopRecordingView(name: "right")
+            }
         }
         // MARK: - SHUTDOWN TASKS
         .onDisappear {
