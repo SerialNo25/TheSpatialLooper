@@ -17,4 +17,7 @@ class AppState {
     // MARK: - TEMPORARY STATES
     var isPlacingBoundingBox: Bool = false
     
+    // MARK: - LOOPER CONTROL
+    var looperActive: Bool = false
+    
 }

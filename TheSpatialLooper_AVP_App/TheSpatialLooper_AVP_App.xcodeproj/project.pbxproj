@@ -13,7 +13,6 @@
 		9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */; };
 		9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */; };
 		9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */; };
-		9A20AE1A2D7CE2F800675637 /* Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE192D7CE2F800675637 /* Loop.swift */; };
 		9A20AE1D2D7CE36700675637 /* SessionTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE1C2D7CE36700675637 /* SessionTrack.swift */; };
 		9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE1E2D7CE42E00675637 /* LoopSourceEntityComponent.swift */; };
 		9A20AE212D7D1D1B00675637 /* LoopTriggerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE202D7D1D1B00675637 /* LoopTriggerSystem.swift */; };
@@ -39,7 +38,6 @@
 		9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeTools.swift; sourceTree = "<group>"; };
 		9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetComponent.swift; sourceTree = "<group>"; };
 		9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetSystem.swift; sourceTree = "<group>"; };
-		9A20AE192D7CE2F800675637 /* Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loop.swift; sourceTree = "<group>"; };
 		9A20AE1C2D7CE36700675637 /* SessionTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTrack.swift; sourceTree = "<group>"; };
 		9A20AE1E2D7CE42E00675637 /* LoopSourceEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSourceEntityComponent.swift; sourceTree = "<group>"; };
 		9A20AE202D7D1D1B00675637 /* LoopTriggerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerSystem.swift; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 			children = (
 				9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */,
 				9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */,
-				9A20AE192D7CE2F800675637 /* Loop.swift */,
 			);
 			path = LooperControl;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 				9A5EF6122D79D081001D02C5 /* GlobalConfig.swift in Sources */,
 				9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */,
 				9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */,
-				9A20AE1A2D7CE2F800675637 /* Loop.swift in Sources */,
 				9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */,
 				9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */,
 				9A168ED42D7E217800BC5279 /* MIDI_Settings.swift in Sources */,

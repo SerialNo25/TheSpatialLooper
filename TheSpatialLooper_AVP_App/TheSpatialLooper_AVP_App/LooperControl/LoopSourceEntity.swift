@@ -70,20 +70,49 @@ class LoopSourceEntity: Entity {
     // MARK: - LoopControl
     
     private(set) var loopStarted: Bool = false
+    private var triggerSource: LoopTriggerEntity? = nil
     
-    func setLoopStarted() {
+    // TODO: REMOVE MVP TEMP
+    var clipNumber = 0
+    
+    func setLoopStarted(from trigger: LoopTriggerEntity) {
+        // GUARDS
         guard !loopStarted else { return }
+        // ensure this is only called from trigger
+        guard trigger.activeLoop == self else { fatalError("Illegal call to LoopSourceEntity.setLoopStarted()") }
+        self.triggerSource = trigger
+        
+        // visuals
         guard var modelComponent = self.boundingBox.components[ModelComponent.self] else { return }
         modelComponent.materials = [SimpleMaterial(color: .green, isMetallic: false)]
         self.boundingBox.components[ModelComponent.self] = modelComponent
+        
+        // loop
+        MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructLoopTriggerMessage(clipSlotNumber: clipNumber))
+        
+        // state
         loopStarted = true
     }
     
-    func setLoopStopped() {
+    // TODO: add a feature that if the loop is stopped from ableton this (and the trigger) correctly reflect the state
+    func setLoopStopped(from trigger: LoopTriggerEntity) {
+        // GUARDS
         guard loopStarted else { return }
+        // ensure only the linked trigger can stop the loop
+        guard trigger.activeLoop == self else { fatalError("Illegal call to LoopSourceEntity.setLoopStarted()") }
+        guard self.triggerSource == trigger else { fatalError("Illegal call to LoopSourceEntity.setLoopStarted()") }
+        self.triggerSource = nil
+        
+        // visuals
         guard var modelComponent = self.boundingBox.components[ModelComponent.self] else { return }
         modelComponent.materials = [SimpleMaterial(color: .red, isMetallic: false)]
         self.boundingBox.components[ModelComponent.self] = modelComponent
+        
+        // loop
+        MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructLoopTriggerMessage(clipSlotNumber: clipNumber))
+        self.clipNumber += 1
+        
+        // state
         loopStarted = false
     }
     

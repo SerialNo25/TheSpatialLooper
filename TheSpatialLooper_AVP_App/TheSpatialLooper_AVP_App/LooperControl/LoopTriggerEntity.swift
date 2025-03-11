@@ -63,9 +63,16 @@ class LoopTriggerEntity: Entity {
     
     // MARK: - LOOP CONTROL
     
-    var activeLoop: Loop?
+    var activeLoop: LoopSourceEntity?
     
-    func startLooping(track: SessionTrack) {
-        self.activeLoop = Loop(track: track)
+    func startLooping(source: LoopSourceEntity) {
+        self.activeLoop = source
+        source.setLoopStarted(from: self)
+    }
+    
+    func stopLooping() {
+        guard let currentlyLoopingSource = activeLoop else {return}
+        currentlyLoopingSource.setLoopStopped(from: self)
+        self.activeLoop = nil
     }
 }

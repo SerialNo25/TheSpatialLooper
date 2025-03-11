@@ -14,6 +14,7 @@ struct MIDI_UMP_Packet {
         self.content = content
     }
     
+    // MARK: - Standard Packets
     static func construct_1_0_ChannelVoiceMessage(midiMessageType: MIDI_MessageType, midiChannel: Int, byte1: UInt8, byte2: UInt8) -> MIDI_UMP_Packet {
         
         let msgType = 0x20 << 24
@@ -27,6 +28,12 @@ struct MIDI_UMP_Packet {
         let packet = MIDI_UMP_Packet(content: [word])
         
         return packet
+    }
+    
+    // MARK: - Taylored Packets
+    // TODO: Implement Track Selection
+    static func constructLoopTriggerMessage(clipSlotNumber: Int) -> MIDI_UMP_Packet {
+        return Self.construct_1_0_ChannelVoiceMessage(midiMessageType: .noteOn, midiChannel: MIDI_SessionManager.shared.midiChannel, byte1: UInt8(49 + clipSlotNumber), byte2: 127)
     }
     
 }

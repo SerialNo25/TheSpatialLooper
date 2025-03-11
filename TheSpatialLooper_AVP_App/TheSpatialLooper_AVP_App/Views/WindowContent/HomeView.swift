@@ -19,6 +19,7 @@ struct HomeView: View {
     // TODO: These properties need to be loaded on view appear
     @State private var immersiveViewState: Bool = false
     @State private var manualPlacementMode: Bool = false
+    @State private var looperActive: Bool = false
     
     var body: some View {
         VStack {
@@ -35,6 +36,12 @@ struct HomeView: View {
                         case false: await dismissImmersiveSpace()
                         }
                     }
+                }
+            
+            Toggle("ActivateLooper", isOn: $looperActive)
+                .frame(width: 200)
+                .onChange(of: looperActive) { _, newValue in
+                    appState.looperActive = newValue
                 }
             
             // TODO: Remove
