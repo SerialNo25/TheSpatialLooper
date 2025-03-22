@@ -2,8 +2,9 @@ from __future__ import with_statement
 
 from _Framework.ControlSurface import ControlSurface
 from _Framework.InputControlElement import *
-from _Framework.SessionComponent import SessionComponent
 from _Framework.ButtonElement import ButtonElement
+
+from .SpatialSessionComponent import SpatialSessionComponent
 
 
 class SpatialLooper(ControlSurface):
@@ -17,14 +18,14 @@ class SpatialLooper(ControlSurface):
         # MARK: - CONTROL SURFACE
         ControlSurface.__init__(self, c_instance)
         with self.component_guard():
-            self._session = SessionComponent(self.SESSION_FRAME_X, self.SESSION_FRAME_Y)
+            self._session = SpatialSessionComponent(self.SESSION_FRAME_X, self.SESSION_FRAME_Y)
             self._session.name = 'SpatialLooper_Session'
 
             # MARK: - SESSION CONTROL
             momentaryButton = True
             sessionUpButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 64)
             sessionDownButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 60)
-            # TODO: Map these :)
+            # TODO: Map these :) -> Do we even need these actually? We might want them for convenience but thats about it
             sessionLeftButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 0)
             sessionRightButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 0)
             self._session.set_track_bank_buttons(sessionRightButton, sessionLeftButton)
@@ -33,11 +34,13 @@ class SpatialLooper(ControlSurface):
             # TODO: Update this to reflect the final grid
             noteButtonOffset = 50
             track = 0
-            for scene in range(10):
-                clipLauncher = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, scene + noteButtonOffset)
-                scene = self._session.scene(scene)
-                clip = scene.clip_slot(track)
-                clip.set_launch_button(clipLauncher)
+            for sceneID in range(10):
+                clipNote = sceneID + noteButtonOffset
+                clipLauncher = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, clipNote)
+                scene = self._session.scene(sceneID)
+                clip_slot = scene.clip_slot(track)
+                clip_slot.set_launch_button(clipLauncher)
+
 
 
             self.set_highlighting_session_component(self._session)
