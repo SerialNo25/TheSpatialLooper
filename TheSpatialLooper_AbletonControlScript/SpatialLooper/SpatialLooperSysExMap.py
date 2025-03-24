@@ -3,4 +3,4 @@ def SYSEX_COLOR_CHANGE(padID, red, green, blue):
 
 def SYSEX_CLIP_PRESENT(padID, isPresent):
     presenceBit = 1 if isPresent else 0
-    return (0xF0, 0, padID, presenceBit, 0xF7)
+    return (0xF0, 1, padID, presenceBit, 0xF7)

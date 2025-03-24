@@ -22,7 +22,7 @@ class MIDI_SessionManager: ObservableObject {
         
         MIDIOutputPortCreate(client, "SpatialLooper_MIDIOUTPUTPORT" as CFString, &midiOutputPort)
         // TODO: Implement callback
-        MIDIInputPortCreate(client, "SpatialLooper_MIDIINPUTPORT" as CFString, { _,_,_ in return}, nil, &midiInputPort)
+        MIDIInputPortCreate(client, "SpatialLooper_MIDIINPUTPORT" as CFString, { pktlist, refCon, srcConnRefCon in MIDI_SessionManager.receiveMIDIMessage(pktlist, refCon, srcConnRefCon)}, nil, &midiInputPort)
         
     }
     
@@ -77,6 +77,27 @@ class MIDI_SessionManager: ObservableObject {
         packet = MIDIEventListAdd(&eventList, 1024, packet, 0, message.content.count, message.content)
         
         MIDISendEventList(midiOutputPort, destination, &eventList)
+        
+    }
+    
+    // MARK: - MIDI RECEIVING
+    static func receiveMIDIMessage(_ pktlist: UnsafePointer<MIDIPacketList>, _ refCon: Optional<UnsafeMutableRawPointer>, _ srcConnRefCon: Optional<UnsafeMutableRawPointer>){
+        
+        let packetList = pktlist.pointee
+        var packet = packetList.packet
+        
+        for _ in 0..<packetList.numPackets {
+            
+            let packetData = packet.data
+            let packetLength = packet.length
+            
+            guard let packetDataArray = Mirror(reflecting: packetData).children.map(\.value) as? Array<UInt8> else {continue}
+            
+            MIDI_InputManager.shared.handleInputPacket(packetDataArray)
+            print("Received MIDI Packet: \(packetDataArray.prefix(Int(packetLength)))")
+            
+            packet = MIDIPacketNext(&packet).pointee
+        }
         
     }
     

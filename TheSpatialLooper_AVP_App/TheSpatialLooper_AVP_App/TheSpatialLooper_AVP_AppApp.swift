@@ -30,11 +30,17 @@ struct TheSpatialLooper_AVP_AppApp: App {
         
         
         WindowGroup {
-            HomeView()
-                .environment(appState)
-                .glassBackgroundEffect()
-            MIDI_Settings()
-                .glassBackgroundEffect()
+            HStack{
+                VStack{
+                    HomeView()
+                        .environment(appState)
+                        .glassBackgroundEffect()
+                    MIDI_Settings()
+                        .glassBackgroundEffect()
+                }
+                LoopGridTestView()
+                    .glassBackgroundEffect()
+            }
         }
         .windowStyle(.plain)
         .windowResizability(.contentSize)
