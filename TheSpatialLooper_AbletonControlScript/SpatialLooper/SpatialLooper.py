@@ -32,7 +32,7 @@ class SpatialLooper(ControlSurface):
             self._session.set_scene_bank_buttons(sessionDownButton, sessionUpButton)
 
             # TODO: Update this to reflect the final grid
-            noteButtonOffset = 50
+            noteButtonOffset = 1
             track = 0
             for sceneID in range(10):
                 clipNote = sceneID + noteButtonOffset

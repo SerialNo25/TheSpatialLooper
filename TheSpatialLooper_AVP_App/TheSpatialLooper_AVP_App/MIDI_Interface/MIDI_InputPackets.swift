@@ -39,8 +39,7 @@ struct SL_ClipStatePacket: SL_MidiInputPacket {
         guard self.packetContent.indices.contains(startIndex.advanced(by: 2)) else { return }
         let function = self.packetContent[startIndex.advanced(by: 2)]
         
-        // TODO: Remove the subtract 49 here. This is also part of the megabastel which will be fixed soon
-        updateClipState(note - 49, function)
+        updateClipState(note, function)
     }
     
     private func updateClipState(_ clipID: UInt8, _ clipStateMidiID: UInt8) {
@@ -105,9 +104,8 @@ struct SL_SysExColorPacket: SL_MidiInputPacket {
         guard self.packetContent.indices.contains(startIndex.advanced(by: 6)) else { return }
         guard self.packetContent[startIndex.advanced(by: 6)] == 0xF7 else { return }
         
-        // TODO: Remove the subtract 49 here. This is also part of the megabastel which will be fixed soon
-        // Multiply colors bz two to compensate reduction to 7 bit for sending over SysEx
-        updateClipColor(note-49, red*2, green*2, blue*2)
+        // Multiply colors by two to compensate reduction to 7 bit for sending over SysEx
+        updateClipColor(note, red*2, green*2, blue*2)
     }
     
     private func updateClipColor(_ clipID: UInt8, _ red: UInt8, _ green: UInt8, _ blue: UInt8) {
@@ -152,8 +150,7 @@ struct SL_SysExPresencePacket: SL_MidiInputPacket {
         guard self.packetContent.indices.contains(startIndex.advanced(by: 4)) else { return }
         guard self.packetContent[startIndex.advanced(by: 4)] == 0xF7 else { return }
         
-        // TODO: Remove the subtract 49 here. This is also part of the megabastel which will be fixed soon
-        updateClipPresence(note-49, isPresent)
+        updateClipPresence(note, isPresent)
     }
     
     private func updateClipPresence(_ clipID: UInt8, _ presenceBit: UInt8) {

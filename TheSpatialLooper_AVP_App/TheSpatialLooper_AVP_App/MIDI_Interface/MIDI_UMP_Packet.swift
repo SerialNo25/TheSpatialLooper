@@ -33,7 +33,7 @@ struct MIDI_UMP_Packet {
     // MARK: - Taylored Packets
     // TODO: Implement Track Selection
     static func constructLoopTriggerMessage(clipSlotNumber: Int) -> MIDI_UMP_Packet {
-        return Self.construct_1_0_ChannelVoiceMessage(midiMessageType: .noteOn, midiChannel: MIDI_SessionManager.shared.midiChannel, byte1: UInt8(50 + clipSlotNumber), byte2: 127)
+        return Self.construct_1_0_ChannelVoiceMessage(midiMessageType: .noteOn, midiChannel: MIDI_SessionManager.shared.midiChannel, byte1: UInt8(clipSlotNumber), byte2: 127)
     }
     
 }

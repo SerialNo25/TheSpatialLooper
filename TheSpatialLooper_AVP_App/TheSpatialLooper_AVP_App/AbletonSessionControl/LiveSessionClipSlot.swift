@@ -42,9 +42,7 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
     
     // MARK: - Interactions from App
     func triggerClip() {
-        // TODO: the -50 should be removed here. This is what we call a "bastel" in switzerland. We subtract 50 here, then add 50 in the sub method and compensate the 50 again in the CS script.
-        // TODO: EDIT: We now subtract 1 as we count from 1 and then compensate 50 in the CS script this would result in 51 which is not great -> Megabastel it is
-        MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructLoopTriggerMessage(clipSlotNumber: midiNoteID-1))
+        MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructLoopTriggerMessage(clipSlotNumber: midiNoteID))
     }
     
     // MARK: - Interactions from MIDI Interface
