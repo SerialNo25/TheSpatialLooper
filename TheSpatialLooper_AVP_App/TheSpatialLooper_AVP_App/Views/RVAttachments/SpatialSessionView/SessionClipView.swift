@@ -51,7 +51,7 @@ struct ClipStateIndicator: View {
             Rectangle()
                 .foregroundStyle(Color.gray)
         case .queued:
-            AnimatedIndicator(animationPeriod: 0.3)
+            AnimatedIndicator(animationPeriod: 0.2)
                 .foregroundStyle(Color.green)
         }
     }
@@ -65,7 +65,7 @@ struct AnimatedIndicator: View {
     
     var body: some View {
         Circle()
-            .opacity(animationTrigger ? 1 : 0.1)
+            .opacity(animationTrigger ? 1 : 0.3)
             .onAppear {
                 toggle()
             }

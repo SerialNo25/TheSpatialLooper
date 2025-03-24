@@ -55,7 +55,7 @@ struct SL_ClipStatePacket: SL_MidiInputPacket {
                 clipSlot.midiIn_wasPlaybackStarted()
             }
             
-            if clipStateMidiID == 121 {
+            if clipStateMidiID == 121 || clipStateMidiID == 126 {
                 clipSlot.midiIn_wasQueued()
             }
             
