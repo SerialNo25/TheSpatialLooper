@@ -14,6 +14,8 @@ class SpatialLooper(ControlSurface):
 
     MIDI_CHANNEL = 1 -1
 
+    NOTE_BUTTON_OFFSET = 1
+
     mappedClipSlots = []
     updateButton = None
 
@@ -28,10 +30,10 @@ class SpatialLooper(ControlSurface):
             momentaryButton = True
 
             # TODO: Update this to reflect the final grid
-            noteButtonOffset = 1
+
             track = 0
             for sceneID in range(10):
-                clipNote = sceneID + noteButtonOffset
+                clipNote = sceneID + self.NOTE_BUTTON_OFFSET
                 clipLaunchButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, clipNote)
                 scene = self._session.scene(sceneID)
                 clip_slot = scene.clip_slot(track)
@@ -43,6 +45,16 @@ class SpatialLooper(ControlSurface):
             self.updateButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 110)
             self.updateButton.add_value_listener(self.send_clip_updates)
 
+            self.delete_input = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 111)
+            self.delete_input.add_value_listener(self.delete_clip)
+
+    def delete_clip(self, value):
+        try:
+            clip_slot = self.mappedClipSlots[value - self.NOTE_BUTTON_OFFSET]
+            if clip_slot.has_clip():
+                clip_slot._do_delete_clip()
+        except:
+            pass
 
     def send_clip_updates(self, value):
 

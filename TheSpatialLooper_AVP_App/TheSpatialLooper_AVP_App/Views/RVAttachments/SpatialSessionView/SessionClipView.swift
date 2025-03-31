@@ -21,6 +21,9 @@ struct SessionClipView: View {
                     .frame(width: 20, height: 20)
                     .padding(0.1)
                 Text(String(self.clipSlot.midiNoteID))
+                Button("test delete") {
+                    MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructDeleteClipMessage(clipSlotNumber: clipSlot.midiNoteID))
+                }
             }
         }
         .tint(self.clipSlot.color)
