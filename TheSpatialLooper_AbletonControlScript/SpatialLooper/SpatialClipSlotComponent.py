@@ -28,6 +28,9 @@ class SpatialClipSlotComponent(ClipSlotComponent):
         if self._clip_slot == None or self._clip_slot.clip == None:
             return
 
+        if self.clipSlotID == None:
+            return
+
         color = self._clip_slot.clip.color
 
         redComponent = (color) >> 16 % 0x100
@@ -45,6 +48,9 @@ class SpatialClipSlotComponent(ClipSlotComponent):
 
     def clipPresenceChangeCallback(self):
         if self._clip_slot == None:
+            return
+
+        if self.clipSlotID == None:
             return
 
         self.canonical_parent._send_midi(SYSEX_CLIP_PRESENT(self.clipSlotID, self._clip_slot.has_clip))
