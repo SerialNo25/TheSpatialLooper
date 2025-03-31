@@ -14,6 +14,9 @@ class SpatialLooper(ControlSurface):
 
     MIDI_CHANNEL = 1 -1
 
+    mappedClipSlots = []
+    updateButton = None
+
     def __init__(self, c_instance):
         # MARK: - CONTROL SURFACE
         ControlSurface.__init__(self, c_instance)
@@ -23,24 +26,30 @@ class SpatialLooper(ControlSurface):
 
             # MARK: - SESSION CONTROL
             momentaryButton = True
-            sessionUpButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 64)
-            sessionDownButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 60)
-            # TODO: Map these :) -> Do we even need these actually? We might want them for convenience but thats about it
-            sessionLeftButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 0)
-            sessionRightButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 0)
-            self._session.set_track_bank_buttons(sessionRightButton, sessionLeftButton)
-            self._session.set_scene_bank_buttons(sessionDownButton, sessionUpButton)
 
             # TODO: Update this to reflect the final grid
             noteButtonOffset = 1
             track = 0
             for sceneID in range(10):
                 clipNote = sceneID + noteButtonOffset
-                clipLauncher = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, clipNote)
+                clipLaunchButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, clipNote)
                 scene = self._session.scene(sceneID)
                 clip_slot = scene.clip_slot(track)
-                clip_slot.set_launch_button(clipLauncher)
-
-
+                clip_slot.set_launch_button(clipLaunchButton)
+                self.mappedClipSlots.append(clip_slot)
 
             self.set_highlighting_session_component(self._session)
+
+            self.updateButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, 110)
+            self.updateButton.add_value_listener(self.send_clip_updates)
+
+
+    def send_clip_updates(self, value):
+
+        # INV: only note on message
+        if value != 127:
+            return
+
+        for clipSlot in self.mappedClipSlots:
+            clipSlot.update()
+

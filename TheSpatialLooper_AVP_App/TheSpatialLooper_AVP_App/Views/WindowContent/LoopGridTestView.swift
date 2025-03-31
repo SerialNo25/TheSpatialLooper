@@ -14,42 +14,54 @@ struct LoopGridTestView: View {
     
     var body: some View {
         Grid() {
-            ForEach(sessionManager.tracksAscending) { track in
-                
+            //            ForEach(sessionManager.tracksAscending) { track in
+            //
+            //                GridRow() {
+            //
+            //                    ForEach(track.clipSlotsAscending) { clipSlot in
+            //                        SessionClipView(clipSlot: clipSlot)
+            //                    }
+            //
+            //                }
+            //
+            //            }
+            
+            ForEach(sessionManager.tracksAscending.first!.clipSlotsAscending) { clipSlot in
                 GridRow() {
-                    
-                    ForEach(track.clipSlotsAscending) { clipSlot in
-                        SessionClipView(clipSlot: clipSlot)
-                    }
-                    
+                    SessionClipView(clipSlot: clipSlot)
                 }
-                
             }
             
+            
+            
+        }
+        .onAppear {
+            // Fetch update from ableton on appear
+            MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructStatusUpdateRequestMessage())
         }
         .padding()
         
         // TODO: REMOVE TEMP STUFF
         /*
-        VStack{
-            Button("ChangeColor"){
-                
-                sessionManager.findClipSlot(midiNoteID: 0)?.midiIn_wasColorChanged(10, 255, 0)
-                
-                
-                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasQueued()
-                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasClipAdded()
-                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasRecordingStarted()
-                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasPlaybackStarted()
-                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasStopped()
-                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasQueued()
-                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasStopped()
-//                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasClipRemoved()
-            }
-        }
+         VStack{
+         Button("ChangeColor"){
+         
+         sessionManager.findClipSlot(midiNoteID: 0)?.midiIn_wasColorChanged(10, 255, 0)
+         
+         
+         sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasQueued()
+         sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasClipAdded()
+         sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasRecordingStarted()
+         sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasPlaybackStarted()
+         sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasStopped()
+         sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasQueued()
+         sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasStopped()
+         //                sessionManager.tracksAscending[0].clipSlotsAscending[0].midiIn_wasClipRemoved()
+         }
+         }
          */
     }
-         
+    
 }
 
 

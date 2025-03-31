@@ -13,28 +13,14 @@ class SpatialClipSlotComponent(ClipSlotComponent):
     def update(self, *args, **kwargs):
         super().update(*args, **kwargs)
 
-        self.assignClipListeners()
+        self.clipColorChangeCallback()
+        self.clipPresenceChangeCallback()
 
 
 
     def set_launch_button(self, *args, **kwargs):
         super().set_launch_button(*args, **kwargs)
         self.clipSlotID = args[0].original_identifier()
-
-
-
-    def assignClipListeners(self):
-        if self._clip_slot != None:
-            # clip presence
-            if not self._clip_slot.has_clip_has_listener(self.clipPresenceChangeCallback):
-                self._clip_slot.add_has_clip_listener(self.clipPresenceChangeCallback)
-
-            # clip color
-            if self._clip_slot.has_clip and not self._clip_slot.clip.color_has_listener(self.clipColorChangeCallback):
-                self._clip_slot.clip.add_color_listener(self.clipColorChangeCallback)
-
-                # we immediately run the callback to transmit the initial color
-                self.clipColorChangeCallback()
 
 
 

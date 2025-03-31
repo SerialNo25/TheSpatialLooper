@@ -38,8 +38,10 @@ struct TheSpatialLooper_AVP_AppApp: App {
                     MIDI_Settings()
                         .glassBackgroundEffect()
                 }
-                LoopGridTestView()
-                    .glassBackgroundEffect()
+                if appState.looperActive {
+                    LoopGridTestView()
+                        .glassBackgroundEffect()
+                }
             }
         }
         .windowStyle(.plain)
