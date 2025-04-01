@@ -40,7 +40,13 @@ struct TheSpatialLooper_AVP_AppApp: App {
                 }
                 if appState.looperActive {
                     // TODO: Remove
-                    SessionTrackView(track: LiveSessionManager.shared.tracksAscending.first!)
+                    VStack {
+                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[0])
+                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[1])
+                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[2])
+                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[3])
+                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[4])
+                    }
                 }
             }
             .frame(width: 2000)

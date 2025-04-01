@@ -12,19 +12,22 @@ class LiveSessionTrack: Identifiable {
     // TODO: Map a loop source here
     
     let trackID: Int
+    let trackFirstCellOffset: Int
     
     private var nextRecordingSlotID = 1
     
     
     init(sessionHeight: Int, trackID: Int) {
-        // start indexing at zero to be consistent with cell IDs
-        self.trackID = trackID + 1
-        let firstCellID = trackID * sessionHeight
-        for cellID in firstCellID..<(firstCellID + sessionHeight) {
-            // start indexing at zero to keep midi note 0 free
-            let startOneCellID = cellID + 1
-            clipSlots[startOneCellID] = (LiveSessionClipSlot(cellID: startOneCellID))
+        let firstCellIndex = trackID * sessionHeight
+        for cellIndex in firstCellIndex..<(firstCellIndex + sessionHeight) {
+            // start indexing at one to keep midi note 0 free for internal use
+            let cellID = cellIndex + 1
+            clipSlots[cellID] = (LiveSessionClipSlot(cellID: cellID))
         }
+        // start indexing at one to be consistent with cell IDs
+        self.trackID = trackID + 1
+
+        self.trackFirstCellOffset = firstCellIndex
     }
     
     // MARK: - INTERNAL SLOT MANAGEMENT
@@ -35,7 +38,7 @@ class LiveSessionTrack: Identifiable {
     
     private func assignRecordingSlot() -> LiveSessionClipSlot? {
         for _ in 0..<clipSlots.count {
-            guard let currentClip = self.clipSlots[nextRecordingSlotID] else { fatalError("Tried to index nil clip slot. This must be an error in either initialization or indexing") }
+            guard let currentClip = self.clipSlots[nextRecordingSlotID + trackFirstCellOffset] else { fatalError("Tried to index nil clip slot. This must be an error in either initialization or indexing") }
             if currentClip.state == .empty {
                 return currentClip
             }

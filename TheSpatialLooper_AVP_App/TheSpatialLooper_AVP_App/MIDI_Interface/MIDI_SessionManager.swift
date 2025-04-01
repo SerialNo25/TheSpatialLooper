@@ -9,6 +9,8 @@ import CoreMIDI
 
 class MIDI_SessionManager: ObservableObject {
     
+    static let MAX_VALID_PACKET_LENGTH = 100
+    
     let session = MIDINetworkSession.default()
     var client = MIDIClientRef()
     var midiOutputPort = MIDIPortRef()
@@ -97,7 +99,10 @@ class MIDI_SessionManager: ObservableObject {
             print("Received MIDI Packet: \(packetDataArray.prefix(Int(packetLength)))")
             MIDI_InputManager.shared.handleInputPacket(packetDataArray.prefix(Int(packetLength)))
             
-            
+            // INV: overlength packet received
+            if packetLength > Self.MAX_VALID_PACKET_LENGTH {
+                return
+            }
             packet = MIDIPacketNext(&packet).pointee
         }
         
