@@ -69,18 +69,54 @@ class LoopSourceEntity: Entity {
     
     // MARK: - LoopControl
     
-    private(set) var loopStarted: Bool = false
-    private var triggerSource: LoopTriggerEntity? = nil
+    private(set) var loopIsRecording: Bool = false
     
-    // TODO: REMOVE MVP TEMP
-    var clipNumber = 0
+    private(set) var triggersInUse: Set<LoopTriggerEntity> = []
     
-    func setLoopStarted(from trigger: LoopTriggerEntity) {
+    // BOUNDING BOX
+    func triggerEnteredBoundingBox(trigger: LoopTriggerEntity) {
+        
+        // INV: trigger not already linked
+        guard !triggersInUse.contains(trigger) else { return }
+        // INV: valid trigger
+        guard trigger.activeLoopSource == self else { fatalError("Illegal call to LoopSourceEntity.setLoopStarted()") }
+        
+        triggersInUse.insert(trigger)
+        
+        if !loopIsRecording {
+            startLoopRecording()
+            guard loopIsRecording else { fatalError("startLoopRecording failed") }
+        }
+        
+        
+    }
+    
+    func triggerLeftBoundingBox(trigger: LoopTriggerEntity) {
+        guard triggersInUse.contains(trigger) else { return }
+        
+        triggersInUse.remove(trigger)
+        
+        if triggersInUse.isEmpty && loopIsRecording {
+            stopLoopRecording()
+            guard !loopIsRecording else { fatalError("stopLoopRecording failed") }
+        }
+    }
+    
+    // TRACK CONTROL
+    func commitLoop() {
+        guard loopIsRecording else { return }
+        
+        // loop
+        guard let track = self.linkedTrack else { return }
+        track.stopRecording()
+        
+        loopIsRecording = false
+        
+    }
+    
+    func startLoopRecording() {
         // GUARDS
-        guard !loopStarted else { return }
-        // ensure this is only called from trigger
-        guard trigger.activeLoop == self else { fatalError("Illegal call to LoopSourceEntity.setLoopStarted()") }
-        self.triggerSource = trigger
+        guard !loopIsRecording else { return }
         
         // visuals
         guard var modelComponent = self.boundingBox.components[ModelComponent.self] else { return }
@@ -88,20 +124,17 @@ class LoopSourceEntity: Entity {
         self.boundingBox.components[ModelComponent.self] = modelComponent
         
         // loop
-        MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructLoopTriggerMessage(clipSlotNumber: clipNumber))
+        guard let track = self.linkedTrack else { return }
+        track.startRecording()
         
         // state
-        loopStarted = true
+        loopIsRecording = true
     }
     
-    // TODO: add a feature that if the loop is stopped from ableton this (and the trigger) correctly reflect the state
-    func setLoopStopped(from trigger: LoopTriggerEntity) {
+    func stopLoopRecording() {
         // GUARDS
-        guard loopStarted else { return }
-        // ensure only the linked trigger can stop the loop
-        guard trigger.activeLoop == self else { fatalError("Illegal call to LoopSourceEntity.setLoopStarted()") }
-        guard self.triggerSource == trigger else { fatalError("Illegal call to LoopSourceEntity.setLoopStarted()") }
-        self.triggerSource = nil
+        guard loopIsRecording else { return }
+        guard self.triggersInUse.isEmpty else { return }
         
         // visuals
         guard var modelComponent = self.boundingBox.components[ModelComponent.self] else { return }
@@ -109,11 +142,11 @@ class LoopSourceEntity: Entity {
         self.boundingBox.components[ModelComponent.self] = modelComponent
         
         // loop
-        MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructLoopTriggerMessage(clipSlotNumber: clipNumber))
-        self.clipNumber += 1
+        guard let track = self.linkedTrack else { return }
+        track.cancelRecording()
         
         // state
-        loopStarted = false
+        loopIsRecording = false
     }
     
 }

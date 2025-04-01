@@ -48,10 +48,10 @@ struct PerformanceRealityView: View {
             // setup hands as loopTriggers
             guard let leftViewAttachment = attachments.entity(for: AttachmendIdentifier.leftLoopRecordingView) else {fatalError("leftLoopRecordingView attachment not found. Ensure the attachment is linked.")}
             guard let rightViewAttachment = attachments.entity(for: AttachmendIdentifier.rightLoopRecordingView) else {fatalError("rightLoopRecordingView attachment not found. Ensure the attachment is linked.")}
-            // let leftTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: leftViewAttachment, triggerName: "leftHand", chirality: .left)
+            let leftTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: leftViewAttachment, triggerName: "leftHand", chirality: .left)
             let rightTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: rightViewAttachment, triggerName: "rightHand", chirality: .right)
             // hands are attached to the hand directly. This replaces direct link to root entity
-            //leftTriggerEntity.attachToHand()
+            leftTriggerEntity.attachToHand()
             rightTriggerEntity.attachToHand()
             
             

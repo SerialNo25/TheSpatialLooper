@@ -62,19 +62,18 @@ class LoopTriggerEntity: Entity {
     }
     
     // MARK: - LOOP CONTROL
+    var activeLoopSource: LoopSourceEntity?
     
-    // TODO: - Map this such that multiple triggers can map. -> Handover of active trigger instance must be possible. 
-    
-    var activeLoop: LoopSourceEntity?
-    
-    func startLooping(source: LoopSourceEntity) {
-        self.activeLoop = source
-        source.setLoopStarted(from: self)
+    func enterBoundingBox(of source: LoopSourceEntity) {
+        self.activeLoopSource = source
+        source.triggerEnteredBoundingBox(trigger: self)
+        guard source.triggersInUse.contains(self) else { fatalError("Entering bounding box failed")}
     }
     
-    func stopLooping() {
-        guard let currentlyLoopingSource = activeLoop else {return}
-        currentlyLoopingSource.setLoopStopped(from: self)
-        self.activeLoop = nil
+    func leaveBoundingBox() {
+        guard let currentlyLoopingSource = activeLoopSource else {return}
+        currentlyLoopingSource.triggerLeftBoundingBox(trigger: self)
+        self.activeLoopSource = nil
+        guard !currentlyLoopingSource.triggersInUse.contains(self) else { fatalError("Leaving bounding box failed")}
     }
 }

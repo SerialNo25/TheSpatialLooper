@@ -36,10 +36,10 @@ class LoopTriggerSystem: System {
                 
                 let triggerDistance = simd_distance(source.position(relativeTo: nil), trigger.position(relativeTo: nil))
                 
-                if triggerDistance < 0.3 && !sourceComponent.loopSourceEntity.loopStarted {
-                    triggerComponent.LoopTriggerEntity.startLooping(source: sourceComponent.loopSourceEntity)
-                } else if triggerDistance > 0.4 && sourceComponent.loopSourceEntity.loopStarted {
-                     triggerComponent.LoopTriggerEntity.stopLooping()
+                if triggerDistance < 0.3 && !sourceComponent.loopSourceEntity.triggersInUse.contains(triggerComponent.LoopTriggerEntity) {
+                    triggerComponent.LoopTriggerEntity.enterBoundingBox(of: sourceComponent.loopSourceEntity)
+                } else if triggerDistance > 0.4 && sourceComponent.loopSourceEntity.triggersInUse.contains(triggerComponent.LoopTriggerEntity) {
+                     triggerComponent.LoopTriggerEntity.leaveBoundingBox()
                 }
             }
         }
