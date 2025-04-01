@@ -43,7 +43,7 @@ class LiveSessionTrack: Identifiable {
                 return currentClip
             }
             nextRecordingSlotID += 1
-            if nextRecordingSlotID >= clipSlots.count { nextRecordingSlotID = 1 }
+            if nextRecordingSlotID > clipSlots.count { nextRecordingSlotID = 1 }
         }
         return nil
     }
