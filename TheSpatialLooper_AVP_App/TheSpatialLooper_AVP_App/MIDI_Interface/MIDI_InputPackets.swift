@@ -14,8 +14,6 @@ protocol SL_MidiInputPacket {
 }
 
 
-// TODO: Queued seems to return 126 instead of 121 when clip is present: Investigate
-// TODO: There seems to be a way to glitch it out using the all clip stop button and session stop
 // MARK: - CLIP STATE
 struct SL_ClipStatePacket: SL_MidiInputPacket {
     
@@ -44,6 +42,10 @@ struct SL_ClipStatePacket: SL_MidiInputPacket {
     
     private func updateClipState(_ clipID: UInt8, _ clipStateMidiID: UInt8) {
         guard let clipSlot = LiveSessionManager.shared.findClipSlot(midiNoteID: Int(clipID)) else { return }
+        
+        if clipStateMidiID == 120 {
+            print("recordQueued")
+        }
         
         DispatchQueue.main.async {
             if clipStateMidiID == 0 {

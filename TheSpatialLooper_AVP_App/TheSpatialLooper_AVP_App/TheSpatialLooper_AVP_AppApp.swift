@@ -39,10 +39,11 @@ struct TheSpatialLooper_AVP_AppApp: App {
                         .glassBackgroundEffect()
                 }
                 if appState.looperActive {
-                    LoopGridTestView()
-                        .glassBackgroundEffect()
+                    // TODO: Remove
+                    SessionTrackView(track: LiveSessionManager.shared.tracksAscending.first!)
                 }
             }
+            .frame(width: 2000)
         }
         .windowStyle(.plain)
         .windowResizability(.contentSize)

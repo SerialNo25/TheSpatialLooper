@@ -16,17 +16,22 @@ struct SessionClipView: View {
         Button {
             self.clipSlot.triggerClip()
         } label: {
-            HStack {
-                ClipStateIndicator(clipSlot: self.clipSlot)
-                    .frame(width: 20, height: 20)
-                    .padding(0.1)
-                Text(String(self.clipSlot.midiNoteID))
-                Button("test delete") {
-                    MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructDeleteClipMessage(clipSlotNumber: clipSlot.midiNoteID))
-                }
-            }
+            Rectangle()
+                .opacity(self.clipSlot.state == .playing ? 0.8 : 0.5)
+                .overlay(
+                    ClipStateIndicator(clipSlot: self.clipSlot)
+                        .clipShape(.rect(cornerRadius: 4))
+                        .frame(width: 20, height: 20, alignment: .topTrailing)
+                        .padding(12),
+                    alignment: .topTrailing
+                )
+                .clipShape(.rect(cornerRadius: 15))
         }
-        .tint(self.clipSlot.color)
+        .buttonBorderShape(.roundedRectangle)
+        .buttonStyle(.plain)
+        .frame(width: 100, height: 70)
+        .foregroundStyle(self.clipSlot.color)
+        .opacity(self.clipSlot.state == .empty ? 0 : 1)
     }
     
 }
@@ -68,7 +73,7 @@ struct AnimatedIndicator: View {
     
     var body: some View {
         Circle()
-            .opacity(animationTrigger ? 1 : 0.3)
+            .opacity(animationTrigger ? 0.9 : 0.3)
             .onAppear {
                 toggle()
             }
@@ -83,4 +88,12 @@ struct AnimatedIndicator: View {
         }
     }
     
+}
+
+#Preview {
+    let clipSlot = LiveSessionClipSlot(cellID: 1)
+    clipSlot.midiIn_wasClipAdded()
+    clipSlot.midiIn_wasColorChanged(0, 200, 200)
+    clipSlot.midiIn_wasPlaybackStarted()
+    return SessionClipView(clipSlot: clipSlot)
 }

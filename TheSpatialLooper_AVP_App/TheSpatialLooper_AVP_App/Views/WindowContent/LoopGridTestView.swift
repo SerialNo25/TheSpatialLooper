@@ -35,10 +35,6 @@ struct LoopGridTestView: View {
             
             
         }
-        .onAppear {
-            // Fetch update from ableton on appear
-            MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructStatusUpdateRequestMessage())
-        }
         .padding()
         
         // TODO: REMOVE TEMP STUFF

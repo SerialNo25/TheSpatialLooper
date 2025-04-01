@@ -94,7 +94,7 @@ class MIDI_SessionManager: ObservableObject {
             guard let packetDataArray = Mirror(reflecting: packetData).children.map(\.value) as? Array<UInt8> else {continue}
             
             print("Received MIDI Packet: \(packetDataArray.prefix(Int(packetLength)))")
-            MIDI_InputManager.shared.handleInputPacket(packetDataArray)
+            MIDI_InputManager.shared.handleInputPacket(packetDataArray.prefix(Int(packetLength)))
             
             
             packet = MIDIPacketNext(&packet).pointee

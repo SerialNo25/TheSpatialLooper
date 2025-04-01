@@ -13,7 +13,7 @@ class MIDI_InputManager {
     public static let shared = MIDI_InputManager()
     private init() {}
     
-    func handleInputPacket(_ packet: Array<UInt8>) {
+    func handleInputPacket(_ packet: ArraySlice<UInt8>) {
         
         var readerPosition = 0
         
