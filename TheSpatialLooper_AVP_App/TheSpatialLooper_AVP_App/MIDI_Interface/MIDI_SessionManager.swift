@@ -9,6 +9,8 @@ import CoreMIDI
 
 class MIDI_SessionManager: ObservableObject {
     
+    static let MAX_VALID_PACKET_LENGTH = 100
+    
     let session = MIDINetworkSession.default()
     var client = MIDIClientRef()
     var midiOutputPort = MIDIPortRef()
@@ -21,8 +23,9 @@ class MIDI_SessionManager: ObservableObject {
         MIDIClientCreate("SpatialLooper_MIDICLIENT" as CFString, nil, nil, &client)
         
         MIDIOutputPortCreate(client, "SpatialLooper_MIDIOUTPUTPORT" as CFString, &midiOutputPort)
-        // TODO: Implement callback
-        MIDIInputPortCreate(client, "SpatialLooper_MIDIINPUTPORT" as CFString, { _,_,_ in return}, nil, &midiInputPort)
+        
+        // TODO: transition to event list
+        MIDIInputPortCreate(client, "SpatialLooper_MIDIINPUTPORT" as CFString, { pktlist, refCon, srcConnRefCon in MIDI_SessionManager.receiveMIDIMessage(pktlist, refCon, srcConnRefCon)}, nil, &midiInputPort)
         
     }
     
@@ -77,6 +80,37 @@ class MIDI_SessionManager: ObservableObject {
         packet = MIDIEventListAdd(&eventList, 1024, packet, 0, message.content.count, message.content)
         
         MIDISendEventList(midiOutputPort, destination, &eventList)
+        
+    }
+    
+    // MARK: - MIDI RECEIVING
+    static func receiveMIDIMessage(_ pktlist: UnsafePointer<MIDIPacketList>, _ refCon: Optional<UnsafeMutableRawPointer>, _ srcConnRefCon: Optional<UnsafeMutableRawPointer>){
+        
+        let packetList = pktlist.pointee
+        var packet = packetList.packet
+        
+        for _ in 0..<packetList.numPackets {
+            
+            let packetData = packet.data
+            let packetLength = packet.length
+            
+            guard let packetDataArray = Mirror(reflecting: packetData).children.map(\.value) as? Array<UInt8> else {continue}
+            
+            print("Received MIDI Packet: \(packetDataArray.prefix(Int(packetLength)))")
+            MIDI_InputManager.shared.handleInputPacket(packetDataArray.prefix(Int(packetLength)))
+            
+            // INV: overlength packet received
+            if packetLength > Self.MAX_VALID_PACKET_LENGTH {
+                
+                // this way of handling this invariant can cause dropped packets. To ensure this is not an issue we request a session update.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructStatusUpdateRequestMessage())
+                }
+                
+                return
+            }
+            packet = MIDIPacketNext(&packet).pointee
+        }
         
     }
     

@@ -18,6 +18,10 @@ class AppState {
     var isPlacingBoundingBox: Bool = false
     
     // MARK: - LOOPER CONTROL
-    var looperActive: Bool = false
+    var looperActive: Bool = false {
+        didSet {
+            MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructStatusUpdateRequestMessage())
+        }
+    }
     
 }

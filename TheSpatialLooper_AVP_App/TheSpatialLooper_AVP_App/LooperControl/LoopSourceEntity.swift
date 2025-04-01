@@ -13,10 +13,10 @@ class LoopSourceEntity: Entity {
     
     // MARK: - SETUP
     
-    var linkedTrack: SessionTrack?
+    var linkedTrack: LiveSessionTrack?
     
     /// Recommended init for this class
-    init(sourceName: String, track: SessionTrack, boundingBoxX: Float, boundingBoxY: Float, boundingBoxZ: Float, boundingBoxOffsetX: Float = 0, boundingBoxOffsetY: Float = 0, boundingBoxOffsetZ: Float = 0) {
+    init(sourceName: String, track: LiveSessionTrack, boundingBoxX: Float, boundingBoxY: Float, boundingBoxZ: Float, boundingBoxOffsetX: Float = 0, boundingBoxOffsetY: Float = 0, boundingBoxOffsetZ: Float = 0) {
         self.boundingBox = Self.createBoundingBox(dimx: boundingBoxX, dimy: boundingBoxY, dimz: boundingBoxZ)
         
         super.init()
@@ -38,7 +38,7 @@ class LoopSourceEntity: Entity {
         self.addChild(boundingBox)
     }
     
-    func setTrack(track: SessionTrack?) {
+    func setTrack(track: LiveSessionTrack?) {
         linkedTrack = track
     }
     

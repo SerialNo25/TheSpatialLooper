@@ -63,6 +63,8 @@ class LoopTriggerEntity: Entity {
     
     // MARK: - LOOP CONTROL
     
+    // TODO: - Map this such that multiple triggers can map. -> Handover of active trigger instance must be possible. 
+    
     var activeLoop: LoopSourceEntity?
     
     func startLooping(source: LoopSourceEntity) {
