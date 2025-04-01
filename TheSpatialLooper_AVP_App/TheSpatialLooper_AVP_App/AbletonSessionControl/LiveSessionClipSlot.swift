@@ -12,6 +12,8 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
     
     var midiNoteID: Int
     
+    var deleteNextClip = false
+    
     @Published private var _color = Color.black
     public var color: Color {
         if !hasClip {
@@ -49,6 +51,15 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
         MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructDeleteClipMessage(clipSlotNumber: midiNoteID))
     }
     
+    func cancelRecording() {
+        // clips can only be deleted when present. If the clip is queued but recording has not yet started, we schedule the clip to be deleted when present
+        if self.hasClip {
+            self.deleteClip()
+        } else {
+            self.deleteNextClip = true
+        }
+    }
+    
     // MARK: - Interactions from MIDI Interface
     
     func midiIn_wasColorChanged(_ r: Int, _ g: Int, _ b: Int) {
@@ -57,6 +68,13 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
     
     func midiIn_wasClipAdded() {
         hasClip = true
+        
+        if deleteNextClip {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.deleteClip()
+            }
+            self.deleteNextClip = false
+        }
     }
     
     func midiIn_wasClipRemoved() {
