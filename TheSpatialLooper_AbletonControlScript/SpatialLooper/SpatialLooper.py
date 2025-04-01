@@ -1,4 +1,5 @@
 from __future__ import with_statement
+import time
 
 from _Framework.ControlSurface import ControlSurface
 from _Framework.InputControlElement import *
@@ -64,4 +65,7 @@ class SpatialLooper(ControlSurface):
 
         for clipSlot in self.mappedClipSlots:
             clipSlot.update()
+            # As the core MIDI system only handles up to message 15 we need to ensure we do not overload the buffer
+            self._flush_midi_messages()
+            time.sleep(0.01)
 

@@ -21,7 +21,8 @@ class MIDI_SessionManager: ObservableObject {
         MIDIClientCreate("SpatialLooper_MIDICLIENT" as CFString, nil, nil, &client)
         
         MIDIOutputPortCreate(client, "SpatialLooper_MIDIOUTPUTPORT" as CFString, &midiOutputPort)
-        // TODO: Implement callback
+        
+        // TODO: transition to event list
         MIDIInputPortCreate(client, "SpatialLooper_MIDIINPUTPORT" as CFString, { pktlist, refCon, srcConnRefCon in MIDI_SessionManager.receiveMIDIMessage(pktlist, refCon, srcConnRefCon)}, nil, &midiInputPort)
         
     }
