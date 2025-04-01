@@ -101,6 +101,12 @@ class MIDI_SessionManager: ObservableObject {
             
             // INV: overlength packet received
             if packetLength > Self.MAX_VALID_PACKET_LENGTH {
+                
+                // this way of handling this invariant can cause dropped packets. To ensure this is not an issue we request a session update.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructStatusUpdateRequestMessage())
+                }
+                
                 return
             }
             packet = MIDIPacketNext(&packet).pointee
