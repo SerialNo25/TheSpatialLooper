@@ -61,8 +61,12 @@ struct PerformanceRealityView: View {
             
             
             
+            // MARK: TRACK SETUP
             // TrackTesting:
             let source1 = LoopSourceEntity(sourceName: "TestSource", track: LiveSessionManager.shared.tracksAscending[0],  boundingBoxX: 1, boundingBoxY: 0.1, boundingBoxZ: 0.5, boundingBoxOffsetZ: 0.1)
+            guard let track1Attachment = attachments.entity(for: AttachmendIdentifier.track1) else {fatalError("leftLoopRecordingView attachment not found. Ensure the attachment is linked.")}
+            source1.setSessionTrakView(sessionTrackView: track1Attachment, verticalOffset: 0.2)
+            guard source1.validateSetup() else { fatalError("Setup of: \(source1.name) failed. Ensure configration is complete")}
             rootEntity.addChild(source1)
             
             
@@ -92,6 +96,12 @@ struct PerformanceRealityView: View {
             Attachment(id: AttachmendIdentifier.rightLoopRecordingView) {
                 LoopRecordingView(loopTriggerEntity: rightTriggerEntity, name: "right")
             }
+            
+            // MARK: Tracks
+            Attachment(id: AttachmendIdentifier.track1) {
+                SessionTrackView(track: LiveSessionManager.shared.tracksAscending[0])
+            }
+            
         }
         // MARK: - SHUTDOWN TASKS
         .onDisappear {

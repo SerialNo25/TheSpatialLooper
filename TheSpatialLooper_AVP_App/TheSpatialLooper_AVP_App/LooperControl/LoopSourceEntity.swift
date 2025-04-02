@@ -8,12 +8,15 @@
 import Foundation
 import RealityKit
 import ARKit
+import SwiftUI
 
 class LoopSourceEntity: Entity {
     
     // MARK: - SETUP
     
     var linkedTrack: LiveSessionTrack?
+    
+    var linkedSessionTrackView: ViewAttachmentEntity?
     
     /// Recommended init for this class
     init(sourceName: String, track: LiveSessionTrack, boundingBoxX: Float, boundingBoxY: Float, boundingBoxZ: Float, boundingBoxOffsetX: Float = 0, boundingBoxOffsetY: Float = 0, boundingBoxOffsetZ: Float = 0) {
@@ -26,8 +29,6 @@ class LoopSourceEntity: Entity {
         
         self.setName(name: sourceName)
         self.setTrack(track: track)
-        
-        guard self.validateSetup() else { fatalError("Setup of: \(sourceName) failed. Ensure configration is complete")}
     }
     
     public required init() {
@@ -36,6 +37,13 @@ class LoopSourceEntity: Entity {
         super.init()
         self.components.set(LoopSourceEntityComponent(loopSourceEntity: self))
         self.addChild(boundingBox)
+    }
+    
+    public func setSessionTrakView(sessionTrackView: ViewAttachmentEntity, horizontalOffset: Float = 0, verticalOffset: Float = 0, depthOffset: Float = 0) {
+        self.linkedSessionTrackView = sessionTrackView
+        sessionTrackView.transform.translation = sessionTrackView.transform.translation + SIMD3<Float>(horizontalOffset, verticalOffset, depthOffset)
+        sessionTrackView.orientation = simd_quatf(angle: -0.4, axis: SIMD3<Float>(1, 0, 0)) * sessionTrackView.orientation
+        self.addChild(sessionTrackView)
     }
     
     func setTrack(track: LiveSessionTrack?) {
@@ -48,6 +56,7 @@ class LoopSourceEntity: Entity {
     }
     
     public func validateSetup() -> Bool {
+        guard linkedSessionTrackView != nil else { return false }
         guard linkedTrack != nil else { return false }
         guard self.name != "" else { return false }
         guard self.components[LoopSourceEntityComponent.self] != nil else { return false }

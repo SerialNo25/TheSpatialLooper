@@ -73,4 +73,6 @@ enum UIIdentifier {
 enum AttachmendIdentifier {
     case leftLoopRecordingView
     case rightLoopRecordingView
+    
+    case track1
 }
