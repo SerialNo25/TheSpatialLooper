@@ -15,6 +15,8 @@ struct PerformanceRealityView: View {
     @Environment(AppState.self) private var appState
     @State private var rootEntity = Entity()
     
+    private let leftTriggerEntity = LoopTriggerEntity(triggerName: "leftHand", chirality: .left)
+    private let rightTriggerEntity = LoopTriggerEntity(triggerName: "rightHand", chirality: .right)
     
     
     
@@ -48,8 +50,10 @@ struct PerformanceRealityView: View {
             // setup hands as loopTriggers
             guard let leftViewAttachment = attachments.entity(for: AttachmendIdentifier.leftLoopRecordingView) else {fatalError("leftLoopRecordingView attachment not found. Ensure the attachment is linked.")}
             guard let rightViewAttachment = attachments.entity(for: AttachmendIdentifier.rightLoopRecordingView) else {fatalError("rightLoopRecordingView attachment not found. Ensure the attachment is linked.")}
-            let leftTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: leftViewAttachment, triggerName: "leftHand", chirality: .left)
-            let rightTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: rightViewAttachment, triggerName: "rightHand", chirality: .right)
+            leftTriggerEntity.setLoopRecordingView(loopRecordingView: leftViewAttachment)
+            rightTriggerEntity.setLoopRecordingView(loopRecordingView: rightViewAttachment)
+            guard leftTriggerEntity.validateSetup() else { fatalError("Setup of: \(leftTriggerEntity.name) failed. Ensure configration is complete")}
+            guard rightTriggerEntity.validateSetup() else { fatalError("Setup of: \(rightTriggerEntity.name) failed. Ensure configration is complete")}
             // hands are attached to the hand directly. This replaces direct link to root entity
             leftTriggerEntity.attachToHand()
             rightTriggerEntity.attachToHand()
@@ -83,10 +87,10 @@ struct PerformanceRealityView: View {
         } attachments: {
             // MARK: - RV ATTACHMENTS
             Attachment(id: AttachmendIdentifier.leftLoopRecordingView) {
-                LoopRecordingView(name: "left")
+                LoopRecordingView(loopTriggerEntity: leftTriggerEntity, name: "left")
             }
             Attachment(id: AttachmendIdentifier.rightLoopRecordingView) {
-                LoopRecordingView(name: "right")
+                LoopRecordingView(loopTriggerEntity: rightTriggerEntity, name: "right")
             }
         }
         // MARK: - SHUTDOWN TASKS

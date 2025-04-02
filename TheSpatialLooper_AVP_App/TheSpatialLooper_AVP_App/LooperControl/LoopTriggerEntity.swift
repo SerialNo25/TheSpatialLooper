@@ -10,21 +10,18 @@ import RealityKit
 import _RealityKit_SwiftUI
 import ARKit
 
-class LoopTriggerEntity: Entity {
+class LoopTriggerEntity: Entity, ObservableObject {
     
     // MARK: - SETUP
     private var loopRecordingView: ViewAttachmentEntity?
     private var handReferenceEntity: Entity?
     
     /// Recommended init for this class
-    convenience init(viewAttachmentEntity: ViewAttachmentEntity, triggerName: String, chirality: HandAnchor.Chirality) {
+    convenience init(triggerName: String, chirality: HandAnchor.Chirality) {
         self.init()
         let recordingViewReferenceJoint = HandSkeleton.JointName.wrist
-        self.setLoopRecordingView(loopRecordingView: viewAttachmentEntity)
         self.setName(name: triggerName)
         self.linkHand(handReferenceEntity: HandTrackingManager.shared.getJoint(chirality: chirality, joint: recordingViewReferenceJoint))
-        
-        guard self.validateSetup() else { fatalError("Setup of: \(triggerName) failed. Ensure configration is complete")}
     }
     
     public required init() {
@@ -62,7 +59,7 @@ class LoopTriggerEntity: Entity {
     }
     
     // MARK: - LOOP CONTROL
-    var activeLoopSource: LoopSourceEntity?
+    @Published var activeLoopSource: LoopSourceEntity?
     
     func enterBoundingBox(of source: LoopSourceEntity) {
         self.activeLoopSource = source
@@ -75,5 +72,10 @@ class LoopTriggerEntity: Entity {
         currentlyLoopingSource.triggerLeftBoundingBox(trigger: self)
         self.activeLoopSource = nil
         guard !currentlyLoopingSource.triggersInUse.contains(self) else { fatalError("Leaving bounding box failed")}
+    }
+    
+    func commitLoop() {
+        guard let activeLoopSource = activeLoopSource else { return }
+        activeLoopSource.commitLoop()
     }
 }

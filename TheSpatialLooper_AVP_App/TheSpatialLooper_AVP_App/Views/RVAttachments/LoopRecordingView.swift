@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct LoopRecordingView: View {
+    
+    @StateObject var loopTriggerEntity: LoopTriggerEntity
+    
     var name: String
     var body: some View {
         VStack {
             Text("Imagine this was implemented 🙃")
             Text("This is: \(name)")
+            Button("COMMIT") {
+                loopTriggerEntity.commitLoop()
+            }
+            .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
         }
         .padding()
+        
+        
     }
 }
 
 #Preview {
-    LoopRecordingView(name: "a test")
-        .glassBackgroundEffect()
+    LoopRecordingView(loopTriggerEntity: LoopTriggerEntity(), name: "a test")
 }

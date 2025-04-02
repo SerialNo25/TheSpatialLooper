@@ -106,6 +106,11 @@ class LoopSourceEntity: Entity {
     func commitLoop() {
         guard loopIsRecording else { return }
         
+        // visuals
+        guard var modelComponent = self.boundingBox.components[ModelComponent.self] else { return }
+        modelComponent.materials = [SimpleMaterial(color: .purple, isMetallic: false)]
+        self.boundingBox.components[ModelComponent.self] = modelComponent
+        
         // loop
         guard let track = self.linkedTrack else { return }
         track.stopRecording()
