@@ -31,6 +31,19 @@ class LoopSourceEntity: Entity {
         self.setTrack(track: track)
     }
     
+    convenience init(from sourceConfiguration: LoopSourceConfiguration) {
+        self.init(
+            sourceName: sourceConfiguration.sourceName,
+            track: LiveSessionManager.shared.tracksAscending[sourceConfiguration.trackID],
+            boundingBoxX: sourceConfiguration.boundingBoxX,
+            boundingBoxY: sourceConfiguration.boundingBoxY,
+            boundingBoxZ: sourceConfiguration.boundingBoxZ,
+            boundingBoxOffsetX: sourceConfiguration.boundingBoxOffsetX,
+            boundingBoxOffsetY: sourceConfiguration.boundingBoxOffsetY,
+            boundingBoxOffsetZ: sourceConfiguration.boundingBoxOffsetZ
+        )
+    }
+    
     public required init() {
         self.boundingBox = Self.createBoundingBox(dimx: 0.1, dimy: 0.1, dimz: 0.1)
         
@@ -39,11 +52,20 @@ class LoopSourceEntity: Entity {
         self.addChild(boundingBox)
     }
     
-    public func setSessionTrakView(sessionTrackView: ViewAttachmentEntity, horizontalOffset: Float = 0, verticalOffset: Float = 0, depthOffset: Float = 0) {
+    public func setSessionTrackView(sessionTrackView: ViewAttachmentEntity, horizontalOffset: Float = 0, verticalOffset: Float = 0, depthOffset: Float = 0) {
         self.linkedSessionTrackView = sessionTrackView
         sessionTrackView.transform.translation = sessionTrackView.transform.translation + SIMD3<Float>(horizontalOffset, verticalOffset, depthOffset)
         sessionTrackView.orientation = simd_quatf(angle: -0.4, axis: SIMD3<Float>(1, 0, 0)) * sessionTrackView.orientation
         self.addChild(sessionTrackView)
+    }
+    
+    public func setSessionTrackView(from configuration: LoopSourceConfiguration, with viewAttachmentEntity: ViewAttachmentEntity) {
+        setSessionTrackView(
+            sessionTrackView: viewAttachmentEntity,
+            horizontalOffset: configuration.viewAttachmentHorizontalOffset,
+            verticalOffset: configuration.viewAttachmentVerticalOffset,
+            depthOffset: configuration.viewAttachmentDepthOffset
+        )
     }
     
     func setTrack(track: LiveSessionTrack?) {

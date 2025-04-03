@@ -12,8 +12,13 @@ struct TheSpatialLooper_AVP_AppApp: App {
     
     private var appState = AppState.shared
     
-    // MARK: - Entity Component System initialization
     init() {
+        // MARK: - APP INIT
+        Task {
+            await ReferenceObjectLoader.shared.load()
+        }
+        
+        // MARK: - Entity Component System initialization
         // MARK: COMPONENTS
         LoopTriggerEntityComponent.registerComponent()
         LoopSourceEntityComponent.registerComponent()
@@ -22,7 +27,6 @@ struct TheSpatialLooper_AVP_AppApp: App {
         // MARK: SYSTEMS
         FaceHeadsetSystem.registerSystem()
         LoopTriggerSystem.registerSystem()
-        TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.registerSystem()
     }
     
     // MARK: -  APP Body
@@ -63,16 +67,4 @@ struct TheSpatialLooper_AVP_AppApp: App {
         
         
     }
-}
-
-// MARK: - UTIL
-enum UIIdentifier {
-    static let performanceSpace = "Performance Space"
-}
-
-enum AttachmendIdentifier {
-    case leftLoopRecordingView
-    case rightLoopRecordingView
-    
-    case track1
 }

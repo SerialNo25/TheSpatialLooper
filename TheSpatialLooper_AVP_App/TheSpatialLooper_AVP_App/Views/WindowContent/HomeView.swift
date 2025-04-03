@@ -24,6 +24,8 @@ struct HomeView: View {
     var body: some View {
         VStack {
             
+            // TODO: Placeholder while loading ReferenceObjects
+            
             Text("Welcome to Spatial Looper")
                 .font(.title)
             
@@ -44,12 +46,6 @@ struct HomeView: View {
                     appState.looperActive = newValue
                 }
             
-            // TODO: Remove
-            Toggle("ManualPlacement", isOn: $manualPlacementMode)
-                .frame(width: 200)
-                .onChange(of: manualPlacementMode) { _, newValue in
-                    appState.isPlacingBoundingBox = newValue
-                }
         }
         .frame(width: 370)
         .padding(.all, 40)

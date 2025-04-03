@@ -9,8 +9,6 @@ import Foundation
 
 class LiveSessionTrack: Identifiable {
     
-    // TODO: Map a loop source here
-    
     let trackID: Int
     let trackFirstCellOffset: Int
     

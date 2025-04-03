@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A01246D2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A01246C2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift */; };
 		9A0124792D7E14C300A0BDC5 /* MIDI_SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0124782D7E14C300A0BDC5 /* MIDI_SessionManager.swift */; };
 		9A168ED42D7E217800BC5279 /* MIDI_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */; };
 		9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */; };
@@ -36,10 +35,13 @@
 		9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */; };
 		9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */; };
 		9AB515442D82EC8F0011F385 /* LoopGridTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB515432D82EC8E0011F385 /* LoopGridTestView.swift */; };
+		9AE120942D9E04130010C4E6 /* Fantom.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1208E2D9E04130010C4E6 /* Fantom.referenceobject */; };
+		9AE120972D9E04130010C4E6 /* TR-8S_Scaled.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9AE120922D9E04130010C4E6 /* TR-8S_Scaled.referenceobject */; };
+		9AE120992D9E04950010C4E6 /* ObjectTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */; };
+		9AE1209B2D9E05410010C4E6 /* ReferenceObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A01246C2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift; sourceTree = "<group>"; };
 		9A0124782D7E14C300A0BDC5 /* MIDI_SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDI_SessionManager.swift; sourceTree = "<group>"; };
 		9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDI_Settings.swift; sourceTree = "<group>"; };
 		9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeTools.swift; sourceTree = "<group>"; };
@@ -70,6 +72,10 @@
 		9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntity.swift; sourceTree = "<group>"; };
 		9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntityComponent.swift; sourceTree = "<group>"; };
 		9AB515432D82EC8E0011F385 /* LoopGridTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopGridTestView.swift; sourceTree = "<group>"; };
+		9AE1208E2D9E04130010C4E6 /* Fantom.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = Fantom.referenceobject; sourceTree = "<group>"; };
+		9AE120922D9E04130010C4E6 /* TR-8S_Scaled.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = "TR-8S_Scaled.referenceobject"; sourceTree = "<group>"; };
+		9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackingManager.swift; sourceTree = "<group>"; };
+		9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceObjectLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,7 @@
 				9A20AE1B2D7CE35300675637 /* AbletonSessionControl */,
 				9A0124772D7E148A00A0BDC5 /* MIDI_Interface */,
 				9A168ED52D7E2D3E00BC5279 /* Utilities */,
+				9AE1208D2D9DF20B0010C4E6 /* ObjectTrackingReferences */,
 			);
 			path = TheSpatialLooper_AVP_App;
 			sourceTree = "<group>";
@@ -144,8 +151,9 @@
 		9A2BC5382D79BEAC0046F003 /* ARManagement */ = {
 			isa = PBXGroup;
 			children = (
-				9A2BC5392D79BF110046F003 /* HandTrackingManager.swift */,
 				9A2BC53B2D79BFC40046F003 /* ARKitSessionManager.swift */,
+				9A2BC5392D79BF110046F003 /* HandTrackingManager.swift */,
+				9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */,
 			);
 			path = ARManagement;
 			sourceTree = "<group>";
@@ -227,9 +235,18 @@
 			children = (
 				9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */,
 				9A20AE202D7D1D1B00675637 /* LoopTriggerSystem.swift */,
-				9A01246C2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift */,
 			);
 			path = Systems;
+			sourceTree = "<group>";
+		};
+		9AE1208D2D9DF20B0010C4E6 /* ObjectTrackingReferences */ = {
+			isa = PBXGroup;
+			children = (
+				9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */,
+				9AE1208E2D9E04130010C4E6 /* Fantom.referenceobject */,
+				9AE120922D9E04130010C4E6 /* TR-8S_Scaled.referenceobject */,
+			);
+			path = ObjectTrackingReferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,8 +325,8 @@
 				9A37F6002D90FB4100FF8D9A /* LiveSessionTrack.swift in Sources */,
 				9A2BC5352D79B8D50046F003 /* AppState.swift in Sources */,
 				9A3D65462D7E7640002B36E5 /* MIDI_UMP_Packet.swift in Sources */,
+				9AE1209B2D9E05410010C4E6 /* ReferenceObjectLoader.swift in Sources */,
 				9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */,
-				9A01246D2D7DC39200A0BDC5 /* TEMPORARY_BOUNDING_BOX_PLACEMENT_SYSTEM.swift in Sources */,
 				9A37F6052D90FC5300FF8D9A /* SessionClipView.swift in Sources */,
 				9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */,
 				9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */,
@@ -325,6 +342,9 @@
 				9A37F5FE2D90EAE200FF8D9A /* MIDI_InputPackets.swift in Sources */,
 				9A37F5F92D90337700FF8D9A /* MIDI_InputManager.swift in Sources */,
 				9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */,
+				9AE120942D9E04130010C4E6 /* Fantom.referenceobject in Sources */,
+				9AE120992D9E04950010C4E6 /* ObjectTrackingManager.swift in Sources */,
+				9AE120972D9E04130010C4E6 /* TR-8S_Scaled.referenceobject in Sources */,
 				9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */,
 				9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */,
 				9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */,
@@ -357,6 +377,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "sefl.TheSpatialLooper-AVP-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REFERENCEOBJECT_STRIP_USDZ = YES;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -383,6 +404,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "sefl.TheSpatialLooper-AVP-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REFERENCEOBJECT_STRIP_USDZ = YES;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

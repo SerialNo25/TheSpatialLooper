@@ -21,6 +21,7 @@ class LiveSessionManager {
         tracks.values.sorted(by: {a,b in a.trackID < b.trackID})
     }
     
+    // TODO: Move to global config
     let LOOP_GRID_WIDTH: Int = 5
     let LOOP_GRID_HEIGHT: Int = 10
     

@@ -32,7 +32,8 @@ class ARKitSessionManager {
             try await arkitSession.run(
                 [
                     worldTracking,
-                    HandTrackingManager.shared.startProvider()
+                    HandTrackingManager.shared.startProvider(),
+                    ObjectTrackingManager.shared.startProvider()
                 ]
             )
         } catch {
