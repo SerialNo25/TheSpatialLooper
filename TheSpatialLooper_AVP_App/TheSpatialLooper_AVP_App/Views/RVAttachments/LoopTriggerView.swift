@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoopRecordingView: View {
+struct LoopTriggerView: View {
     
     @StateObject var loopTriggerEntity: LoopTriggerEntity
     
@@ -20,6 +20,10 @@ struct LoopRecordingView: View {
                 loopTriggerEntity.commitLoop()
             }
             .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
+            Button("RE-START") {
+                loopTriggerEntity.reStartLoop()
+            }
+            .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
         }
         .padding()
         
@@ -28,5 +32,5 @@ struct LoopRecordingView: View {
 }
 
 #Preview {
-    LoopRecordingView(loopTriggerEntity: LoopTriggerEntity(), name: "a test")
+    LoopTriggerView(loopTriggerEntity: LoopTriggerEntity(), name: "a test")
 }

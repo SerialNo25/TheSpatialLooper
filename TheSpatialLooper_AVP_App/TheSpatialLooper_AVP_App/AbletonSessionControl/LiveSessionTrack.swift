@@ -108,6 +108,11 @@ class LiveSessionTrack: ObservableObject, Identifiable {
         playingClip.stopPlayback()
     }
     
+    func reStartLoop() {
+        guard let recordingClip = findRecordingClip() else { return }
+        recordingClip.reStartRecording()
+    }
+    
 }
 
 

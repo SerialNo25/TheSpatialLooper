@@ -128,7 +128,7 @@ class LoopSourceEntity: Entity {
         triggersInUse.remove(trigger)
         
         if triggersInUse.isEmpty && loopIsRecording {
-            stopLoopRecording()
+            cancelLoopRecording()
             guard !loopIsRecording else { fatalError("stopLoopRecording failed") }
         }
     }
@@ -167,7 +167,7 @@ class LoopSourceEntity: Entity {
         loopIsRecording = true
     }
     
-    func stopLoopRecording() {
+    func cancelLoopRecording() {
         // GUARDS
         guard loopIsRecording else { return }
         guard self.triggersInUse.isEmpty else { return }
@@ -183,6 +183,18 @@ class LoopSourceEntity: Entity {
         
         // state
         loopIsRecording = false
+    }
+    
+    func reStartLoop() {
+        // GUARDS
+        guard loopIsRecording else { return }
+        
+        // loop
+        guard let track = self.linkedTrack else { return }
+        track.reStartLoop()
+        
+        // state
+        loopIsRecording = true
     }
     
 }

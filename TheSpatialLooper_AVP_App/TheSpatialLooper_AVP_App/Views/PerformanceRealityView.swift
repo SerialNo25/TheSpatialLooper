@@ -91,10 +91,10 @@ struct PerformanceRealityView: View {
         } attachments: {
             // MARK: - RV ATTACHMENTS
             Attachment(id: AttachmentIdentifier.leftLoopRecordingView) {
-                LoopRecordingView(loopTriggerEntity: leftTriggerEntity, name: "left")
+                LoopTriggerView(loopTriggerEntity: leftTriggerEntity, name: "left")
             }
             Attachment(id: AttachmentIdentifier.rightLoopRecordingView) {
-                LoopRecordingView(loopTriggerEntity: rightTriggerEntity, name: "right")
+                LoopTriggerView(loopTriggerEntity: rightTriggerEntity, name: "right")
             }
             
             // Tracks

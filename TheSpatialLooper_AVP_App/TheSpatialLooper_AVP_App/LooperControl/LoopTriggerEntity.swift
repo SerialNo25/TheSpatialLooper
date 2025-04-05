@@ -87,4 +87,9 @@ class LoopTriggerEntity: Entity, ObservableObject {
         guard let activeLoopSource = activeLoopSource else { return }
         activeLoopSource.commitLoop()
     }
+    
+    func reStartLoop() {
+        guard let activeLoopSource = activeLoopSource else { return }
+        activeLoopSource.reStartLoop()
+    }
 }

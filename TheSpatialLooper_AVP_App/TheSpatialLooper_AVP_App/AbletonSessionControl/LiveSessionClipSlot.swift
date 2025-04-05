@@ -13,7 +13,8 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
     var midiNoteID: Int
     var parentTrack: LiveSessionTrack
     
-    var deleteNextClip = false
+    private var deleteNextClip = false
+    private var reRecordOnDeletion = false
     
     @Published private var _color = Color.black
     public var color: Color {
@@ -46,14 +47,17 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
     
     // MARK: - Interactions from App
     func triggerClip() {
+        guard AppState.shared.looperActive else { return }
         MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructLoopTriggerMessage(clipSlotNumber: midiNoteID))
     }
     
     func deleteClip() {
+        guard AppState.shared.looperActive else { return }
         MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructDeleteClipMessage(clipSlotNumber: midiNoteID))
     }
     
     func cancelRecording() {
+        guard AppState.shared.looperActive else { return }
         // clips can only be deleted when present. If the clip is queued but recording has not yet started, we schedule the clip to be deleted when present
         if self.hasClip {
             self.deleteClip()
@@ -62,7 +66,17 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
         }
     }
     
+    func reStartRecording() {
+        guard AppState.shared.looperActive else { return }
+        // clips can only be re-started when present. restart action is scheduled
+        if self.hasClip {
+            self.deleteClip()
+            self.reRecordOnDeletion = true
+        }
+    }
+    
     func stopPlayback() {
+        guard AppState.shared.looperActive else { return }
         MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructStopClipMessage(clipSlotNumber: midiNoteID))
     }
     
@@ -89,6 +103,11 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
     
     func midiIn_wasClipRemoved() {
         hasClip = false
+        
+        if reRecordOnDeletion {
+            self.triggerClip()
+            self.reRecordOnDeletion = false
+        }
         
         self.parentTrack.updateState()
     }

@@ -36,7 +36,7 @@
 		9A6DDF482DA1DE1B00ACFFDB /* CollisionEvents+TriggerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6DDF472DA1DE1B00ACFFDB /* CollisionEvents+TriggerSystem.swift */; };
 		9A7CD1D22D9B5C9900F9D8A5 /* SessionTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7CD1D12D9B5C9900F9D8A5 /* SessionTrackView.swift */; };
 		9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */; };
-		9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */; };
+		9AA940B52D7C6FA100A4BFBA /* LoopTriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B42D7C6FA100A4BFBA /* LoopTriggerView.swift */; };
 		9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */; };
 		9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */; };
 		9AE120992D9E04950010C4E6 /* ObjectTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */; };
@@ -75,7 +75,7 @@
 		9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheSpatialLooper_AVP_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7CD1D12D9B5C9900F9D8A5 /* SessionTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTrackView.swift; sourceTree = "<group>"; };
 		9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSourceEntity.swift; sourceTree = "<group>"; };
-		9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopRecordingView.swift; sourceTree = "<group>"; };
+		9AA940B42D7C6FA100A4BFBA /* LoopTriggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerView.swift; sourceTree = "<group>"; };
 		9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntity.swift; sourceTree = "<group>"; };
 		9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntityComponent.swift; sourceTree = "<group>"; };
 		9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackingManager.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				9A37F6032D90FBFD00FF8D9A /* SpatialSessionView */,
-				9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */,
+				9AA940B42D7C6FA100A4BFBA /* LoopTriggerView.swift */,
 			);
 			path = RVAttachments;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 				9AE1209B2D9E05410010C4E6 /* ReferenceObjectLoader.swift in Sources */,
 				9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */,
 				9A37F6052D90FC5300FF8D9A /* SessionClipView.swift in Sources */,
-				9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */,
+				9AA940B52D7C6FA100A4BFBA /* LoopTriggerView.swift in Sources */,
 				9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */,
 				9A2BC52E2D79B5980046F003 /* HomeView.swift in Sources */,
 				9A0124792D7E14C300A0BDC5 /* MIDI_SessionManager.swift in Sources */,
