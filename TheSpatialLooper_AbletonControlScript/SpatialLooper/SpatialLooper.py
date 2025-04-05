@@ -19,9 +19,9 @@ class SpatialLooper(ControlSurface):
 
     UPDATE_BUTTON_NOTE_VALUE = 110
     DELETE_BUTTON_NOTE_VALUE = 111
+    STOP_BUTTON_NOTE_VALUE = 112
 
     mappedClipSlots = []
-    updateButton = None
 
     def __init__(self, c_instance):
         # MARK: - CONTROL SURFACE
@@ -47,17 +47,32 @@ class SpatialLooper(ControlSurface):
 
             self.set_highlighting_session_component(self._session)
 
+            # MARK: - CUSTOM COMMANDS
+            # FETCH SESSION UPDATE
             self.updateButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, self.UPDATE_BUTTON_NOTE_VALUE)
             self.updateButton.add_value_listener(self.send_clip_updates)
 
-            self.delete_input = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, self.DELETE_BUTTON_NOTE_VALUE)
-            self.delete_input.add_value_listener(self.delete_clip)
+            # DELETE CLIP
+            self.deleteButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, self.DELETE_BUTTON_NOTE_VALUE)
+            self.deleteButton.add_value_listener(self.delete_clip)
+
+            # STOP CLIP
+            self.stopButton = ButtonElement(momentaryButton, 0, self.MIDI_CHANNEL, self.STOP_BUTTON_NOTE_VALUE)
+            self.stopButton.add_value_listener(self.stop_clip)
 
     def delete_clip(self, value):
         try:
             clip_slot = self.mappedClipSlots[value - self.NOTE_BUTTON_OFFSET]
             if clip_slot.has_clip():
                 clip_slot._do_delete_clip()
+        except:
+            pass
+
+    def stop_clip(self, value):
+        try:
+            clip_slot = self.mappedClipSlots[value - self.NOTE_BUTTON_OFFSET]
+            if clip_slot.has_clip():
+                clip_slot._clip_slot.stop()
         except:
             pass
 

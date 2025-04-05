@@ -60,6 +60,10 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
         }
     }
     
+    func stopPlayback() {
+        MIDI_SessionManager.shared.sendMIDIMessage(MIDI_UMP_Packet.constructStopClipMessage(clipSlotNumber: midiNoteID))
+    }
+    
     // MARK: - Interactions from MIDI Interface
     
     func midiIn_wasColorChanged(_ r: Int, _ g: Int, _ b: Int) {

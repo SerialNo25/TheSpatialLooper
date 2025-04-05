@@ -55,6 +55,15 @@ class LiveSessionTrack: Identifiable {
         return nil
     }
     
+    private func findPlayingClip() -> LiveSessionClipSlot? {
+        for clip in clipSlots.values {
+            if clip.state == .playing {
+                return clip
+            }
+        }
+        return nil
+    }
+    
     
     
     // MARK: - TRACK CONTROL
@@ -74,6 +83,11 @@ class LiveSessionTrack: Identifiable {
     func cancelRecording() {
         guard let recordingClip = findRecordingClip() else { return }
         recordingClip.cancelRecording()
+    }
+    
+    func stopPlayback() {
+        guard let playingClip = findPlayingClip() else { return }
+        playingClip.stopPlayback()
     }
     
 }

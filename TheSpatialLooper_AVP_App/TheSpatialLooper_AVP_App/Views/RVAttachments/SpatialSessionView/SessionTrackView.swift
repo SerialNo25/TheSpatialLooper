@@ -26,6 +26,9 @@ struct SessionTrackView: View {
                 Button("Cancel Record") {
                     track.cancelRecording()
                 }
+                Button("Stop Playback") {
+                    track.stopPlayback()
+                }
             }
             .padding()
             .glassBackgroundEffect()
