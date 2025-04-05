@@ -8,6 +8,7 @@
 enum GlobalConfig {
     // MARK: - DEBUG MODES
     static let SHOW_HAND_TRACKING_JOINTS = true
+    static let SHOW_BOUNDING_BOXES = true
     
     // MARK: - SESSION CONFIG
     static let LOOP_GRID_WIDTH: Int = 5

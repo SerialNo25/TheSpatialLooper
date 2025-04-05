@@ -18,6 +18,9 @@ struct PerformanceRealityView: View {
     private let leftTriggerEntity = LoopTriggerEntity(triggerName: "leftHand", chirality: .left)
     private let rightTriggerEntity = LoopTriggerEntity(triggerName: "rightHand", chirality: .right)
     
+    @State private var collisionBeganSubscription: EventSubscription? = nil
+    @State private var collisionEndedSubscription: EventSubscription? = nil
+    
     
     
     // MARK: - Debug Tool
@@ -43,7 +46,7 @@ struct PerformanceRealityView: View {
             setupRootEntity()
             setupHands()
             content.add(rootEntity)
-        
+            
             
             // setup loop triggers
             setupLoopTrigger(attachments: attachments, attachmentIdentifier: .leftLoopRecordingView, triggerEntity: leftTriggerEntity)
@@ -52,6 +55,16 @@ struct PerformanceRealityView: View {
             
             // setup loop sources:
             self.setupLoopSources(attachments: attachments)
+            
+            
+            // setup trigger collisions
+            collisionBeganSubscription = content.subscribe(to: CollisionEvents.Began.self) { collisionEvent in
+                collisionEvent.handleTriggerEvent()
+            }
+            
+            collisionEndedSubscription = content.subscribe(to: CollisionEvents.Ended.self) { collisionEvent in
+                collisionEvent.handleTriggerEvent()
+            }
             
             
             

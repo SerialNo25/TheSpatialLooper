@@ -91,7 +91,7 @@ class LoopSourceEntity: Entity {
     static func createBoundingBox(dimx: Float, dimy: Float, dimz: Float) -> Entity {
         let boxShape = MeshResource.generateBox(size: .init(x: dimx, y: dimy, z: dimz))
         let boxModel = ModelEntity(mesh: boxShape, materials: [SimpleMaterial()])
-        boxModel.components.set(OpacityComponent(opacity: 0.3))
+        boxModel.components.set(OpacityComponent(opacity: GlobalConfig.SHOW_BOUNDING_BOXES ? 0.3 : 0))
         // collision needed for raycase with movement direction vector
         boxModel.components.set(CollisionComponent(shapes: [ShapeResource.generateBox(size: .init(x: dimx, y: dimy, z: dimz))]))
         return boxModel

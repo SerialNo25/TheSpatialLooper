@@ -26,7 +26,6 @@ struct TheSpatialLooper_AVP_AppApp: App {
         
         // MARK: SYSTEMS
         FaceHeadsetSystem.registerSystem()
-        LoopTriggerSystem.registerSystem()
     }
     
     // MARK: -  APP Body

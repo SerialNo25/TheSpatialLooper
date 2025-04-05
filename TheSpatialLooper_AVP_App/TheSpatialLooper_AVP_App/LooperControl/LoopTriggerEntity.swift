@@ -27,6 +27,13 @@ class LoopTriggerEntity: Entity, ObservableObject {
     public required init() {
         super.init()
         self.components.set(LoopTriggerEntityComponent(LoopTriggerEntity: self))
+        self.components.set(
+            CollisionComponent(shapes:
+                                [ShapeResource.generateSphere(radius: 0.01)]
+                              )
+        )
+        
+
     }
     
     public func setLoopRecordingView(loopRecordingView: ViewAttachmentEntity) {
@@ -62,6 +69,7 @@ class LoopTriggerEntity: Entity, ObservableObject {
     @Published var activeLoopSource: LoopSourceEntity?
     
     func enterBoundingBox(of source: LoopSourceEntity) {
+        guard !source.triggersInUse.contains(self) else {return}
         self.activeLoopSource = source
         source.triggerEnteredBoundingBox(trigger: self)
         guard source.triggersInUse.contains(self) else { fatalError("Entering bounding box failed")}
@@ -69,6 +77,7 @@ class LoopTriggerEntity: Entity, ObservableObject {
     
     func leaveBoundingBox() {
         guard let currentlyLoopingSource = activeLoopSource else {return}
+        guard currentlyLoopingSource.triggersInUse.contains(self) else {return}
         currentlyLoopingSource.triggerLeftBoundingBox(trigger: self)
         self.activeLoopSource = nil
         guard !currentlyLoopingSource.triggersInUse.contains(self) else { fatalError("Leaving bounding box failed")}
