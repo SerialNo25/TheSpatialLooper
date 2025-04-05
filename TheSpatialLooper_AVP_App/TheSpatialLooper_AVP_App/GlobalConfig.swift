@@ -10,6 +10,7 @@ enum GlobalConfig {
     static let SHOW_HAND_TRACKING_JOINTS = true
     
     // MARK: - TRACK CONFIG
+    // NOTE: The Reference Object Name is mapped to the tracker AND filename. It is required that the name AND filename match the internal name of the tracker.
     static let LOOP_SOURCE_CONFIGURATIONS: [LoopSourceConfiguration] = [
         LoopSourceConfiguration(sourceName: "TestSource", trackID: 0, boundingBoxX: 1, boundingBoxY: 0.1, boundingBoxZ: 0.5, boundingBoxOffsetZ: 0.1, viewAttachmentVerticalOffset: 0.2, referenceObjectName: "TR-8S_Scaled")
     ]

@@ -10,6 +10,11 @@
 		9A0124792D7E14C300A0BDC5 /* MIDI_SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0124782D7E14C300A0BDC5 /* MIDI_SessionManager.swift */; };
 		9A168ED42D7E217800BC5279 /* MIDI_Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */; };
 		9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */; };
+		9A2024642DA13F3B00E448A9 /* OberheimScaled.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9A2024622DA13F3B00E448A9 /* OberheimScaled.referenceobject */; };
+		9A2024652DA13F3B00E448A9 /* nord.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9A2024612DA13F3B00E448A9 /* nord.referenceobject */; };
+		9A2024662DA13F3B00E448A9 /* TR-8S_Scaled.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9A2024632DA13F3B00E448A9 /* TR-8S_Scaled.referenceobject */; };
+		9A2024672DA13F3B00E448A9 /* MS-20.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9A2024602DA13F3B00E448A9 /* MS-20.referenceobject */; };
+		9A2024682DA13F3B00E448A9 /* Fantom.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9A20245F2DA13F3B00E448A9 /* Fantom.referenceobject */; };
 		9A20AE142D7CBC4E00675637 /* FaceHeadsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */; };
 		9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */; };
 		9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A20AE1E2D7CE42E00675637 /* LoopSourceEntityComponent.swift */; };
@@ -35,8 +40,6 @@
 		9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */; };
 		9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */; };
 		9AB515442D82EC8F0011F385 /* LoopGridTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB515432D82EC8E0011F385 /* LoopGridTestView.swift */; };
-		9AE120942D9E04130010C4E6 /* Fantom.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1208E2D9E04130010C4E6 /* Fantom.referenceobject */; };
-		9AE120972D9E04130010C4E6 /* TR-8S_Scaled.referenceobject in Sources */ = {isa = PBXBuildFile; fileRef = 9AE120922D9E04130010C4E6 /* TR-8S_Scaled.referenceobject */; };
 		9AE120992D9E04950010C4E6 /* ObjectTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */; };
 		9AE1209B2D9E05410010C4E6 /* ReferenceObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +48,11 @@
 		9A0124782D7E14C300A0BDC5 /* MIDI_SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDI_SessionManager.swift; sourceTree = "<group>"; };
 		9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDI_Settings.swift; sourceTree = "<group>"; };
 		9A168ED62D7E2D4E00BC5279 /* ComputeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeTools.swift; sourceTree = "<group>"; };
+		9A20245F2DA13F3B00E448A9 /* Fantom.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = Fantom.referenceobject; sourceTree = "<group>"; };
+		9A2024602DA13F3B00E448A9 /* MS-20.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = "MS-20.referenceobject"; sourceTree = "<group>"; };
+		9A2024612DA13F3B00E448A9 /* nord.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = nord.referenceobject; sourceTree = "<group>"; };
+		9A2024622DA13F3B00E448A9 /* OberheimScaled.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = OberheimScaled.referenceobject; sourceTree = "<group>"; };
+		9A2024632DA13F3B00E448A9 /* TR-8S_Scaled.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = "TR-8S_Scaled.referenceobject"; sourceTree = "<group>"; };
 		9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetComponent.swift; sourceTree = "<group>"; };
 		9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceHeadsetSystem.swift; sourceTree = "<group>"; };
 		9A20AE1E2D7CE42E00675637 /* LoopSourceEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSourceEntityComponent.swift; sourceTree = "<group>"; };
@@ -72,8 +80,6 @@
 		9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntity.swift; sourceTree = "<group>"; };
 		9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntityComponent.swift; sourceTree = "<group>"; };
 		9AB515432D82EC8E0011F385 /* LoopGridTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopGridTestView.swift; sourceTree = "<group>"; };
-		9AE1208E2D9E04130010C4E6 /* Fantom.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = Fantom.referenceobject; sourceTree = "<group>"; };
-		9AE120922D9E04130010C4E6 /* TR-8S_Scaled.referenceobject */ = {isa = PBXFileReference; lastKnownFileType = file.referenceobject; path = "TR-8S_Scaled.referenceobject"; sourceTree = "<group>"; };
 		9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackingManager.swift; sourceTree = "<group>"; };
 		9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceObjectLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -243,8 +249,11 @@
 			isa = PBXGroup;
 			children = (
 				9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */,
-				9AE1208E2D9E04130010C4E6 /* Fantom.referenceobject */,
-				9AE120922D9E04130010C4E6 /* TR-8S_Scaled.referenceobject */,
+				9A20245F2DA13F3B00E448A9 /* Fantom.referenceobject */,
+				9A2024602DA13F3B00E448A9 /* MS-20.referenceobject */,
+				9A2024612DA13F3B00E448A9 /* nord.referenceobject */,
+				9A2024622DA13F3B00E448A9 /* OberheimScaled.referenceobject */,
+				9A2024632DA13F3B00E448A9 /* TR-8S_Scaled.referenceobject */,
 			);
 			path = ObjectTrackingReferences;
 			sourceTree = "<group>";
@@ -342,9 +351,12 @@
 				9A37F5FE2D90EAE200FF8D9A /* MIDI_InputPackets.swift in Sources */,
 				9A37F5F92D90337700FF8D9A /* MIDI_InputManager.swift in Sources */,
 				9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */,
-				9AE120942D9E04130010C4E6 /* Fantom.referenceobject in Sources */,
 				9AE120992D9E04950010C4E6 /* ObjectTrackingManager.swift in Sources */,
-				9AE120972D9E04130010C4E6 /* TR-8S_Scaled.referenceobject in Sources */,
+				9A2024642DA13F3B00E448A9 /* OberheimScaled.referenceobject in Sources */,
+				9A2024652DA13F3B00E448A9 /* nord.referenceobject in Sources */,
+				9A2024662DA13F3B00E448A9 /* TR-8S_Scaled.referenceobject in Sources */,
+				9A2024672DA13F3B00E448A9 /* MS-20.referenceobject in Sources */,
+				9A2024682DA13F3B00E448A9 /* Fantom.referenceobject in Sources */,
 				9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */,
 				9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */,
 				9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */,
