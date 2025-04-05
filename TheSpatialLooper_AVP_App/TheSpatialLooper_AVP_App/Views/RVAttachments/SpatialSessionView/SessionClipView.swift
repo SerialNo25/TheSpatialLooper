@@ -10,6 +10,9 @@ import SwiftUI
 
 struct SessionClipView: View {
     
+    static var CLIP_BUTTON_HEIGHT: CGFloat = 70
+    static var CLIP_BUTTON_WIDTH: CGFloat = 100
+    
     @StateObject var clipSlot: LiveSessionClipSlot
     
     var body: some View {
@@ -29,7 +32,7 @@ struct SessionClipView: View {
         }
         .buttonBorderShape(.roundedRectangle)
         .buttonStyle(.plain)
-        .frame(width: 100, height: 70)
+        .frame(width: Self.CLIP_BUTTON_WIDTH, height: Self.CLIP_BUTTON_HEIGHT)
         .foregroundStyle(self.clipSlot.color)
         .opacity(self.clipSlot.state == .empty ? 0 : 1)
     }
@@ -91,7 +94,7 @@ struct AnimatedIndicator: View {
 }
 
 #Preview {
-    let clipSlot = LiveSessionClipSlot(cellID: 1)
+    let clipSlot = LiveSessionClipSlot(cellID: 1, track: LiveSessionTrack(sessionHeight: 10, trackID: 1))
     clipSlot.midiIn_wasClipAdded()
     clipSlot.midiIn_wasColorChanged(0, 200, 200)
     clipSlot.midiIn_wasPlaybackStarted()

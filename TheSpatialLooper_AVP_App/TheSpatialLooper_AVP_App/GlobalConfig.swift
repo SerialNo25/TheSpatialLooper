@@ -9,6 +9,10 @@ enum GlobalConfig {
     // MARK: - DEBUG MODES
     static let SHOW_HAND_TRACKING_JOINTS = true
     
+    // MARK: - SESSION CONFIG
+    static let LOOP_GRID_WIDTH: Int = 5
+    static let LOOP_GRID_HEIGHT: Int = 10
+    
     // MARK: - TRACK CONFIG
     // NOTE: The Reference Object Name is mapped to the tracker AND filename. It is required that the name AND filename match the internal name of the tracker.
     static let LOOP_SOURCE_CONFIGURATIONS: [LoopSourceConfiguration] = [

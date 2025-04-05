@@ -15,8 +15,13 @@ final class ReferenceObjectLoader {
     static var shared = ReferenceObjectLoader()
     private init(){}
     
-    // MARK: - LOGIC
+    // MARK: - PREVIEW
+    // reference objects seem to crash UI previews in this version -> disable them if preview active.
+    private var disableForPreview: Bool {
+        ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    }
     
+    // MARK: - LOGIC
     private var FILES: [String] {
         return GlobalConfig.LOOP_SOURCE_CONFIGURATIONS.map { $0.referenceObjectName + ".referenceobject" }
     }
@@ -33,8 +38,11 @@ final class ReferenceObjectLoader {
             Task {
                 do {
                     var referenceObject: ReferenceObject
-                    try await referenceObject = ReferenceObject(from: objectURL)
-                    referenceObjects.append(referenceObject)
+                    // only load reference objects if not running UI preview
+                    if !disableForPreview {
+                        try await referenceObject = ReferenceObject(from: objectURL)
+                        referenceObjects.append(referenceObject)
+                    }
                 } catch {
                     fatalError("Error on loading: \(objectURL): \(error)")
                 }

@@ -11,6 +11,7 @@ import SwiftUI
 class LiveSessionClipSlot: ObservableObject, Identifiable {
     
     var midiNoteID: Int
+    var parentTrack: LiveSessionTrack
     
     var deleteNextClip = false
     
@@ -25,8 +26,9 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
     @Published private var hasClip = false
     @Published private var playbackState = ClipPlaybackState.stopped
     
-    init(cellID: Int) {
+    init(cellID: Int, track: LiveSessionTrack) {
         self.midiNoteID = cellID
+        self.parentTrack = track
     }
     
     var state: ClipSlotState {
@@ -68,6 +70,8 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
     
     func midiIn_wasColorChanged(_ r: Int, _ g: Int, _ b: Int) {
         self._color = Color(red: Double(r)/255, green: Double(g)/255, blue: Double(b)/255)
+        
+        self.parentTrack.updateState()
     }
     
     func midiIn_wasClipAdded() {
@@ -79,26 +83,38 @@ class LiveSessionClipSlot: ObservableObject, Identifiable {
             }
             self.deleteNextClip = false
         }
+        
+        self.parentTrack.updateState()
     }
     
     func midiIn_wasClipRemoved() {
         hasClip = false
+        
+        self.parentTrack.updateState()
     }
     
     func midiIn_wasStopped() {
         self.playbackState = .stopped
+        
+        self.parentTrack.updateState()
     }
     
     func midiIn_wasQueued() {
         self.playbackState = .queued
+        
+        self.parentTrack.updateState()
     }
     
     func midiIn_wasPlaybackStarted() {
         self.playbackState = .playing
+        
+        self.parentTrack.updateState()
     }
     
     func midiIn_wasRecordingStarted() {
         self.playbackState = .recording
+        
+        self.parentTrack.updateState()
     }
 }
 

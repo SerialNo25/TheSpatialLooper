@@ -11,8 +11,8 @@ class LiveSessionManager {
     // MARK: - SINGLETON
     static var shared = LiveSessionManager()
     private init(){
-        for trackID in 0..<LOOP_GRID_WIDTH {
-            tracks[trackID] = LiveSessionTrack(sessionHeight: LOOP_GRID_HEIGHT, trackID: trackID)
+        for trackID in 0..<GlobalConfig.LOOP_GRID_WIDTH {
+            tracks[trackID] = LiveSessionTrack(sessionHeight: GlobalConfig.LOOP_GRID_HEIGHT, trackID: trackID)
         }
     }
     
@@ -21,9 +21,6 @@ class LiveSessionManager {
         tracks.values.sorted(by: {a,b in a.trackID < b.trackID})
     }
     
-    // TODO: Move to global config
-    let LOOP_GRID_WIDTH: Int = 5
-    let LOOP_GRID_HEIGHT: Int = 10
     
     func findClipSlot(midiNoteID: Int) -> LiveSessionClipSlot? {
         for track in tracksAscending {

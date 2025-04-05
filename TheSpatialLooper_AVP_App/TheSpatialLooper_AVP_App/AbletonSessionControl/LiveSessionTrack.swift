@@ -7,25 +7,43 @@
 
 import Foundation
 
-class LiveSessionTrack: Identifiable {
+class LiveSessionTrack: ObservableObject, Identifiable {
     
     let trackID: Int
     let trackFirstCellOffset: Int
     
-    private var nextRecordingSlotID = 1
+    @Published var state: TrackState = .stopped
     
+    private var nextRecordingSlotID = 1
     
     init(sessionHeight: Int, trackID: Int) {
         let firstCellIndex = trackID * sessionHeight
-        for cellIndex in firstCellIndex..<(firstCellIndex + sessionHeight) {
-            // start indexing at one to keep midi note 0 free for internal use
-            let cellID = cellIndex + 1
-            clipSlots[cellID] = (LiveSessionClipSlot(cellID: cellID))
-        }
+        
         // start indexing at one to be consistent with cell IDs
         self.trackID = trackID + 1
 
         self.trackFirstCellOffset = firstCellIndex
+        
+        for cellIndex in firstCellIndex..<(firstCellIndex + sessionHeight) {
+            // start indexing at one to keep midi note 0 free for internal use
+            let cellID = cellIndex + 1
+            clipSlots[cellID] = (LiveSessionClipSlot(cellID: cellID, track: self))
+        }
+    }
+    
+    // MARK: - TRACK STATE
+    func updateState() {
+        if findPlayingClip() != nil {
+            self.state = .playing
+            return
+        }
+        
+        if findRecordingClip() != nil {
+            self.state = .recording
+            return
+        }
+        
+        self.state = .stopped
     }
     
     // MARK: - INTERNAL SLOT MANAGEMENT
@@ -90,4 +108,11 @@ class LiveSessionTrack: Identifiable {
         playingClip.stopPlayback()
     }
     
+}
+
+
+enum TrackState {
+    case stopped
+    case playing
+    case recording
 }
