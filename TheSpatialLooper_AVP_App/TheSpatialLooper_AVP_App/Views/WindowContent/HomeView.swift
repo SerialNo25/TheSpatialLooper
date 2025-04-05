@@ -16,9 +16,7 @@ struct HomeView: View {
     
     @Environment(AppState.self) private var appState
     
-    // TODO: These properties need to be loaded on view appear
     @State private var immersiveViewState: Bool = false
-    @State private var manualPlacementMode: Bool = false
     @State private var looperActive: Bool = false
     
     var body: some View {
@@ -49,6 +47,9 @@ struct HomeView: View {
         }
         .frame(width: 370)
         .padding(.all, 40)
+        .onAppear() {
+            self.looperActive = appState.looperActive
+        }
     }
 }
 
