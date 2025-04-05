@@ -39,7 +39,6 @@
 		9AA940B52D7C6FA100A4BFBA /* LoopRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */; };
 		9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */; };
 		9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */; };
-		9AB515442D82EC8F0011F385 /* LoopGridTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB515432D82EC8E0011F385 /* LoopGridTestView.swift */; };
 		9AE120992D9E04950010C4E6 /* ObjectTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */; };
 		9AE1209B2D9E05410010C4E6 /* ReferenceObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */; };
 /* End PBXBuildFile section */
@@ -79,7 +78,6 @@
 		9AA940B42D7C6FA100A4BFBA /* LoopRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopRecordingView.swift; sourceTree = "<group>"; };
 		9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntity.swift; sourceTree = "<group>"; };
 		9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntityComponent.swift; sourceTree = "<group>"; };
-		9AB515432D82EC8E0011F385 /* LoopGridTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopGridTestView.swift; sourceTree = "<group>"; };
 		9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackingManager.swift; sourceTree = "<group>"; };
 		9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceObjectLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,7 +201,6 @@
 			children = (
 				9A2BC52A2D79B5980046F003 /* HomeView.swift */,
 				9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */,
-				9AB515432D82EC8E0011F385 /* LoopGridTestView.swift */,
 			);
 			path = WindowContent;
 			sourceTree = "<group>";
@@ -330,7 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AB515442D82EC8F0011F385 /* LoopGridTestView.swift in Sources */,
 				9A37F6002D90FB4100FF8D9A /* LiveSessionTrack.swift in Sources */,
 				9A2BC5352D79B8D50046F003 /* AppState.swift in Sources */,
 				9A3D65462D7E7640002B36E5 /* MIDI_UMP_Packet.swift in Sources */,

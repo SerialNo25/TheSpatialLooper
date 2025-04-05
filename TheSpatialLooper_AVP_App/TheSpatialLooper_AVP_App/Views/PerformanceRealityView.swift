@@ -45,17 +45,9 @@ struct PerformanceRealityView: View {
             content.add(rootEntity)
         
             
-            // TODO: Put this in a dedicated func as the others
-            // setup hands as loopTriggers
-            guard let leftViewAttachment = attachments.entity(for: AttachmentIdentifier.leftLoopRecordingView) else {fatalError("leftLoopRecordingView attachment not found. Ensure the attachment is linked.")}
-            guard let rightViewAttachment = attachments.entity(for: AttachmentIdentifier.rightLoopRecordingView) else {fatalError("rightLoopRecordingView attachment not found. Ensure the attachment is linked.")}
-            leftTriggerEntity.setLoopRecordingView(loopRecordingView: leftViewAttachment)
-            rightTriggerEntity.setLoopRecordingView(loopRecordingView: rightViewAttachment)
-            guard leftTriggerEntity.validateSetup() else { fatalError("Setup of: \(leftTriggerEntity.name) failed. Ensure configration is complete")}
-            guard rightTriggerEntity.validateSetup() else { fatalError("Setup of: \(rightTriggerEntity.name) failed. Ensure configration is complete")}
-            // hands are attached to the hand directly. This replaces direct link to root entity
-            leftTriggerEntity.attachToHand()
-            rightTriggerEntity.attachToHand()
+            // setup loop triggers
+            setupLoopTrigger(attachments: attachments, attachmentIdentifier: .leftLoopRecordingView, triggerEntity: leftTriggerEntity)
+            setupLoopTrigger(attachments: attachments, attachmentIdentifier: .rightLoopRecordingView, triggerEntity: rightTriggerEntity)
             
             
             // setup loop sources:
@@ -120,6 +112,14 @@ struct PerformanceRealityView: View {
         for joint in HandTrackingManager.shared.joints.values { handContainer.addChild(joint) }
         
         rootEntity.addChild(handContainer)
+    }
+    
+    func setupLoopTrigger(attachments: RealityViewAttachments, attachmentIdentifier: AttachmentIdentifier, triggerEntity: LoopTriggerEntity) {
+        guard let viewAttachment = attachments.entity(for: attachmentIdentifier) else {fatalError("View attachment for \(triggerEntity.name) not found. Ensure the attachment is linked.")}
+        triggerEntity.setLoopRecordingView(loopRecordingView: viewAttachment)
+        guard triggerEntity.validateSetup() else { fatalError("Setup of: \(triggerEntity.name) failed. Ensure configration is complete")}
+        // hands are attached to the hand directly. This replaces direct link to root entity
+        triggerEntity.attachToHand()
     }
     
     func setupLoopSources(attachments: RealityViewAttachments) {
