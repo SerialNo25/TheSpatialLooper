@@ -23,39 +23,42 @@ struct HomeView: View {
     var body: some View {
         VStack {
             
-            // TODO: Placeholder while loading ReferenceObjects
-            
-            Text("Welcome to Spatial Looper")
+            Text("🎹 Welcome to Spatial Looper")
                 .font(.title)
             
-            Toggle("Enable", isOn: $immersiveViewState)
-                .frame(width: 200)
-                .onChange(of: immersiveViewState) { _, newValue in
-                    Task {
-                        switch newValue {
-                        case true: await openImmersiveSpace(id: UIIdentifier.performanceSpace)
-                        case false: await dismissImmersiveSpace()
+            Form {
+                Section("🔁 Looper Control") {
+                    
+                    // TODO: Placeholder while loading ReferenceObjects
+                    
+                    Toggle("Open", isOn: $immersiveViewState)
+                        .onChange(of: immersiveViewState) { _, newValue in
+                            Task {
+                                switch newValue {
+                                case true: await openImmersiveSpace(id: UIIdentifier.performanceSpace)
+                                case false: await dismissImmersiveSpace()
+                                }
+                            }
                         }
+                    
+                    Toggle("Arm Looper", isOn: $looperActive)
+                        .onChange(of: looperActive) { _, newValue in
+                            appState.looperActive = newValue
+                        }
+                }
+
+                Picker("⏯️ Trigger Mode", selection: $loopTriggerMode) {
+                    ForEach(LoopTriggerMode.allCases) { triggerMode in
+                        Text(triggerMode.rawValue).tag(triggerMode)
                     }
                 }
-            
-            Toggle("ActivateLooper", isOn: $looperActive)
-                .frame(width: 200)
-                .onChange(of: looperActive) { _, newValue in
-                    appState.looperActive = newValue
-                }
-            
-            Picker("Trigger Mode", selection: $loopTriggerMode) {
-                ForEach(LoopTriggerMode.allCases) { triggerMode in
-                    Text(triggerMode.rawValue).tag(triggerMode)
+                .pickerStyle(.inline)
+                .onChange(of: loopTriggerMode) { _, newValue in
+                    appState.loopTriggerMode = newValue
                 }
             }
-            .onChange(of: loopTriggerMode) { _, newValue in
-                appState.loopTriggerMode = newValue
-            }
-            
         }
-        .frame(width: 370)
+        .frame(width: 370, height: 400)
         .padding(.all, 40)
         .onAppear() {
             self.looperActive = appState.looperActive
