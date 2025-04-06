@@ -6,13 +6,30 @@
 //
 
 import Foundation
+import SwiftUI
 
 class LiveSessionScene: Identifiable {
+    
+    static var colorID: Int = 0
+    static let sceneColors: [Color] = [
+        .red,
+        .green,
+        .blue,
+        .yellow,
+        .cyan,
+        .indigo,
+        .teal,
+        .purple
+    ]
+    
     private var configuredClipsByTrackID: [Int: LiveSessionClipSlot?] = [:]
+    let sceneColor: Color
     init() {
         for trackID in 0..<GlobalConfig.LOOP_GRID_WIDTH {
             configuredClipsByTrackID[trackID] = LiveSessionManager.shared.tracks[trackID]?.findPlayingClip()
         }
+        self.sceneColor = Self.sceneColors[Self.colorID]
+        Self.colorID = (Self.colorID + 1) % Self.sceneColors.count
     }
     
     func trigger() {

@@ -24,6 +24,7 @@ struct SceneView: View {
                     Button("scene") {
                         scene.trigger()
                     }
+                    .background(scene.sceneColor)
                 }.onDelete { indexSet in
                     sessionManager.deleteScene(at: indexSet)
                 }
@@ -40,4 +41,5 @@ struct SceneView: View {
 
 #Preview {
     SceneView()
+        .environment(AppState.shared)
 }
