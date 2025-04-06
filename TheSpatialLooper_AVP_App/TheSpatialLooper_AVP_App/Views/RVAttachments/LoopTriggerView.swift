@@ -14,19 +14,22 @@ struct LoopTriggerView: View {
     var name: String
     var body: some View {
         VStack {
-            Text("Imagine this was implemented 🙃")
-            Text("This is: \(name)")
+            if AppState.shared.loopTriggerMode == .commitOnLeave {
+                Button("DISCARD") {
+                    loopTriggerEntity.discardLoop()
+                }
+            }
+            
             Button("COMMIT") {
                 loopTriggerEntity.commitLoop()
             }
-            .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
+            
             Button("RE-START") {
                 loopTriggerEntity.reStartLoop()
             }
-            .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
         }
+        .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
         .padding()
-        
         
     }
 }

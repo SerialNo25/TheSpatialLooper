@@ -21,4 +21,12 @@ class AppState {
         }
     }
     
+    var loopTriggerMode: LoopTriggerMode = .commitOnLeave
+    
+}
+
+enum LoopTriggerMode: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case commitOnLeave = "Commit on Leave"
+    case discardOnLeave  = "Discard on Leave"
 }

@@ -18,6 +18,7 @@ struct HomeView: View {
     
     @State private var immersiveViewState: Bool = false
     @State private var looperActive: Bool = false
+    @State private var loopTriggerMode: LoopTriggerMode = .discardOnLeave
     
     var body: some View {
         VStack {
@@ -44,11 +45,21 @@ struct HomeView: View {
                     appState.looperActive = newValue
                 }
             
+            Picker("Trigger Mode", selection: $loopTriggerMode) {
+                ForEach(LoopTriggerMode.allCases) { triggerMode in
+                    Text(triggerMode.rawValue).tag(triggerMode)
+                }
+            }
+            .onChange(of: loopTriggerMode) { _, newValue in
+                appState.loopTriggerMode = newValue
+            }
+            
         }
         .frame(width: 370)
         .padding(.all, 40)
         .onAppear() {
             self.looperActive = appState.looperActive
+            self.loopTriggerMode = appState.loopTriggerMode
         }
     }
 }

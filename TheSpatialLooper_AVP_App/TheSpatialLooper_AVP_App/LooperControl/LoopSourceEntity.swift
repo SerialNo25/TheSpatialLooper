@@ -128,7 +128,12 @@ class LoopSourceEntity: Entity {
         triggersInUse.remove(trigger)
         
         if triggersInUse.isEmpty && loopIsRecording {
-            cancelLoopRecording()
+            switch AppState.shared.loopTriggerMode {
+            case .commitOnLeave:
+                commitLoop()
+            case .discardOnLeave:
+                cancelLoopRecording()
+            }
             guard !loopIsRecording else { fatalError("stopLoopRecording failed") }
         }
     }
@@ -170,7 +175,6 @@ class LoopSourceEntity: Entity {
     func cancelLoopRecording() {
         // GUARDS
         guard loopIsRecording else { return }
-        guard self.triggersInUse.isEmpty else { return }
         
         // visuals
         guard var modelComponent = self.boundingBox.components[ModelComponent.self] else { return }
