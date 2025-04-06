@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "TopLayer.png",
       "idiom" : "vision",
       "scale" : "2x"
     }
