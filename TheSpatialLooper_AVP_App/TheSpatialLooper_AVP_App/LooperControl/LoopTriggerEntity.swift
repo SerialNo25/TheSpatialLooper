@@ -13,7 +13,7 @@ import ARKit
 class LoopTriggerEntity: Entity, ObservableObject {
     
     // MARK: - SETUP
-    private var loopRecordingView: ViewAttachmentEntity?
+    private var loopRecordingView: Entity?
     private var handReferenceEntity: Entity?
     
     /// Recommended init for this class
@@ -36,10 +36,14 @@ class LoopTriggerEntity: Entity, ObservableObject {
 
     }
     
-    public func setLoopRecordingView(loopRecordingView: ViewAttachmentEntity) {
-        self.loopRecordingView = loopRecordingView
-        loopRecordingView.components.set(FaceHeadsetComponent())
-        self.addChild(loopRecordingView)
+    public func setLoopRecordingView(loopRecordingView: ViewAttachmentEntity, horizontalAttachmentOffset: Float) {
+        loopRecordingView.transform.translation = SIMD3<Float>(horizontalAttachmentOffset, 0.05, 0.02)
+        let recordingViewAnchorEntity = Entity()
+        recordingViewAnchorEntity.addChild(loopRecordingView)
+
+        self.loopRecordingView = recordingViewAnchorEntity
+        recordingViewAnchorEntity.components.set(FaceHeadsetComponent())
+        self.addChild(recordingViewAnchorEntity)
     }
     
     public func setName(name: String) {
@@ -67,8 +71,19 @@ class LoopTriggerEntity: Entity, ObservableObject {
     
     // MARK: - LOOP CONTROL
     @Published var activeLoopSource: LoopSourceEntity?
+    @Published var isArmed: Bool = true
+    
+    func arm() {
+        self.isArmed = true
+    }
+    
+    func disarm() {
+        self.isArmed = false
+    }
     
     func enterBoundingBox(of source: LoopSourceEntity) {
+        guard isArmed else { return }
+        
         guard !source.triggersInUse.contains(self) else {return}
         self.activeLoopSource = source
         source.triggerEnteredBoundingBox(trigger: self)
@@ -76,6 +91,8 @@ class LoopTriggerEntity: Entity, ObservableObject {
     }
     
     func leaveBoundingBox() {
+        guard isArmed else { return }
+        
         guard let currentlyLoopingSource = activeLoopSource else {return}
         guard currentlyLoopingSource.triggersInUse.contains(self) else {return}
         currentlyLoopingSource.triggerLeftBoundingBox(trigger: self)
@@ -84,16 +101,22 @@ class LoopTriggerEntity: Entity, ObservableObject {
     }
     
     func commitLoop() {
+        guard isArmed else { return }
+        
         guard let activeLoopSource = activeLoopSource else { return }
         activeLoopSource.commitLoop()
     }
     
     func discardLoop() {
+        guard isArmed else { return }
+        
         guard let activeLoopSource = activeLoopSource else { return }
         activeLoopSource.cancelLoopRecording()
     }
     
     func reStartLoop() {
+        guard isArmed else { return }
+        
         guard let activeLoopSource = activeLoopSource else { return }
         activeLoopSource.reStartLoop()
     }

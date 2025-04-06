@@ -49,8 +49,8 @@ struct PerformanceRealityView: View {
             
             
             // setup loop triggers
-            setupLoopTrigger(attachments: attachments, attachmentIdentifier: .leftLoopRecordingView, triggerEntity: leftTriggerEntity)
-            setupLoopTrigger(attachments: attachments, attachmentIdentifier: .rightLoopRecordingView, triggerEntity: rightTriggerEntity)
+            setupLoopTrigger(attachments: attachments, attachmentIdentifier: .leftLoopRecordingView, triggerEntity: leftTriggerEntity, horizontalAttachmentOffset: -0.07)
+            setupLoopTrigger(attachments: attachments, attachmentIdentifier: .rightLoopRecordingView, triggerEntity: rightTriggerEntity, horizontalAttachmentOffset: 0.07)
             
             
             // setup loop sources:
@@ -127,9 +127,9 @@ struct PerformanceRealityView: View {
         rootEntity.addChild(handContainer)
     }
     
-    func setupLoopTrigger(attachments: RealityViewAttachments, attachmentIdentifier: AttachmentIdentifier, triggerEntity: LoopTriggerEntity) {
+    func setupLoopTrigger(attachments: RealityViewAttachments, attachmentIdentifier: AttachmentIdentifier, triggerEntity: LoopTriggerEntity, horizontalAttachmentOffset: Float) {
         guard let viewAttachment = attachments.entity(for: attachmentIdentifier) else {fatalError("View attachment for \(triggerEntity.name) not found. Ensure the attachment is linked.")}
-        triggerEntity.setLoopRecordingView(loopRecordingView: viewAttachment)
+        triggerEntity.setLoopRecordingView(loopRecordingView: viewAttachment, horizontalAttachmentOffset: horizontalAttachmentOffset)
         guard triggerEntity.validateSetup() else { fatalError("Setup of: \(triggerEntity.name) failed. Ensure configration is complete")}
         // hands are attached to the hand directly. This replaces direct link to root entity
         triggerEntity.attachToHand()

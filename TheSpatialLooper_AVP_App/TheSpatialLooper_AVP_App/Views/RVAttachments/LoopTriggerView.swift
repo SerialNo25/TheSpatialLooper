@@ -14,26 +14,59 @@ struct LoopTriggerView: View {
     var name: String
     var body: some View {
         VStack {
-            if AppState.shared.loopTriggerMode == .commitOnLeave {
-                Button("DISCARD") {
-                    loopTriggerEntity.discardLoop()
+            LoopTriggerArmToggleView(loopTriggerEntity: loopTriggerEntity)
+            VStack {
+                if AppState.shared.loopTriggerMode == .commitOnLeave {
+                    Button("DISCARD") {
+                        loopTriggerEntity.discardLoop()
+                    }
+                }
+                
+                Button("COMMIT") {
+                    loopTriggerEntity.commitLoop()
+                }
+                
+                Button("RE-START") {
+                    loopTriggerEntity.reStartLoop()
                 }
             }
-            
-            Button("COMMIT") {
-                loopTriggerEntity.commitLoop()
-            }
-            
-            Button("RE-START") {
-                loopTriggerEntity.reStartLoop()
+//            .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
+//            .padding()
+        }
+        .frame(width: 160)
+        
+    }
+}
+
+struct LoopTriggerArmToggleView: View {
+    
+    @StateObject var loopTriggerEntity: LoopTriggerEntity
+    
+    @State var isArmed: Bool = false
+    
+    var body: some View {
+        Toggle(isOn: $isArmed) {
+            Text("Arm")
+        }
+        .onChange(of: isArmed) { _, newValue in
+            switch newValue {
+            case true:
+                loopTriggerEntity.arm()
+            case false:
+                loopTriggerEntity.disarm()
             }
         }
-        .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
+        .onAppear {
+            isArmed = loopTriggerEntity.isArmed
+        }
+        .onChange(of: loopTriggerEntity.isArmed) { _, newValue in
+            isArmed = loopTriggerEntity.isArmed
+        }
         .padding()
-        
     }
 }
 
 #Preview {
     LoopTriggerView(loopTriggerEntity: LoopTriggerEntity(), name: "a test")
+        .glassBackgroundEffect()
 }
