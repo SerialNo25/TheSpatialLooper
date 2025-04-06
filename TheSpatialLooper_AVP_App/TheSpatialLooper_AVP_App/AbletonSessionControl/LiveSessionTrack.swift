@@ -64,7 +64,7 @@ class LiveSessionTrack: ObservableObject, Identifiable {
         return nil
     }
     
-    private func findRecordingClip() -> LiveSessionClipSlot? {
+    func findRecordingClip() -> LiveSessionClipSlot? {
         for clip in clipSlots.values {
             if clip.state == .recording || clip.state == .recordingQueued {
                 return clip
@@ -73,7 +73,7 @@ class LiveSessionTrack: ObservableObject, Identifiable {
         return nil
     }
     
-    private func findPlayingClip() -> LiveSessionClipSlot? {
+    func findPlayingClip() -> LiveSessionClipSlot? {
         for clip in clipSlots.values {
             if clip.state == .playing {
                 return clip

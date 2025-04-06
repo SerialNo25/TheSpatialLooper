@@ -39,6 +39,8 @@
 		9AA940B52D7C6FA100A4BFBA /* LoopTriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B42D7C6FA100A4BFBA /* LoopTriggerView.swift */; };
 		9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */; };
 		9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */; };
+		9ABD25582DA2986200729EFB /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD25572DA2986200729EFB /* SceneView.swift */; };
+		9ABD255A2DA2992700729EFB /* LiveSessionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD25592DA2992700729EFB /* LiveSessionScene.swift */; };
 		9AE120992D9E04950010C4E6 /* ObjectTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */; };
 		9AE1209B2D9E05410010C4E6 /* ReferenceObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +80,8 @@
 		9AA940B42D7C6FA100A4BFBA /* LoopTriggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerView.swift; sourceTree = "<group>"; };
 		9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntity.swift; sourceTree = "<group>"; };
 		9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntityComponent.swift; sourceTree = "<group>"; };
+		9ABD25572DA2986200729EFB /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
+		9ABD25592DA2992700729EFB /* LiveSessionScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSessionScene.swift; sourceTree = "<group>"; };
 		9AE120982D9E04950010C4E6 /* ObjectTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTrackingManager.swift; sourceTree = "<group>"; };
 		9AE1209A2D9E05410010C4E6 /* ReferenceObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceObjectLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +122,7 @@
 				9A37F5FA2D90657B00FF8D9A /* LiveSessionManager.swift */,
 				9A37F5FF2D90FB4100FF8D9A /* LiveSessionTrack.swift */,
 				9A37F6012D90FB5B00FF8D9A /* LiveSessionClipSlot.swift */,
+				9ABD25592DA2992700729EFB /* LiveSessionScene.swift */,
 			);
 			path = AbletonSessionControl;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 			children = (
 				9A2BC52A2D79B5980046F003 /* HomeView.swift */,
 				9A168ED32D7E217800BC5279 /* MIDI_Settings.swift */,
+				9ABD25572DA2986200729EFB /* SceneView.swift */,
 			);
 			path = WindowContent;
 			sourceTree = "<group>";
@@ -347,7 +353,9 @@
 				9A37F5F92D90337700FF8D9A /* MIDI_InputManager.swift in Sources */,
 				9A20AE162D7CBC6100675637 /* FaceHeadsetSystem.swift in Sources */,
 				9AE120992D9E04950010C4E6 /* ObjectTrackingManager.swift in Sources */,
+				9ABD255A2DA2992700729EFB /* LiveSessionScene.swift in Sources */,
 				9A2024642DA13F3B00E448A9 /* OberheimScaled.referenceobject in Sources */,
+				9ABD25582DA2986200729EFB /* SceneView.swift in Sources */,
 				9A2024652DA13F3B00E448A9 /* nord.referenceobject in Sources */,
 				9A2024662DA13F3B00E448A9 /* TR-8S_Scaled.referenceobject in Sources */,
 				9A2024672DA13F3B00E448A9 /* MS-20.referenceobject in Sources */,

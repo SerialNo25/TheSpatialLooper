@@ -23,6 +23,8 @@ class AppState {
     
     var loopTriggerMode: LoopTriggerMode = .commitOnLeave
     
+    var scenesOpen: Bool = false
+    
 }
 
 enum LoopTriggerMode: String, CaseIterable, Identifiable {

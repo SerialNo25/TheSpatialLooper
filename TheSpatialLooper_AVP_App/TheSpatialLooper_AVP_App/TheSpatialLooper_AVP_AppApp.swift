@@ -57,6 +57,10 @@ struct TheSpatialLooper_AVP_AppApp: App {
         .windowStyle(.plain)
         .windowResizability(.contentSize)
 
+        WindowGroup(id: WindowIdentifier.sceneView.rawValue) {
+            SceneView()
+                .environment(appState)
+        }
         
         ImmersiveSpace(id: UIIdentifier.performanceSpace) {
             PerformanceRealityView()
@@ -66,4 +70,8 @@ struct TheSpatialLooper_AVP_AppApp: App {
         
         
     }
+}
+
+enum WindowIdentifier: String {
+    case sceneView = "SceneView"
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LiveSessionManager {
+class LiveSessionManager: ObservableObject {
     // MARK: - SINGLETON
     static var shared = LiveSessionManager()
     private init(){
@@ -16,6 +16,7 @@ class LiveSessionManager {
         }
     }
     
+    // MARK: - TRACK MANAGEMENT
     private(set) var tracks: [Int : LiveSessionTrack] = [:]
     var tracksAscending: [LiveSessionTrack] {
         tracks.values.sorted(by: {a,b in a.trackID < b.trackID})
@@ -29,5 +30,15 @@ class LiveSessionManager {
         return nil
     }
     
+    // MARK: - SCENE MANAGEMENT
+    @Published private(set) var scenes: [LiveSessionScene] = []
+    func createScenFromCurrentPlayback() {
+        scenes.append(LiveSessionScene())
+    }
+    func deleteScene(at indexSet: IndexSet) {
+        for index in indexSet {
+            scenes.remove(at: index)
+        }
+    }
     
 }

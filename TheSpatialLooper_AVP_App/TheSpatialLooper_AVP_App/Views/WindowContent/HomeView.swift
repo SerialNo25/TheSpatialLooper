@@ -10,7 +10,7 @@ import RealityKit
 
 struct HomeView: View {
     
-    
+    @Environment(\.openWindow) private var openWindow
     @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
     @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     
@@ -35,7 +35,11 @@ struct HomeView: View {
                         .onChange(of: immersiveViewState) { _, newValue in
                             Task {
                                 switch newValue {
-                                case true: await openImmersiveSpace(id: UIIdentifier.performanceSpace)
+                                case true:
+                                    await openImmersiveSpace(id: UIIdentifier.performanceSpace)
+                                    if !appState.scenesOpen {
+                                        openWindow(id: WindowIdentifier.sceneView.rawValue)
+                                    }
                                 case false: await dismissImmersiveSpace()
                                 }
                             }
