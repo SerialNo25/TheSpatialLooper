@@ -13,8 +13,8 @@ import ARKit
 class LoopTriggerEntity: Entity, ObservableObject {
     
     // MARK: - SETUP
-    private var loopRecordingView: Entity?
-    private var handReferenceEntity: Entity?
+    private(set) var loopRecordingView: Entity?
+    private(set) var handReferenceEntity: Entity?
     
     /// Recommended init for this class
     convenience init(triggerName: String, chirality: HandAnchor.Chirality) {
@@ -26,7 +26,7 @@ class LoopTriggerEntity: Entity, ObservableObject {
     
     public required init() {
         super.init()
-        self.components.set(LoopTriggerEntityComponent(LoopTriggerEntity: self))
+        self.components.set(LoopTriggerEntityComponent(loopTriggerEntity: self))
         self.components.set(
             CollisionComponent(shapes:
                                 [ShapeResource.generateSphere(radius: 0.01)]
@@ -54,6 +54,7 @@ class LoopTriggerEntity: Entity, ObservableObject {
     
     public func linkHand(handReferenceEntity: Entity) {
         self.handReferenceEntity = handReferenceEntity
+        self.components.set(FlickGestureComponent(referenceJoint: handReferenceEntity, flickAction: self.toggleArm))
     }
     
     public func validateSetup() -> Bool {
@@ -73,12 +74,8 @@ class LoopTriggerEntity: Entity, ObservableObject {
     @Published var activeLoopSource: LoopSourceEntity?
     @Published var isArmed: Bool = true
     
-    func arm() {
-        self.isArmed = true
-    }
-    
-    func disarm() {
-        self.isArmed = false
+    func toggleArm() {
+        isArmed.toggle()
     }
     
     func enterBoundingBox(of source: LoopSourceEntity) {

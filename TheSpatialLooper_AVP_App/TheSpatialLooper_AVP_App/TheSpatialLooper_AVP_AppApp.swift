@@ -23,9 +23,11 @@ struct TheSpatialLooper_AVP_AppApp: App {
         LoopTriggerEntityComponent.registerComponent()
         LoopSourceEntityComponent.registerComponent()
         FaceHeadsetComponent.registerComponent()
+        FlickGestureComponent.registerComponent()
         
         // MARK: SYSTEMS
         FaceHeadsetSystem.registerSystem()
+        WristFlickGestureSystem.registerSystem()
     }
     
     // MARK: -  APP Body

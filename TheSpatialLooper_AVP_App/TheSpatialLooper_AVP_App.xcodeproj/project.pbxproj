@@ -32,9 +32,11 @@
 		9A37F6022D90FB5B00FF8D9A /* LiveSessionClipSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A37F6012D90FB5B00FF8D9A /* LiveSessionClipSlot.swift */; };
 		9A37F6052D90FC5300FF8D9A /* SessionClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A37F6042D90FC5300FF8D9A /* SessionClipView.swift */; };
 		9A3D65462D7E7640002B36E5 /* MIDI_UMP_Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3D65452D7E7640002B36E5 /* MIDI_UMP_Packet.swift */; };
+		9A4916042DA3D3F100A99A6D /* FlickGestureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4916032DA3D3F100A99A6D /* FlickGestureComponent.swift */; };
 		9A5EF6122D79D081001D02C5 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5EF6112D79D081001D02C5 /* GlobalConfig.swift */; };
 		9A6DDF482DA1DE1B00ACFFDB /* CollisionEvents+TriggerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6DDF472DA1DE1B00ACFFDB /* CollisionEvents+TriggerSystem.swift */; };
 		9A7CD1D22D9B5C9900F9D8A5 /* SessionTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7CD1D12D9B5C9900F9D8A5 /* SessionTrackView.swift */; };
+		9A85BFA12DA3475000910B46 /* WristFlickGestureSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A85BFA02DA3475000910B46 /* WristFlickGestureSystem.swift */; };
 		9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */; };
 		9AA940B52D7C6FA100A4BFBA /* LoopTriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B42D7C6FA100A4BFBA /* LoopTriggerView.swift */; };
 		9AA940B72D7C71B800A4BFBA /* LoopTriggerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */; };
@@ -72,10 +74,12 @@
 		9A37F6012D90FB5B00FF8D9A /* LiveSessionClipSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSessionClipSlot.swift; sourceTree = "<group>"; };
 		9A37F6042D90FC5300FF8D9A /* SessionClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionClipView.swift; sourceTree = "<group>"; };
 		9A3D65452D7E7640002B36E5 /* MIDI_UMP_Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDI_UMP_Packet.swift; sourceTree = "<group>"; };
+		9A4916032DA3D3F100A99A6D /* FlickGestureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickGestureComponent.swift; sourceTree = "<group>"; };
 		9A5EF6112D79D081001D02C5 /* GlobalConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
 		9A6DDF472DA1DE1B00ACFFDB /* CollisionEvents+TriggerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollisionEvents+TriggerSystem.swift"; sourceTree = "<group>"; };
 		9A77801C2D777A0A008883D5 /* TheSpatialLooper_AVP_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheSpatialLooper_AVP_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7CD1D12D9B5C9900F9D8A5 /* SessionTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTrackView.swift; sourceTree = "<group>"; };
+		9A85BFA02DA3475000910B46 /* WristFlickGestureSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WristFlickGestureSystem.swift; sourceTree = "<group>"; };
 		9AA940B02D7C6EE400A4BFBA /* LoopSourceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSourceEntity.swift; sourceTree = "<group>"; };
 		9AA940B42D7C6FA100A4BFBA /* LoopTriggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerView.swift; sourceTree = "<group>"; };
 		9AA940B62D7C71B800A4BFBA /* LoopTriggerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTriggerEntity.swift; sourceTree = "<group>"; };
@@ -236,6 +240,7 @@
 				9AA940BB2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift */,
 				9A20AE1E2D7CE42E00675637 /* LoopSourceEntityComponent.swift */,
 				9A20AE132D7CBC4E00675637 /* FaceHeadsetComponent.swift */,
+				9A4916032DA3D3F100A99A6D /* FlickGestureComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				9A20AE152D7CBC6100675637 /* FaceHeadsetSystem.swift */,
+				9A85BFA02DA3475000910B46 /* WristFlickGestureSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 				9AE1209B2D9E05410010C4E6 /* ReferenceObjectLoader.swift in Sources */,
 				9A20AE1F2D7CE42E00675637 /* LoopSourceEntityComponent.swift in Sources */,
 				9A37F6052D90FC5300FF8D9A /* SessionClipView.swift in Sources */,
+				9A85BFA12DA3475000910B46 /* WristFlickGestureSystem.swift in Sources */,
 				9AA940B52D7C6FA100A4BFBA /* LoopTriggerView.swift in Sources */,
 				9AA940B12D7C6EE400A4BFBA /* LoopSourceEntity.swift in Sources */,
 				9A2BC52E2D79B5980046F003 /* HomeView.swift in Sources */,
@@ -360,6 +367,7 @@
 				9A2024662DA13F3B00E448A9 /* TR-8S_Scaled.referenceobject in Sources */,
 				9A2024672DA13F3B00E448A9 /* MS-20.referenceobject in Sources */,
 				9A2024682DA13F3B00E448A9 /* Fantom.referenceobject in Sources */,
+				9A4916042DA3D3F100A99A6D /* FlickGestureComponent.swift in Sources */,
 				9A168ED72D7E2D4E00BC5279 /* ComputeTools.swift in Sources */,
 				9AA940BC2D7C764200A4BFBA /* LoopTriggerEntityComponent.swift in Sources */,
 				9A2BC53A2D79BF110046F003 /* HandTrackingManager.swift in Sources */,

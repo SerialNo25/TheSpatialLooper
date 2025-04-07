@@ -30,8 +30,9 @@ struct LoopTriggerView: View {
                     loopTriggerEntity.reStartLoop()
                 }
             }
-//            .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
-//            .padding()
+            // TODO: Add this again
+            //            .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
+            //            .padding()
         }
         .frame(width: 160)
         
@@ -49,12 +50,8 @@ struct LoopTriggerArmToggleView: View {
             Text("Arm")
         }
         .onChange(of: isArmed) { _, newValue in
-            switch newValue {
-            case true:
-                loopTriggerEntity.arm()
-            case false:
-                loopTriggerEntity.disarm()
-            }
+            loopTriggerEntity.isArmed = newValue
+            
         }
         .onAppear {
             isArmed = loopTriggerEntity.isArmed

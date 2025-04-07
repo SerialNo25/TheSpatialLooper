@@ -5,6 +5,8 @@
 //  Created by Flurin Selm on 06.03.2025.
 //
 
+import Foundation
+
 enum GlobalConfig {
     // MARK: - DEBUG MODES
     static let SHOW_HAND_TRACKING_JOINTS = true
@@ -19,6 +21,9 @@ enum GlobalConfig {
     static let LOOP_SOURCE_CONFIGURATIONS: [LoopSourceConfiguration] = [
         LoopSourceConfiguration(sourceName: "TestSource", trackID: 0, boundingBoxX: 1, boundingBoxY: 0.1, boundingBoxZ: 0.5, boundingBoxOffsetZ: 0.1, viewAttachmentVerticalOffset: 0.2, referenceObjectName: "TR-8S_Scaled")
     ]
+    
+    // MARK: - CONTROL CONFIG
+    static let DETECTED_GESTURE_MAX_DURATION: TimeInterval = 0.3
 }
 
 enum UIIdentifier {
