@@ -37,7 +37,6 @@ struct FlickGestureComponent: Component {
         
         if blockoutCounter < blockoutThreshold {
             blockoutCounter += 1
-            print(blockoutCounter)
         }
     }
     
