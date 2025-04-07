@@ -72,7 +72,7 @@ class LoopTriggerEntity: Entity, ObservableObject {
     
     // MARK: - LOOP CONTROL
     @Published var activeLoopSource: LoopSourceEntity?
-    @Published var isArmed: Bool = true
+    @Published var isArmed: Bool = false
     
     func toggleArm() {
         isArmed.toggle()
