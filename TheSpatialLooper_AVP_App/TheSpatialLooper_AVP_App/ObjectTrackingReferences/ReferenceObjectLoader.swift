@@ -29,6 +29,7 @@ final class ReferenceObjectLoader: ObservableObject {
     private(set) var referenceObjects = [ReferenceObject]()
     @Published private(set) var hasLoaded: Bool = false
     
+    @MainActor
     func load() async {
         
         guard !hasLoaded else { return }
