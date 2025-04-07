@@ -36,33 +36,20 @@ struct TheSpatialLooper_AVP_AppApp: App {
         
         WindowGroup {
             HStack{
-                VStack{
-                    HomeView()
-                        .environment(appState)
-                        .glassBackgroundEffect()
-                    MIDI_Settings()
-                        .glassBackgroundEffect()
-                }
-                if appState.looperActive {
-                    // TODO: Remove
-                    VStack {
-                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[0])
-                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[1])
-                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[2])
-                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[3])
-                        SessionTrackView(track: LiveSessionManager.shared.tracksAscending[4])
-                    }
-                }
+                HomeView()
+                    .environment(appState)
             }
             .frame(width: 2000)
         }
         .windowStyle(.plain)
         .windowResizability(.contentSize)
-
+        
         WindowGroup(id: WindowIdentifier.sceneView.rawValue) {
             SceneView()
                 .environment(appState)
         }
+        .windowStyle(.plain)
+        .windowResizability(.contentSize)
         
         ImmersiveSpace(id: UIIdentifier.performanceSpace) {
             PerformanceRealityView()

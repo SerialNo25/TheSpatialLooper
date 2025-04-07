@@ -31,7 +31,7 @@ struct LoopTriggerView: View {
                 }
             }
             // TODO: Add this again
-            //            .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
+//                        .opacity(loopTriggerEntity.activeLoopSource != nil ? 1 : 0)
             //            .padding()
         }
         .frame(width: 160)

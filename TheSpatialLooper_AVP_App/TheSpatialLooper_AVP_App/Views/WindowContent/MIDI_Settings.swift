@@ -60,6 +60,9 @@ struct MIDI_SessionToggleView: View {
                     midiSessionManager.disableSession()
                 }
             }
+            .onChange(of: midiSessionManager.sessionActive) {_, newValue in
+                midiSessionActive = newValue
+            }
             .onAppear {
                 midiSessionActive = midiSessionManager.sessionActive
             }

@@ -9,7 +9,7 @@ import Foundation
 import ARKit
 
 
-final class ReferenceObjectLoader {
+final class ReferenceObjectLoader: ObservableObject {
     
     // MARK: - SINGLETON
     static var shared = ReferenceObjectLoader()
@@ -27,7 +27,7 @@ final class ReferenceObjectLoader {
     }
 
     private(set) var referenceObjects = [ReferenceObject]()
-    private var hasLoaded: Bool = false
+    @Published private(set) var hasLoaded: Bool = false
     
     func load() async {
         
