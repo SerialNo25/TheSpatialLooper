@@ -45,7 +45,7 @@ struct TheSpatialLooper_AVP_AppApp: App {
         .windowResizability(.contentSize)
         
         WindowGroup(id: WindowIdentifier.sceneView.rawValue) {
-            SceneView()
+            SceneListView()
                 .environment(appState)
         }
         .windowStyle(.plain)

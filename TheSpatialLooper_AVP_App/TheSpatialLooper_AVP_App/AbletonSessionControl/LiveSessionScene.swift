@@ -13,16 +13,19 @@ class LiveSessionScene: Identifiable {
     static var colorID: Int = 0
     static let sceneColors: [Color] = [
         .red,
-        .green,
-        .blue,
+        .orange,
         .yellow,
+        .green,
         .cyan,
-        .indigo,
-        .teal,
-        .purple
+        .blue,
+        .purple,
+        .black,
+        .white
     ]
     
     private var configuredClipsByTrackID: [Int: LiveSessionClipSlot?] = [:]
+    let playingClipCount: Int
+    
     let sceneColor: Color
     init() {
         for trackID in 0..<GlobalConfig.LOOP_GRID_WIDTH {
@@ -30,6 +33,8 @@ class LiveSessionScene: Identifiable {
         }
         self.sceneColor = Self.sceneColors[Self.colorID]
         Self.colorID = (Self.colorID + 1) % Self.sceneColors.count
+        
+        self.playingClipCount = configuredClipsByTrackID.values.count(where: { $0 != nil })
     }
     
     func trigger() {
