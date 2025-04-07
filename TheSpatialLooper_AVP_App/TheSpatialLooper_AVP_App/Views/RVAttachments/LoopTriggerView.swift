@@ -68,36 +68,6 @@ struct LoopTriggerView: View {
                     .foregroundStyle(.red.opacity(0.8))
             }
         }
-        
-        // TODO: Remove
-//        LoopTriggerArmToggleView(loopTriggerEntity: loopTriggerEntity)
-//            .frame(width: 200)
-        
-    }
-}
-
-// TODO: Remove this
-struct LoopTriggerArmToggleView: View {
-    
-    @StateObject var loopTriggerEntity: LoopTriggerEntity
-    
-    @State var isArmed: Bool = false
-    
-    var body: some View {
-        Toggle(isOn: $isArmed) {
-            Text("Arm")
-        }
-        .onChange(of: isArmed) { _, newValue in
-            loopTriggerEntity.isArmed = newValue
-            
-        }
-        .onAppear {
-            isArmed = loopTriggerEntity.isArmed
-        }
-        .onChange(of: loopTriggerEntity.isArmed) { _, newValue in
-            isArmed = loopTriggerEntity.isArmed
-        }
-        .padding()
     }
 }
 
