@@ -59,10 +59,12 @@ struct PerformanceRealityView: View {
             
             // setup trigger collisions
             collisionBeganSubscription = content.subscribe(to: CollisionEvents.Began.self) { collisionEvent in
+                guard appState.looperActive else { return }
                 collisionEvent.handleTriggerEvent()
             }
             
             collisionEndedSubscription = content.subscribe(to: CollisionEvents.Ended.self) { collisionEvent in
+                guard appState.looperActive else { return }
                 collisionEvent.handleTriggerEvent()
             }
             
