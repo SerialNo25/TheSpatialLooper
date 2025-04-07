@@ -32,7 +32,7 @@ struct HomeView: View {
                     ReferenceObjectLoadingPlaceholderView()
                         .padding(.top)
                 } else {
-                    if midiConnected {
+                    if !midiConnected {
                         // MARK: - MIDI NOT CONNECTED PAGE
                         MIDI_QuickConnectUtilityView()
                             .padding(.top)
