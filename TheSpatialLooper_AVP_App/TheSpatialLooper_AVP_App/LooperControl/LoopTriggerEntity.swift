@@ -75,6 +75,8 @@ class LoopTriggerEntity: Entity, ObservableObject {
     @Published var isArmed: Bool = false
     
     func toggleArm() {
+        // only allow modifications while not in bounding box
+        guard self.activeLoopSource == nil else { return }
         isArmed.toggle()
     }
     
