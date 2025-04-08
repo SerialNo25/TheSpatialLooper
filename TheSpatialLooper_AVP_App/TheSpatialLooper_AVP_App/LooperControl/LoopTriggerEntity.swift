@@ -83,16 +83,24 @@ class LoopTriggerEntity: Entity, ObservableObject {
     func enterBoundingBox(of source: LoopSourceEntity) {
         guard isArmed else { return }
         
+        // leave any active bounding box before entering a new one
+        if let currentlyLoopingSource = activeLoopSource {
+            self.leaveBoundingBox(of: currentlyLoopingSource)
+        }
+        
         guard !source.triggersInUse.contains(self) else {return}
         self.activeLoopSource = source
         source.triggerEnteredBoundingBox(trigger: self)
         guard source.triggersInUse.contains(self) else { fatalError("Entering bounding box failed")}
     }
     
-    func leaveBoundingBox() {
+    func leaveBoundingBox(of source: LoopSourceEntity) {
         guard isArmed else { return }
         
         guard let currentlyLoopingSource = activeLoopSource else {return}
+        // match the sourceEntity before leaving
+        guard currentlyLoopingSource == source else {return}
+                
         guard currentlyLoopingSource.triggersInUse.contains(self) else {return}
         currentlyLoopingSource.triggerLeftBoundingBox(trigger: self)
         self.activeLoopSource = nil

@@ -18,7 +18,7 @@ extension CollisionEvents.Began {
 extension CollisionEvents.Ended {
     func handleTriggerEvent() {
         guard let loopParticipants = TriggerTypeExtractionUtility.extractLoopTriggerAndSource(entityA: self.entityA, entityB: self.entityB) else { return }
-        loopParticipants.loopTrigger.leaveBoundingBox()
+        loopParticipants.loopTrigger.leaveBoundingBox(of: loopParticipants.loopSource)
     }
 }
 
