@@ -11,6 +11,8 @@ import RealityKit
 @MainActor
 class HandTrackingManager: ObservableObject {
     
+    static let FINGERTIP_SIZE: Float = 0.005
+    
     // MARK: - SINGLETON
     static var shared = HandTrackingManager()
     private init(){
@@ -53,7 +55,7 @@ class HandTrackingManager: ObservableObject {
         entity.name = name
         
         if GlobalConfig.SHOW_HAND_TRACKING_JOINTS {
-            entity.components.set(ModelComponent(mesh: .generateSphere(radius: 0.01), materials: [UnlitMaterial(color: .green)]))
+            entity.components.set(ModelComponent(mesh: .generateSphere(radius: Self.FINGERTIP_SIZE), materials: [UnlitMaterial(color: .green)]))
         }
         
         return entity

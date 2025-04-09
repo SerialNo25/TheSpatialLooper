@@ -9,5 +9,5 @@ import Foundation
 import RealityKit
 
 struct LoopTriggerEntityComponent: Component {
-    let LoopTriggerEntity: LoopTriggerEntity
+    let loopTriggerEntity: LoopTriggerEntity
 }

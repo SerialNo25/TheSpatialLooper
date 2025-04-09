@@ -15,6 +15,11 @@ struct PerformanceRealityView: View {
     @Environment(AppState.self) private var appState
     @State private var rootEntity = Entity()
     
+    private let leftTriggerEntity = LoopTriggerEntity(triggerName: "leftHand", chirality: .left)
+    private let rightTriggerEntity = LoopTriggerEntity(triggerName: "rightHand", chirality: .right)
+    
+    @State private var collisionBeganSubscription: EventSubscription? = nil
+    @State private var collisionEndedSubscription: EventSubscription? = nil
     
     
     
@@ -34,8 +39,6 @@ struct PerformanceRealityView: View {
     
     
     
-    
-    
     var body: some View {
         RealityView { content, attachments in
             // MARK: - RV INIT
@@ -43,23 +46,27 @@ struct PerformanceRealityView: View {
             setupRootEntity()
             setupHands()
             content.add(rootEntity)
-        
-            
-            // setup hands as loopTriggers
-            guard let leftViewAttachment = attachments.entity(for: AttachmendIdentifier.leftLoopRecordingView) else {fatalError("leftLoopRecordingView attachment not found. Ensure the attachment is linked.")}
-            guard let rightViewAttachment = attachments.entity(for: AttachmendIdentifier.rightLoopRecordingView) else {fatalError("rightLoopRecordingView attachment not found. Ensure the attachment is linked.")}
-            // let leftTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: leftViewAttachment, triggerName: "leftHand", chirality: .left)
-            let rightTriggerEntity = LoopTriggerEntity(viewAttachmentEntity: rightViewAttachment, triggerName: "rightHand", chirality: .right)
-            // hands are attached to the hand directly. This replaces direct link to root entity
-            //leftTriggerEntity.attachToHand()
-            rightTriggerEntity.attachToHand()
             
             
+            // setup loop triggers
+            setupLoopTrigger(attachments: attachments, attachmentIdentifier: .leftLoopRecordingView, triggerEntity: leftTriggerEntity, horizontalAttachmentOffset: -0.07)
+            setupLoopTrigger(attachments: attachments, attachmentIdentifier: .rightLoopRecordingView, triggerEntity: rightTriggerEntity, horizontalAttachmentOffset: 0.07)
             
             
-            // TrackTesting:
-            let source1 = LoopSourceEntity(sourceName: "TestSource", track: LiveSessionManager.shared.tracksAscending[0],  boundingBoxX: 1, boundingBoxY: 0.1, boundingBoxZ: 0.5, boundingBoxOffsetZ: 0.1)
-            rootEntity.addChild(source1)
+            // setup loop sources:
+            self.setupLoopSources(attachments: attachments)
+            
+            
+            // setup trigger collisions
+            collisionBeganSubscription = content.subscribe(to: CollisionEvents.Began.self) { collisionEvent in
+                guard appState.looperActive else { return }
+                collisionEvent.handleTriggerEvent()
+            }
+            
+            collisionEndedSubscription = content.subscribe(to: CollisionEvents.Ended.self) { collisionEvent in
+                guard appState.looperActive else { return }
+                collisionEvent.handleTriggerEvent()
+            }
             
             
             
@@ -76,18 +83,29 @@ struct PerformanceRealityView: View {
             
             Task {await ARKitSessionManager.shared.runSession()}
             Task {await HandTrackingManager.shared.processHandUpdates()}
+            Task {await ObjectTrackingManager.shared.processAnchorUpdates()}
+            
+            
             
         } update: { update, attachments in
             // MARK: - RV UPDATE
             
         } attachments: {
             // MARK: - RV ATTACHMENTS
-            Attachment(id: AttachmendIdentifier.leftLoopRecordingView) {
-                LoopRecordingView(name: "left")
+            Attachment(id: AttachmentIdentifier.leftLoopRecordingView) {
+                LoopTriggerView(loopTriggerEntity: leftTriggerEntity, name: "left")
             }
-            Attachment(id: AttachmendIdentifier.rightLoopRecordingView) {
-                LoopRecordingView(name: "right")
+            Attachment(id: AttachmentIdentifier.rightLoopRecordingView) {
+                LoopTriggerView(loopTriggerEntity: rightTriggerEntity, name: "right")
             }
+            
+            // Tracks
+            ForEach(GlobalConfig.LOOP_SOURCE_CONFIGURATIONS) { source in
+                Attachment(id: source.id) {
+                    SessionTrackView(track: LiveSessionManager.shared.tracksAscending[source.trackID])
+                }
+            }
+            
         }
         // MARK: - SHUTDOWN TASKS
         .onDisappear {
@@ -111,6 +129,28 @@ struct PerformanceRealityView: View {
         rootEntity.addChild(handContainer)
     }
     
+    func setupLoopTrigger(attachments: RealityViewAttachments, attachmentIdentifier: AttachmentIdentifier, triggerEntity: LoopTriggerEntity, horizontalAttachmentOffset: Float) {
+        guard let viewAttachment = attachments.entity(for: attachmentIdentifier) else {fatalError("View attachment for \(triggerEntity.name) not found. Ensure the attachment is linked.")}
+        triggerEntity.setLoopRecordingView(loopRecordingView: viewAttachment, horizontalAttachmentOffset: horizontalAttachmentOffset)
+        guard triggerEntity.validateSetup() else { fatalError("Setup of: \(triggerEntity.name) failed. Ensure configration is complete")}
+        // hands are attached to the hand directly. This replaces direct link to root entity
+        triggerEntity.attachToHand()
+    }
+    
+    func setupLoopSources(attachments: RealityViewAttachments) {
+        for loopSourceConfig in GlobalConfig.LOOP_SOURCE_CONFIGURATIONS {
+            let source = LoopSourceEntity(from: loopSourceConfig)
+            guard let trackAttachment = attachments.entity(for: loopSourceConfig.id) else {fatalError("attachment for \(loopSourceConfig.id) not found. Ensure the attachment is linked.")}
+            source.setSessionTrackView(from: loopSourceConfig, with: trackAttachment)
+            guard source.validateSetup() else { fatalError("Setup of: \(source.name) failed. Ensure configration is complete")}
+            rootEntity.addChild(source)
+            
+            // send the object to be tracked
+            ObjectTrackingManager.shared.addLoopSource(loopSource: source, with: loopSourceConfig)
+        }
+    }
+    
+    
     func setupRootEntity() {
         let newRoot = Entity()
         newRoot.name = "RootEntity"
@@ -118,3 +158,7 @@ struct PerformanceRealityView: View {
     }
 }
 
+enum AttachmentIdentifier {
+    case leftLoopRecordingView
+    case rightLoopRecordingView
+}

@@ -7,22 +7,21 @@
 
 import Foundation
 
-class LiveSessionManager {
+class LiveSessionManager: ObservableObject {
     // MARK: - SINGLETON
     static var shared = LiveSessionManager()
     private init(){
-        for trackID in 0..<LOOP_GRID_WIDTH {
-            tracks[trackID] = LiveSessionTrack(sessionHeight: LOOP_GRID_HEIGHT, trackID: trackID)
+        for trackID in 0..<GlobalConfig.LOOP_GRID_WIDTH {
+            tracks[trackID] = LiveSessionTrack(sessionHeight: GlobalConfig.LOOP_GRID_HEIGHT, trackID: trackID)
         }
     }
     
+    // MARK: - TRACK MANAGEMENT
     private(set) var tracks: [Int : LiveSessionTrack] = [:]
     var tracksAscending: [LiveSessionTrack] {
         tracks.values.sorted(by: {a,b in a.trackID < b.trackID})
     }
     
-    let LOOP_GRID_WIDTH: Int = 5
-    let LOOP_GRID_HEIGHT: Int = 10
     
     func findClipSlot(midiNoteID: Int) -> LiveSessionClipSlot? {
         for track in tracksAscending {
@@ -31,5 +30,15 @@ class LiveSessionManager {
         return nil
     }
     
+    // MARK: - SCENE MANAGEMENT
+    @Published private(set) var scenes: [LiveSessionScene] = []
+    func createScenFromCurrentPlayback() {
+        scenes.append(LiveSessionScene())
+    }
+    func deleteScene(at indexSet: IndexSet) {
+        for index in indexSet {
+            scenes.remove(at: index)
+        }
+    }
     
 }

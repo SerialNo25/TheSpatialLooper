@@ -10,32 +10,40 @@ import RealityKit
 import _RealityKit_SwiftUI
 import ARKit
 
-class LoopTriggerEntity: Entity {
+class LoopTriggerEntity: Entity, ObservableObject {
     
     // MARK: - SETUP
-    private var loopRecordingView: ViewAttachmentEntity?
-    private var handReferenceEntity: Entity?
+    private(set) var loopRecordingView: Entity?
+    private(set) var handReferenceEntity: Entity?
     
     /// Recommended init for this class
-    convenience init(viewAttachmentEntity: ViewAttachmentEntity, triggerName: String, chirality: HandAnchor.Chirality) {
+    convenience init(triggerName: String, chirality: HandAnchor.Chirality) {
         self.init()
         let recordingViewReferenceJoint = HandSkeleton.JointName.wrist
-        self.setLoopRecordingView(loopRecordingView: viewAttachmentEntity)
         self.setName(name: triggerName)
         self.linkHand(handReferenceEntity: HandTrackingManager.shared.getJoint(chirality: chirality, joint: recordingViewReferenceJoint))
-        
-        guard self.validateSetup() else { fatalError("Setup of: \(triggerName) failed. Ensure configration is complete")}
     }
     
     public required init() {
         super.init()
-        self.components.set(LoopTriggerEntityComponent(LoopTriggerEntity: self))
+        self.components.set(LoopTriggerEntityComponent(loopTriggerEntity: self))
+        self.components.set(
+            CollisionComponent(shapes:
+                                [ShapeResource.generateSphere(radius: 0.01)]
+                              )
+        )
+        
+
     }
     
-    public func setLoopRecordingView(loopRecordingView: ViewAttachmentEntity) {
-        self.loopRecordingView = loopRecordingView
-        loopRecordingView.components.set(FaceHeadsetComponent())
-        self.addChild(loopRecordingView)
+    public func setLoopRecordingView(loopRecordingView: ViewAttachmentEntity, horizontalAttachmentOffset: Float) {
+        loopRecordingView.transform.translation = SIMD3<Float>(horizontalAttachmentOffset, 0.05, 0.02)
+        let recordingViewAnchorEntity = Entity()
+        recordingViewAnchorEntity.addChild(loopRecordingView)
+
+        self.loopRecordingView = recordingViewAnchorEntity
+        recordingViewAnchorEntity.components.set(FaceHeadsetComponent())
+        self.addChild(recordingViewAnchorEntity)
     }
     
     public func setName(name: String) {
@@ -46,6 +54,7 @@ class LoopTriggerEntity: Entity {
     
     public func linkHand(handReferenceEntity: Entity) {
         self.handReferenceEntity = handReferenceEntity
+        self.components.set(FlickGestureComponent(referenceJoint: handReferenceEntity, flickAction: self.toggleArm))
     }
     
     public func validateSetup() -> Bool {
@@ -62,19 +71,60 @@ class LoopTriggerEntity: Entity {
     }
     
     // MARK: - LOOP CONTROL
+    @Published var activeLoopSource: LoopSourceEntity?
+    @Published var isArmed: Bool = false
     
-    // TODO: - Map this such that multiple triggers can map. -> Handover of active trigger instance must be possible. 
-    
-    var activeLoop: LoopSourceEntity?
-    
-    func startLooping(source: LoopSourceEntity) {
-        self.activeLoop = source
-        source.setLoopStarted(from: self)
+    func toggleArm() {
+        // only allow modifications while not in bounding box
+        guard self.activeLoopSource == nil else { return }
+        isArmed.toggle()
     }
     
-    func stopLooping() {
-        guard let currentlyLoopingSource = activeLoop else {return}
-        currentlyLoopingSource.setLoopStopped(from: self)
-        self.activeLoop = nil
+    func enterBoundingBox(of source: LoopSourceEntity) {
+        guard isArmed else { return }
+        
+        // leave any active bounding box before entering a new one
+        if let currentlyLoopingSource = activeLoopSource {
+            self.leaveBoundingBox(of: currentlyLoopingSource)
+        }
+        
+        guard !source.triggersInUse.contains(self) else {return}
+        self.activeLoopSource = source
+        source.triggerEnteredBoundingBox(trigger: self)
+        guard source.triggersInUse.contains(self) else { fatalError("Entering bounding box failed")}
+    }
+    
+    func leaveBoundingBox(of source: LoopSourceEntity) {
+        guard isArmed else { return }
+        
+        guard let currentlyLoopingSource = activeLoopSource else {return}
+        // match the sourceEntity before leaving
+        guard currentlyLoopingSource == source else {return}
+                
+        guard currentlyLoopingSource.triggersInUse.contains(self) else {return}
+        currentlyLoopingSource.triggerLeftBoundingBox(trigger: self)
+        self.activeLoopSource = nil
+        guard !currentlyLoopingSource.triggersInUse.contains(self) else { fatalError("Leaving bounding box failed")}
+    }
+    
+    func commitLoop() {
+        guard isArmed else { return }
+        
+        guard let activeLoopSource = activeLoopSource else { return }
+        activeLoopSource.commitLoop()
+    }
+    
+    func discardLoop() {
+        guard isArmed else { return }
+        
+        guard let activeLoopSource = activeLoopSource else { return }
+        activeLoopSource.cancelLoopRecording()
+    }
+    
+    func reStartLoop() {
+        guard isArmed else { return }
+        
+        guard let activeLoopSource = activeLoopSource else { return }
+        activeLoopSource.reStartLoop()
     }
 }

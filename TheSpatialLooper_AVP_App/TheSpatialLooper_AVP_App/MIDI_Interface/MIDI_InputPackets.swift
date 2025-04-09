@@ -43,10 +43,6 @@ struct SL_ClipStatePacket: SL_MidiInputPacket {
     private func updateClipState(_ clipID: UInt8, _ clipStateMidiID: UInt8) {
         guard let clipSlot = LiveSessionManager.shared.findClipSlot(midiNoteID: Int(clipID)) else { return }
         
-        if clipStateMidiID == 120 {
-            print("recordQueued")
-        }
-        
         DispatchQueue.main.async {
             if clipStateMidiID == 0 {
                 clipSlot.midiIn_wasStopped()
