@@ -27,10 +27,15 @@ Spatial Looper is a Spatial Control Surface for Ableton Live. It was developed a
 - Animated UI showing current clip state per track
 - Per-track clip controls
 
-### Scene Window
+### Scene Control
 - Create scenes from current playback
 - Scene triggering
 - Scene management
+
+### Hand Position Logging
+- Configurable logging of hand positions
+- Configurable sample rate
+- Export of position logs in CSV format
 
 
 ## Installation
@@ -48,6 +53,7 @@ Note: For the scope of this project the implementation was only tested using Abl
 > - The field referenceObjectName for each loop source requires a valid corresponding .referenceobject file in the ObjectTrackingReferences group of the app. You can create your own referenceobjects from 3D models using Apple CreateML. Please consult the official guide for this process.
 > - The field trackID starts indexing at 0.
 > - A track ID needs to be within the bounding box that is configured for the live session in both the remote script and the Vision Pro app. By default, tracks 1-5 (ID: 0-4) are supported.
+> - OPTIONAL: If hand position logging is desired, enable the logging feature in GlobalConfig and set the sample rate
 3. Sign and deploy the app on a supported device.
 
 #### Ableton Live Remote Script
