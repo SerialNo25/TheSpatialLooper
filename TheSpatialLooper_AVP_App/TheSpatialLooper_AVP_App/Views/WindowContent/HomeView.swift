@@ -107,6 +107,9 @@ struct LooperControlView: View {
                             await openImmersiveSpace(id: UIIdentifier.performanceSpace)
                             if !appState.scenesOpen {
                                 openWindow(id: WindowIdentifier.sceneView.rawValue)
+                                if GlobalConfig.LOGGING_ACTIVE {
+                                    openWindow(id: WindowIdentifier.loggingView.rawValue)
+                                }
                             }
                         case false: await dismissImmersiveSpace()
                         }

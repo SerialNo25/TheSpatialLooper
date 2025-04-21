@@ -52,6 +52,12 @@ struct PerformanceRealityView: View {
             setupLoopTrigger(attachments: attachments, attachmentIdentifier: .leftLoopRecordingView, triggerEntity: leftTriggerEntity, horizontalAttachmentOffset: -0.07)
             setupLoopTrigger(attachments: attachments, attachmentIdentifier: .rightLoopRecordingView, triggerEntity: rightTriggerEntity, horizontalAttachmentOffset: 0.07)
             
+            // attach logging in required
+            if GlobalConfig.LOGGING_ACTIVE {
+                leftTriggerEntity.components.set(PositionLoggingComponent(logger: appState.leftHandLogger))
+                rightTriggerEntity.components.set(PositionLoggingComponent(logger: appState.rightHandLogger))
+            }
+            
             
             // setup loop sources:
             self.setupLoopSources(attachments: attachments)

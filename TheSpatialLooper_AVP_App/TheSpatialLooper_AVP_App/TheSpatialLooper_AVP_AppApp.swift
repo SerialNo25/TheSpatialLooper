@@ -24,10 +24,12 @@ struct TheSpatialLooper_AVP_AppApp: App {
         LoopSourceEntityComponent.registerComponent()
         FaceHeadsetComponent.registerComponent()
         FlickGestureComponent.registerComponent()
+        PositionLoggingComponent.registerComponent()
         
         // MARK: SYSTEMS
         FaceHeadsetSystem.registerSystem()
         WristFlickGestureSystem.registerSystem()
+        PositionLoggingSystem.registerSystem()
     }
     
     // MARK: -  APP Body
@@ -51,6 +53,13 @@ struct TheSpatialLooper_AVP_AppApp: App {
         .windowStyle(.plain)
         .windowResizability(.contentSize)
         
+        WindowGroup(id: WindowIdentifier.loggingView.rawValue) {
+            LoggerView()
+                .environment(appState)
+        }
+        .windowStyle(.plain)
+        .windowResizability(.contentSize)
+        
         ImmersiveSpace(id: UIIdentifier.performanceSpace) {
             PerformanceRealityView()
                 .environment(appState)
@@ -63,4 +72,5 @@ struct TheSpatialLooper_AVP_AppApp: App {
 
 enum WindowIdentifier: String {
     case sceneView = "SceneView"
+    case loggingView = "Logging View"
 }
