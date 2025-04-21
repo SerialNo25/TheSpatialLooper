@@ -8,9 +8,13 @@
 import Foundation
 
 enum GlobalConfig {
-    // MARK: - DEBUG MODES
+    // MARK: - DEVELOPER MODES
     static let SHOW_HAND_TRACKING_JOINTS = false
-    static let SHOW_BOUNDING_BOXES = false 
+    static let SHOW_BOUNDING_BOXES = false
+    
+    // MARK: - DEV LOGGING
+    static let LOGGING_ACTIVE = false
+    static let LOGGING_INTERVAL: Double = 2
     
     // MARK: - SESSION CONFIG
     static let LOOP_GRID_WIDTH: Int = 5

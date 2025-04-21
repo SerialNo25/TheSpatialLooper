@@ -25,6 +25,10 @@ class AppState {
     
     var scenesOpen: Bool = false
     
+    // MARK: - DEV TOOLS
+    let leftHandLogger = HandPositionLogger(loggerName: "LeftHand")
+    let rightHandLogger = HandPositionLogger(loggerName: "RightHand")
+    
 }
 
 enum LoopTriggerMode: String, CaseIterable, Identifiable {
