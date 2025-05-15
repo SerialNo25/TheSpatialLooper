@@ -3,6 +3,7 @@ Leveraging Mixed Reality as an Interface for Clip-Based Live Music Looping of Ke
 
 ## Introduction
 Spatial Looper is a Spatial Control Surface for Ableton Live. It was developed as part of their Bachelor Thesis by Flurin Selm. Spatial Looper allows controlling the recording, playback, and scene grouping of Ableton Live clips during a live performance through a spatially aware user interface leveraging both hand and object recognition to understand the ongoing performance. Additionally, Spatial Looper can provide automatic recording triggers based on the performer’s hands’ proximity to the keyboards.
+Video demonstrations, evaluations, and a video user guide can be found on the [SpatialLooper YouTube Channel](https://www.youtube.com/@spatiallooper)
 
 
 ## Features
@@ -71,7 +72,7 @@ Note: For the scope of this project the implementation was only tested using Abl
 4. Spatial Looper is ready to run
 
 ## Usage
-A user guide for Spatial Looper can be found on the Spatial Looper YouTube Channel: TODO: Add Link
+A user guide for Spatial Looper can be found on the [SpatialLooper YouTube Channel](https://www.youtube.com/@spatiallooper)
 
 
 
